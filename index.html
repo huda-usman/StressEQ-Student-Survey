@@ -847,21 +847,22 @@
 
           <!-- Headline -->
           <h1 style="font-size:1.9em; font-weight:800; line-height:1.2; margin-bottom:10px;">
-            How stressed are you, <span style="color:var(--step-accent);">really?</span>
+            Know your stress. <span style="color:var(--step-accent);">Change your story.</span>
           </h1>
 
           <!-- One-liner -->
-          <p style="color:var(--muted); font-size:1em; margin-bottom:28px; line-height:1.5;">
-            StressEQ is our FYP — an AI that predicts and forecasts stress.<br>
-            <strong style="color:var(--text);">Help us build it.</strong> Takes ~4 minutes. Fully anonymous.
+          <p style="color:var(--muted); font-size:1em; margin-bottom:28px; line-height:1.6;">
+            We're building an AI that detects stress patterns, forecasts burnout risk, and suggests what to change.<br>
+            <strong style="color:var(--text);">Your answers make it work.</strong> Takes ~4 minutes. Fully anonymous.
           </p>
 
-          <!-- 3 trust pills -->
-          <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
+          <!-- Trust pills -->
+          <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
             <span style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">⏱ ~4 minutes</span>
             <span style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🔒 Anonymous</span>
             <span style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🤝 Support our research</span>
           </div>
+
 
           <!-- Big CTA -->
           <button type="button" class="btn-primary" onclick="nextStep()"
@@ -934,16 +935,19 @@
           <div class="row-2">
             <div class="question">
               <label class="q-label"><span class="qnum">Q5.</span> What year are you in?</label>
-              <select name="education_level" required>
+              <select name="education_level" required id="yearSelect" onchange="toggleYearOtherField()">
                 <option value="">— select —</option>
                 <option>Bachelor's Year 1</option>
                 <option>Bachelor's Year 2</option>
                 <option>Bachelor's Year 3</option>
                 <option>Bachelor's Year 4</option>
                 <option>Bachelor's Year 5 (e.g. MBBS, Arch)</option>
+                <option>Associate's Degree</option>
                 <option>Master's</option>
                 <option>PhD / Doctoral</option>
+                <option value="Other">Other</option>
               </select>
+              <input type="text" id="yearOtherInput" name="education_level_other" placeholder="Please specify your year / programme…" style="display:none; margin-top:8px;" />
             </div>
             <div class="question">
               <label class="q-label"><span class="qnum">Q6.</span> Field of study</label>
@@ -1034,12 +1038,19 @@
           <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest — your data is anonymous.</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q10.</span> On average, how many hours do you sleep per night?</label>
-            <input type="number" name="sleep_hours" step="0.5" min="0" max="14" placeholder="e.g., 6.5" required />
+            <label class="q-label"><span class="qnum">Q10.</span> How many hours do you usually sleep per night?</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="sl1" name="sleep_hours" value="4" required /><label for="sl1">Less than 5 hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl2" name="sleep_hours" value="5.5" /><label for="sl2">5–6 hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl3" name="sleep_hours" value="6.5" /><label for="sl3">6–7 hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl4" name="sleep_hours" value="7.5" /><label for="sl4">7–8 hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl5" name="sleep_hours" value="8.5" /><label for="sl5">8–9 hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl6" name="sleep_hours" value="10" /><label for="sl6">9+ hrs</label></div>
+            </div>
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q11.</span> Last 7 nights — how many times did you wake up feeling refreshed? <span class="hint">(0 = never, 7 = every night)</span></label>
+            <label class="q-label"><span class="qnum">Q11.</span> In the past week, how many mornings did you wake up feeling refreshed? <span class="hint">(0 = none, 7 = every morning)</span></label>
             <div class="likert" id="rsGroup"></div>
           </div>
 
@@ -1280,22 +1291,23 @@
           <h2>Almost there — just 2 quick ones</h2>
           <p class="lead">Your thoughts on StressEQ itself.</p>
 
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q37.</span> Would you use StressEQ as an app on your phone?</label>
-            <div class="radio-group">
+          <div class="question" style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
+            <label class="q-label" style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
+              <span class="qnum">Q37.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use it?
+            </label>
+            <div class="radio-group" style="margin-top:4px;">
               <div class="radio-card"><input type="radio" id="use1" name="would_use"
-                  value="Yes — sounds genuinely useful" required /><label for="use1">Yes — sounds genuinely
-                  useful</label></div>
+                  value="Yes — I genuinely need something like this" required /><label for="use1">💯 Yes — I genuinely need something like this</label></div>
               <div class="radio-card"><input type="radio" id="use2" name="would_use"
-                  value="Maybe — depends how accurate it is" /><label for="use2">Maybe — depends how accurate it
-                  is</label></div>
-              <div class="radio-card"><input type="radio" id="use3" name="would_use" value="No — not for me" /><label
-                  for="use3">No — not for me</label></div>
+                  value="No — stress isn't really a problem for me" /><label for="use2">😌 Stress isn't really a problem for me</label></div>
             </div>
           </div>
 
+
+
+
           <div class="question">
-            <label class="q-label"><span class="qnum">Q39.</span> Of these, which 3 matter MOST to YOUR stress? <span
+            <label class="q-label"><span class="qnum">Q38.</span> Of these, which 3 matter MOST to YOUR stress? <span
                 class="hint">(pick exactly 3)</span></label>
             <div class="picker-counter" id="topPickCounter">0 / 3 selected</div>
             <div class="check-grid" id="topPicks">
@@ -1325,15 +1337,25 @@
 
           <hr class="section-divider" />
 
-          <div class="question">
-            <label class="q-label" style="font-weight:500;">
-              <span style="color:var(--accent); font-weight:700;">Optional —</span> share your email if you'd like
-              the FYP team to follow up with you (e.g., to clarify a response or share findings later).
-            </label>
-            <div class="hint" style="margin-bottom:10px;">Only used if you fill it in. Leave blank to stay fully
-              anonymous.</div>
-            <input type="email" name="email" placeholder="your@email.com (optional)" autocomplete="off" />
+          <div style="background: linear-gradient(135deg, var(--soft) 0%, #EFF6FF 100%); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-top: 4px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+              <span style="font-size:1.6em;">📬</span>
+              <div>
+                <div style="font-weight:700; font-size:0.95em; color:var(--text);">Stay in the loop <span style="background:#DBEAFE; color:#1D4ED8; font-size:0.72em; font-weight:600; padding:2px 8px; border-radius:20px; margin-left:4px; vertical-align:middle;">Optional</span></div>
+                <div style="font-size:0.8em; color:var(--muted); margin-top:2px;">Drop your email if you'd like us to share our findings when StressEQ launches.</div>
+              </div>
+            </div>
+            <input type="email" name="email" id="emailInput" placeholder="e.g. huda.usman202@gmail.com"
+              autocomplete="email"
+              style="width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:10px; padding:11px 14px; font-size:0.95em; background:var(--card); color:var(--text); outline:none; transition:border-color 0.2s;"
+              oninput="validateEmailField(this)"
+              onfocus="this.style.borderColor='var(--primary)'"
+              onblur="this.style.borderColor=this.value&&!this.validity.valid?'#DC2626':this.value?'#10B981':'var(--border)'" />
+            <div style="font-size:0.75em; color:var(--muted); margin-top:8px; display:flex; align-items:center; gap:5px;">
+              🔒 Only you and the FYP team will see this. Leave blank to stay fully anonymous.
+            </div>
           </div>
+
 
           <div class="button-row">
             <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
@@ -1348,26 +1370,20 @@
           <h1 style="color:var(--ok); font-size:1.6em;">You're amazing — thank you!</h1>
           <p class="lead" style="color:var(--text); margin-top:8px; font-size:1em;">
             Your response has been recorded and will directly improve StressEQ's accuracy.
-            Here's a quick look at your wellbeing snapshot.
           </p>
 
-          <div class="profile-card" id="profileCard">
-            <div style="font-size:0.82em; opacity:0.85; margin-bottom:4px;">Your Wellbeing Snapshot</div>
-            <div class="level-badge" id="profileBadge">—</div>
-            <div style="font-size:1.5em; font-weight:700; margin:4px 0 2px;" id="profileLabel">Calculating...</div>
-            <div class="stress-meter">
-              <div class="stress-meter-fill" id="meterFill"></div>
-            </div>
-            <div style="font-size:0.78em; opacity:0.75; margin-bottom:8px;" id="meterSubtext"></div>
-            <div class="profile-tip" id="profileTip"></div>
-            <button class="share-btn" onclick="shareLink()">Share survey with a friend</button>
+          <div style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6;">
+            🔒 Your answers are stored anonymously under a random ID — never linked to your name.<br>
+            📊 Results will be used to train the StressEQ AI and shared only as group statistics in our FYP.
           </div>
 
           <div style="background:var(--soft); border-radius:12px; padding:12px 16px; margin:12px 0; font-size:0.83em; color:var(--muted);">
             Anonymous ID: <strong id="thankYouResponseId" style="color:var(--text); word-break:break-all;"></strong>
           </div>
 
-          <p style="color:var(--muted); font-size:0.88em;">You may close this tab now. Every response counts.</p>
+          <button class="share-btn" onclick="shareLink()" style="margin-top:8px;">Share survey with a friend 🚀</button>
+
+          <p style="color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response counts.</p>
         </div>
       </section>
 
@@ -1679,6 +1695,20 @@
     // ============================================================
     // Skip optional question
     // ============================================================
+    function validateEmailField(inp) {
+      if (!inp.value) { inp.style.borderColor = 'var(--border)'; return; }
+      inp.style.borderColor = inp.validity.valid ? '#10B981' : '#DC2626';
+    }
+
+    function toggleYearOtherField() {
+      const sel = document.getElementById('yearSelect');
+      const inp = document.getElementById('yearOtherInput');
+      if (sel && inp) {
+        inp.style.display = sel.value === 'Other' ? 'block' : 'none';
+        inp.required = sel.value === 'Other';
+      }
+    }
+
     function toggleOtherField() {
       const sel = document.getElementById('fieldSelect');
       const inp = document.getElementById('fieldOtherInput');
@@ -1799,29 +1829,75 @@
       const stepEl = document.querySelector(`.step[data-step="${step}"]`);
       if (!stepEl) return true;
 
+      // Clear any previous error highlights in this step
+      stepEl.querySelectorAll('.field-error').forEach(e => e.remove());
+      stepEl.querySelectorAll('.input-error').forEach(e => e.classList.remove('input-error'));
+
       const required = stepEl.querySelectorAll('input[required], select[required], textarea[required]');
+      let firstError = null;
+
       for (const el of required) {
         if (el.type === 'radio') {
           const group = stepEl.querySelectorAll(`input[name="${el.name}"]`);
           if (![...group].some(r => r.checked)) {
-            alert(`Please answer all questions in this section before continuing.`);
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return false;
+            // Highlight the whole radio group container
+            const container = el.closest('.question') || el.parentElement;
+            if (!container.querySelector('.field-error')) {
+              const err = document.createElement('div');
+              err.className = 'field-error';
+              err.textContent = '⚠️ Please answer this question before continuing.';
+              err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
+              container.appendChild(err);
+              container.style.outline = '2px solid #DC2626';
+              container.style.borderRadius = '10px';
+              container.style.padding = '8px';
+            }
+            if (!firstError) firstError = el;
           }
-        } else if (!el.value) {
-          alert(`Please answer all questions in this section before continuing.`);
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          el.focus();
-          return false;
+        } else if (!el.value.trim()) {
+          el.style.borderColor = '#DC2626';
+          el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.15)';
+          const container = el.closest('.question') || el.parentElement;
+          if (!container.querySelector('.field-error')) {
+            const err = document.createElement('div');
+            err.className = 'field-error';
+            err.textContent = '⚠️ Please fill in this field before continuing.';
+            err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
+            container.appendChild(err);
+          }
+          el.addEventListener('input', () => {
+            el.style.borderColor = '';
+            el.style.boxShadow = '';
+            container.querySelector('.field-error')?.remove();
+          }, { once: true });
+          if (!firstError) firstError = el;
         }
       }
+
       // Step 9 — top picks must be exactly 3
       if (step === 9) {
         const picked = document.querySelectorAll('#topPicks input:checked').length;
         if (picked !== 3) {
-          alert(`Please pick exactly 3 factors that matter most to YOUR stress.`);
-          return false;
+          const counter = document.getElementById('topPickCounter');
+          if (counter) {
+            counter.style.color = '#DC2626';
+            counter.style.fontWeight = '700';
+            const err = document.getElementById('topPickError') || (() => {
+              const e = document.createElement('div');
+              e.id = 'topPickError';
+              e.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
+              counter.after(e);
+              return e;
+            })();
+            err.textContent = `⚠️ You've selected ${picked} — please pick exactly 3.`;
+          }
+          if (!firstError) firstError = document.getElementById('topPicks');
         }
+      }
+
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false;
       }
       return true;
     }
