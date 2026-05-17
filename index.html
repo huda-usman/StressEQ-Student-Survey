@@ -622,7 +622,9 @@
 
     /* Hidden steps */
     /* ---- Step accent stripe ---- */
-    .card { border-top: 4px solid var(--step-accent); }
+    .card {
+      border-top: 4px solid var(--step-accent);
+    }
 
     /* ---- Skip button ---- */
     .skip-btn {
@@ -636,7 +638,10 @@
       text-decoration: underline;
       padding: 0;
     }
-    .skip-btn:hover { color: var(--primary); }
+
+    .skip-btn:hover {
+      color: var(--primary);
+    }
 
     /* ---- Toast milestone ---- */
     #toast {
@@ -650,12 +655,13 @@
       border-radius: 40px;
       font-size: 0.95em;
       font-weight: 600;
-      box-shadow: 0 8px 32px rgba(79,70,229,0.35);
+      box-shadow: 0 8px 32px rgba(79, 70, 229, 0.35);
       z-index: 9999;
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
       opacity: 0;
       white-space: nowrap;
     }
+
     #toast.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
@@ -663,9 +669,13 @@
 
     /* ---- Confetti canvas ---- */
     #confetti-canvas {
-      position: fixed; top:0; left:0;
-      width:100%; height:100%;
-      pointer-events:none; z-index:9998;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9998;
     }
 
     /* ---- Stress profile card (thank-you) ---- */
@@ -677,6 +687,7 @@
       margin: 24px 0 16px;
       text-align: center;
     }
+
     .profile-card .level-badge {
       display: inline-block;
       padding: 6px 20px;
@@ -687,30 +698,50 @@
       margin-bottom: 12px;
       text-transform: uppercase;
     }
-    .level-badge.high   { background: #EF4444; }
-    .level-badge.medium { background: #F59E0B; color:#1E293B; }
-    .level-badge.low    { background: #10B981; }
+
+    .level-badge.high {
+      background: #EF4444;
+    }
+
+    .level-badge.medium {
+      background: #F59E0B;
+      color: #1E293B;
+    }
+
+    .level-badge.low {
+      background: #10B981;
+    }
 
     .stress-meter {
       width: 100%;
       height: 12px;
-      background: rgba(255,255,255,0.25);
+      background: rgba(255, 255, 255, 0.25);
       border-radius: 8px;
       overflow: hidden;
       margin: 12px 0 6px;
     }
+
     .stress-meter-fill {
       height: 100%;
       border-radius: 8px;
       width: 0;
-      transition: width 1.4s cubic-bezier(0.22,1,0.36,1);
+      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .meter-high   { background: #EF4444; }
-    .meter-medium { background: #F59E0B; }
-    .meter-low    { background: #10B981; }
+
+    .meter-high {
+      background: #EF4444;
+    }
+
+    .meter-medium {
+      background: #F59E0B;
+    }
+
+    .meter-low {
+      background: #10B981;
+    }
 
     .profile-tip {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 12px;
       padding: 12px 16px;
       font-size: 0.88em;
@@ -723,7 +754,7 @@
       margin-top: 16px;
       padding: 10px 24px;
       border-radius: 30px;
-      border: 2px solid rgba(255,255,255,0.6);
+      border: 2px solid rgba(255, 255, 255, 0.6);
       background: transparent;
       color: #fff;
       font-weight: 600;
@@ -731,7 +762,10 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    .share-btn:hover { background: rgba(255,255,255,0.2); }
+
+    .share-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
     /* ---- Step transition animation ---- */
     .step {
@@ -744,12 +778,19 @@
     }
 
     @keyframes slideIn {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Radio card pop on select */
-    .radio-card input:checked + label {
+    .radio-card input:checked+label {
       transform: scale(1.04);
       transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -843,7 +884,8 @@
         <div class="card" style="text-align:center; padding: 36px 28px 32px;">
 
           <!-- Hero icon -->
-          <div style="font-size:3.2em; margin-bottom:16px; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;">🧠</div>
+          <div style="font-size:3.2em; margin-bottom:16px; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;">
+            🧠</div>
 
           <!-- Headline -->
           <h1 style="font-size:1.9em; font-weight:800; line-height:1.2; margin-bottom:10px;">
@@ -858,9 +900,15 @@
 
           <!-- Trust pills -->
           <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
-            <span style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">⏱ ~4 minutes</span>
-            <span style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🔒 Anonymous</span>
-            <span style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🤝 Support our research</span>
+            <span
+              style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">⏱
+              ~4 minutes</span>
+            <span
+              style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🔒
+              Anonymous</span>
+            <span
+              style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🤝
+              Support our research</span>
           </div>
 
 
@@ -879,8 +927,15 @@
 
         <style>
           @keyframes popIn {
-            from { transform: scale(0.5); opacity: 0; }
-            to   { transform: scale(1);   opacity: 1; }
+            from {
+              transform: scale(0.5);
+              opacity: 0;
+            }
+
+            to {
+              transform: scale(1);
+              opacity: 1;
+            }
           }
         </style>
       </section>
@@ -922,13 +977,19 @@
 
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q4.</span> Which best describes your background? <span class="hint">(optional)</span></label>
+            <label class="q-label"><span class="qnum">Q4.</span> Which best describes your background? <span
+                class="hint">(optional)</span></label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="r1" name="race" value="Asian" /><label for="r1">Asian</label></div>
-              <div class="radio-card"><input type="radio" id="r2" name="race" value="Black" /><label for="r2">Black</label></div>
-              <div class="radio-card"><input type="radio" id="r3" name="race" value="White" /><label for="r3">White</label></div>
-              <div class="radio-card"><input type="radio" id="r4" name="race" value="Other" /><label for="r4">Other / Mixed</label></div>
-              <div class="radio-card"><input type="radio" id="r5" name="race" value="Prefer not to say" /><label for="r5">Prefer not to say</label></div>
+              <div class="radio-card"><input type="radio" id="r1" name="race" value="Asian" /><label
+                  for="r1">Asian</label></div>
+              <div class="radio-card"><input type="radio" id="r2" name="race" value="Black" /><label
+                  for="r2">Black</label></div>
+              <div class="radio-card"><input type="radio" id="r3" name="race" value="White" /><label
+                  for="r3">White</label></div>
+              <div class="radio-card"><input type="radio" id="r4" name="race" value="Other" /><label for="r4">Other /
+                  Mixed</label></div>
+              <div class="radio-card"><input type="radio" id="r5" name="race" value="Prefer not to say" /><label
+                  for="r5">Prefer not to say</label></div>
             </div>
           </div>
 
@@ -947,7 +1008,8 @@
                 <option>PhD / Doctoral</option>
                 <option value="Other">Other</option>
               </select>
-              <input type="text" id="yearOtherInput" name="education_level_other" placeholder="Please specify your year / programme…" style="display:none; margin-top:8px;" />
+              <input type="text" id="yearOtherInput" name="education_level_other"
+                placeholder="Please specify your year / programme…" style="display:none; margin-top:8px;" />
             </div>
             <div class="question">
               <label class="q-label"><span class="qnum">Q6.</span> Field of study</label>
@@ -962,7 +1024,8 @@
                 <option>Law</option>
                 <option value="Other">Other</option>
               </select>
-              <input type="text" id="fieldOtherInput" name="field_of_study_other" placeholder="Please specify your field…" style="display:none; margin-top:8px;" />
+              <input type="text" id="fieldOtherInput" name="field_of_study_other"
+                placeholder="Please specify your field…" style="display:none; margin-top:8px;" />
             </div>
           </div>
 
@@ -987,7 +1050,8 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q8.</span> How heavy has your study workload felt lately? <span class="hint">(past 4 weeks)</span></label>
+            <label class="q-label"><span class="qnum">Q8.</span> How heavy has your study workload felt lately? <span
+                class="hint">(past 4 weeks)</span></label>
             <div class="likert">
               <div class="likert-item"><input type="radio" id="ap1" name="academic_pressure" value="1" required /><label
                   for="ap1">1</label></div>
@@ -1008,7 +1072,8 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q9.</span> On a typical week, how many hours do you study outside of class? <span class="hint">(Don't overthink — rough estimate is fine)</span></label>
+            <label class="q-label"><span class="qnum">Q9.</span> On a typical week, how many hours do you study outside
+              of class? <span class="hint">(Don't overthink — rough estimate is fine)</span></label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="sh1" name="study_hours" value="0-5" required /><label
                   for="sh1">0–5</label></div>
@@ -1035,27 +1100,36 @@
         <div class="card">
           <span class="step-badge">Section 3 of 9 · Sleep &amp; body</span>
           <h2>Sleep &amp; activity</h2>
-          <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest — your data is anonymous.</p>
+          <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest — your data is anonymous.
+          </p>
 
           <div class="question">
             <label class="q-label"><span class="qnum">Q10.</span> How many hours do you usually sleep per night?</label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="sl1" name="sleep_hours" value="4" required /><label for="sl1">Less than 5 hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl2" name="sleep_hours" value="5.5" /><label for="sl2">5–6 hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl3" name="sleep_hours" value="6.5" /><label for="sl3">6–7 hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl4" name="sleep_hours" value="7.5" /><label for="sl4">7–8 hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl5" name="sleep_hours" value="8.5" /><label for="sl5">8–9 hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl6" name="sleep_hours" value="10" /><label for="sl6">9+ hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl1" name="sleep_hours" value="4" required /><label
+                  for="sl1">Less than 5 hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl2" name="sleep_hours" value="5.5" /><label for="sl2">5–6
+                  hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl3" name="sleep_hours" value="6.5" /><label for="sl3">6–7
+                  hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl4" name="sleep_hours" value="7.5" /><label for="sl4">7–8
+                  hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl5" name="sleep_hours" value="8.5" /><label for="sl5">8–9
+                  hrs</label></div>
+              <div class="radio-card"><input type="radio" id="sl6" name="sleep_hours" value="10" /><label for="sl6">9+
+                  hrs</label></div>
             </div>
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q11.</span> In the past week, how many mornings did you wake up feeling refreshed? <span class="hint">(0 = none, 7 = every morning)</span></label>
+            <label class="q-label"><span class="qnum">Q11.</span> In the past week, how many mornings did you wake up
+              feeling refreshed? <span class="hint">(0 = none, 7 = every morning)</span></label>
             <div class="likert" id="rsGroup"></div>
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q12.</span> In the past week, how many days did you exercise or walk for at least 30 minutes?</label>
+            <label class="q-label"><span class="qnum">Q12.</span> In the past week, how many days did you exercise or
+              walk for at least 30 minutes?</label>
             <div class="likert" id="paGroup"></div>
           </div>
 
@@ -1110,10 +1184,12 @@
         <div class="card">
           <span class="step-badge">Section 4 of 9 · Lifestyle</span>
           <h2>Your habits</h2>
-          <p class="lead">Past 30 days. Everything here is anonymous — we only look at group patterns, not individuals.</p>
+          <p class="lead">Past 30 days. Everything here is anonymous — we only look at group patterns, not individuals.
+          </p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q15.</span> How often did you use tobacco or nicotine (cigarettes, vapes, etc.)?</label>
+            <label class="q-label"><span class="qnum">Q15.</span> How often did you use tobacco or nicotine (cigarettes,
+              vapes, etc.)?</label>
             <button type="button" class="skip-btn" onclick="skipQuestion('tobacco','Never')">Skip this question</button>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="tob1" name="tobacco" value="Never" required /><label
@@ -1143,7 +1219,8 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q17.</span> Did you use any other recreational substance (e.g. cannabis)?</label>
+            <label class="q-label"><span class="qnum">Q17.</span> Did you use any other recreational substance (e.g.
+              cannabis)?</label>
             <button type="button" class="skip-btn" onclick="skipQuestion('drugs','No')">Skip this question</button>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="drg1" name="drugs" value="No" required /><label
@@ -1168,20 +1245,29 @@
           <p class="lead">Two quick questions about how you're feeling at uni and about money.</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q18.</span> Do you feel like you belong / fit in at your university?</label>
+            <label class="q-label"><span class="qnum">Q18.</span> Do you feel like you belong / fit in at your
+              university?</label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="bel1" name="belonging_score" value="1" required /><label for="bel1">Not at all</label></div>
-              <div class="radio-card"><input type="radio" id="bel2" name="belonging_score" value="2" /><label for="bel2">Not really</label></div>
-              <div class="radio-card"><input type="radio" id="bel3" name="belonging_score" value="3" /><label for="bel3">Somewhat</label></div>
-              <div class="radio-card"><input type="radio" id="bel4" name="belonging_score" value="4" /><label for="bel4">Mostly yes</label></div>
-              <div class="radio-card"><input type="radio" id="bel5" name="belonging_score" value="5" /><label for="bel5">Definitely</label></div>
-              <div class="radio-card"><input type="radio" id="bel6" name="belonging_score" value="6" /><label for="bel6">Strongly yes</label></div>
-              <div class="radio-card"><input type="radio" id="bel7" name="belonging_score" value="7" /><label for="bel7">Completely</label></div>
+              <div class="radio-card"><input type="radio" id="bel1" name="belonging_score" value="1" required /><label
+                  for="bel1">Not at all</label></div>
+              <div class="radio-card"><input type="radio" id="bel2" name="belonging_score" value="2" /><label
+                  for="bel2">Not really</label></div>
+              <div class="radio-card"><input type="radio" id="bel3" name="belonging_score" value="3" /><label
+                  for="bel3">Somewhat</label></div>
+              <div class="radio-card"><input type="radio" id="bel4" name="belonging_score" value="4" /><label
+                  for="bel4">Mostly yes</label></div>
+              <div class="radio-card"><input type="radio" id="bel5" name="belonging_score" value="5" /><label
+                  for="bel5">Definitely</label></div>
+              <div class="radio-card"><input type="radio" id="bel6" name="belonging_score" value="6" /><label
+                  for="bel6">Strongly yes</label></div>
+              <div class="radio-card"><input type="radio" id="bel7" name="belonging_score" value="7" /><label
+                  for="bel7">Completely</label></div>
             </div>
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q19.</span> What is the highest level of education your parent or guardian completed?</label>
+            <label class="q-label"><span class="qnum">Q19.</span> What is the highest level of education your parent or
+              guardian completed?</label>
             <select name="parent_education" required>
               <option value="">— select —</option>
               <option>No formal education</option>
@@ -1194,15 +1280,23 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q20.</span> How often do you worry about money or finances?</label>
+            <label class="q-label"><span class="qnum">Q20.</span> How often do you worry about money or
+              finances?</label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="fin1" name="financial_strain" value="1" required /><label for="fin1">Never</label></div>
-              <div class="radio-card"><input type="radio" id="fin2" name="financial_strain" value="2" /><label for="fin2">Rarely</label></div>
-              <div class="radio-card"><input type="radio" id="fin3" name="financial_strain" value="3" /><label for="fin3">Sometimes</label></div>
-              <div class="radio-card"><input type="radio" id="fin4" name="financial_strain" value="4" /><label for="fin4">Often</label></div>
-              <div class="radio-card"><input type="radio" id="fin5" name="financial_strain" value="5" /><label for="fin5">Frequently</label></div>
-              <div class="radio-card"><input type="radio" id="fin6" name="financial_strain" value="6" /><label for="fin6">Most days</label></div>
-              <div class="radio-card"><input type="radio" id="fin7" name="financial_strain" value="7" /><label for="fin7">Constantly</label></div>
+              <div class="radio-card"><input type="radio" id="fin1" name="financial_strain" value="1" required /><label
+                  for="fin1">Never</label></div>
+              <div class="radio-card"><input type="radio" id="fin2" name="financial_strain" value="2" /><label
+                  for="fin2">Rarely</label></div>
+              <div class="radio-card"><input type="radio" id="fin3" name="financial_strain" value="3" /><label
+                  for="fin3">Sometimes</label></div>
+              <div class="radio-card"><input type="radio" id="fin4" name="financial_strain" value="4" /><label
+                  for="fin4">Often</label></div>
+              <div class="radio-card"><input type="radio" id="fin5" name="financial_strain" value="5" /><label
+                  for="fin5">Frequently</label></div>
+              <div class="radio-card"><input type="radio" id="fin6" name="financial_strain" value="6" /><label
+                  for="fin6">Most days</label></div>
+              <div class="radio-card"><input type="radio" id="fin7" name="financial_strain" value="7" /><label
+                  for="fin7">Constantly</label></div>
             </div>
           </div>
 
@@ -1221,12 +1315,17 @@
           <p class="lead">One quick question — your answer helps the AI understand your full picture.</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q20.</span> Do you have any diagnosed chronic health condition?</label>
+            <label class="q-label"><span class="qnum">Q20.</span> Do you have any diagnosed chronic health
+              condition?</label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="chr0" name="chronic_illness_tier" value="0" required /><label for="chr0">None</label></div>
-              <div class="radio-card"><input type="radio" id="chr1" name="chronic_illness_tier" value="1" /><label for="chr1">Mild <span class="hint">(e.g. asthma, high cholesterol)</span></label></div>
-              <div class="radio-card"><input type="radio" id="chr2" name="chronic_illness_tier" value="2" /><label for="chr2">Moderate <span class="hint">(e.g. thyroid, hypertension, gastro)</span></label></div>
-              <div class="radio-card"><input type="radio" id="chr3" name="chronic_illness_tier" value="3" /><label for="chr3">Severe <span class="hint">(e.g. diabetes, epilepsy, cancer)</span></label></div>
+              <div class="radio-card"><input type="radio" id="chr0" name="chronic_illness_tier" value="0"
+                  required /><label for="chr0">None</label></div>
+              <div class="radio-card"><input type="radio" id="chr1" name="chronic_illness_tier" value="1" /><label
+                  for="chr1">Mild <span class="hint">(e.g. asthma, high cholesterol)</span></label></div>
+              <div class="radio-card"><input type="radio" id="chr2" name="chronic_illness_tier" value="2" /><label
+                  for="chr2">Moderate <span class="hint">(e.g. thyroid, hypertension, gastro)</span></label></div>
+              <div class="radio-card"><input type="radio" id="chr3" name="chronic_illness_tier" value="3" /><label
+                  for="chr3">Severe <span class="hint">(e.g. diabetes, epilepsy, cancer)</span></label></div>
             </div>
           </div>
 
@@ -1242,11 +1341,13 @@
         <div class="card">
           <span class="step-badge">Section 7 of 9 · Wellbeing check</span>
           <h2>How have you been feeling?</h2>
-          <p class="lead">These are standard wellbeing questions used in research worldwide. There are no right or wrong answers — just be honest about the past 2 weeks.</p>
+          <p class="lead">These are standard wellbeing questions used in research worldwide. There are no right or wrong
+            answers — just be honest about the past 2 weeks.</p>
 
           <div class="callout">
             <strong>For each statement, pick how often it applied to you:</strong><br />
-            <strong>1</strong> Not at all &nbsp;·&nbsp; <strong>2</strong> A few days &nbsp;·&nbsp; <strong>3</strong> More than half the days &nbsp;·&nbsp; <strong>4</strong> Almost every day
+            <strong>1</strong> Not at all &nbsp;·&nbsp; <strong>2</strong> A few days &nbsp;·&nbsp; <strong>3</strong>
+            More than half the days &nbsp;·&nbsp; <strong>4</strong> Almost every day
           </div>
 
           <div id="phqContainer"></div>
@@ -1269,10 +1370,12 @@
         <div class="card">
           <span class="step-badge">Section 8 of 9 · Worry &amp; anxiety</span>
           <h2>One more set — almost done!</h2>
-          <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the past 2 weeks.</p>
+          <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the past 2
+            weeks.</p>
 
           <div class="callout">
-            <strong>1</strong> Not at all &nbsp;·&nbsp; <strong>2</strong> A few days &nbsp;·&nbsp; <strong>3</strong> More than half the days &nbsp;·&nbsp; <strong>4</strong> Almost every day
+            <strong>1</strong> Not at all &nbsp;·&nbsp; <strong>2</strong> A few days &nbsp;·&nbsp; <strong>3</strong>
+            More than half the days &nbsp;·&nbsp; <strong>4</strong> Almost every day
           </div>
 
           <div id="gadContainer"></div>
@@ -1291,15 +1394,21 @@
           <h2>Almost there — just 2 quick ones</h2>
           <p class="lead">Your thoughts on StressEQ itself.</p>
 
-          <div class="question" style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
-            <label class="q-label" style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
-              <span class="qnum">Q37.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use it?
+          <div class="question"
+            style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
+            <label class="q-label"
+              style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
+              <span class="qnum">Q37.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
+                stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use
+              it?
             </label>
             <div class="radio-group" style="margin-top:4px;">
               <div class="radio-card"><input type="radio" id="use1" name="would_use"
-                  value="Yes — I genuinely need something like this" required /><label for="use1">💯 Yes — I genuinely need something like this</label></div>
+                  value="Yes — I genuinely need something like this" required /><label for="use1">💯 Yes — I genuinely
+                  need something like this</label></div>
               <div class="radio-card"><input type="radio" id="use2" name="would_use"
-                  value="No — stress isn't really a problem for me" /><label for="use2">😌 Stress isn't really a problem for me</label></div>
+                  value="No — stress isn't really a problem for me" /><label for="use2">😌 Stress isn't really a problem
+                  for me</label></div>
             </div>
           </div>
 
@@ -1337,21 +1446,25 @@
 
           <hr class="section-divider" />
 
-          <div style="background: linear-gradient(135deg, var(--soft) 0%, #EFF6FF 100%); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-top: 4px;">
+          <div
+            style="background: linear-gradient(135deg, var(--soft) 0%, #EFF6FF 100%); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-top: 4px;">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
               <span style="font-size:1.6em;">📬</span>
               <div>
-                <div style="font-weight:700; font-size:0.95em; color:var(--text);">Stay in the loop <span style="background:#DBEAFE; color:#1D4ED8; font-size:0.72em; font-weight:600; padding:2px 8px; border-radius:20px; margin-left:4px; vertical-align:middle;">Optional</span></div>
-                <div style="font-size:0.8em; color:var(--muted); margin-top:2px;">Drop your email if you'd like us to share our findings when StressEQ launches.</div>
+                <div style="font-weight:700; font-size:0.95em; color:var(--text);">Stay in the loop <span
+                    style="background:#DBEAFE; color:#1D4ED8; font-size:0.72em; font-weight:600; padding:2px 8px; border-radius:20px; margin-left:4px; vertical-align:middle;">Optional</span>
+                </div>
+                <div style="font-size:0.8em; color:var(--muted); margin-top:2px;">Drop your email if you'd like us to
+                  share our findings when StressEQ launches.</div>
               </div>
             </div>
-            <input type="email" name="email" id="emailInput" placeholder="e.g. huda.usman202@gmail.com"
+            <input type="email" name="email" id="emailInput" placeholder=""
               autocomplete="email"
               style="width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:10px; padding:11px 14px; font-size:0.95em; background:var(--card); color:var(--text); outline:none; transition:border-color 0.2s;"
-              oninput="validateEmailField(this)"
-              onfocus="this.style.borderColor='var(--primary)'"
+              oninput="validateEmailField(this)" onfocus="this.style.borderColor='var(--primary)'"
               onblur="this.style.borderColor=this.value&&!this.validity.valid?'#DC2626':this.value?'#10B981':'var(--border)'" />
-            <div style="font-size:0.75em; color:var(--muted); margin-top:8px; display:flex; align-items:center; gap:5px;">
+            <div
+              style="font-size:0.75em; color:var(--muted); margin-top:8px; display:flex; align-items:center; gap:5px;">
               🔒 Only you and the FYP team will see this. Leave blank to stay fully anonymous.
             </div>
           </div>
@@ -1372,18 +1485,21 @@
             Your response has been recorded and will directly improve StressEQ's accuracy.
           </p>
 
-          <div style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6;">
+          <div
+            style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6;">
             🔒 Your answers are stored anonymously under a random ID — never linked to your name.<br>
             📊 Results will be used to train the StressEQ AI and shared only as group statistics in our FYP.
           </div>
 
-          <div style="background:var(--soft); border-radius:12px; padding:12px 16px; margin:12px 0; font-size:0.83em; color:var(--muted);">
+          <div
+            style="background:var(--soft); border-radius:12px; padding:12px 16px; margin:12px 0; font-size:0.83em; color:var(--muted);">
             Anonymous ID: <strong id="thankYouResponseId" style="color:var(--text); word-break:break-all;"></strong>
           </div>
 
           <button class="share-btn" onclick="shareLink()" style="margin-top:8px;">Share survey with a friend 🚀</button>
 
-          <p style="color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response counts.</p>
+          <p style="color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response
+            counts.</p>
         </div>
       </section>
 
@@ -1624,16 +1740,16 @@
 
     // ── Section color themes ─────────────────────────────────────
     const STEP_THEMES = {
-      0:  { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#E0F2FE' },
-      1:  { accent: '#0891B2', grad1: '#ECFEFF', grad2: '#CFFAFE' },
-      2:  { accent: '#0369A1', grad1: '#F0F9FF', grad2: '#BAE6FD' },
-      3:  { accent: '#059669', grad1: '#ECFDF5', grad2: '#D1FAE5' },
-      4:  { accent: '#D97706', grad1: '#FFFBEB', grad2: '#FEF3C7' },
-      5:  { accent: '#E11D48', grad1: '#FFF1F2', grad2: '#FFE4E6' },
-      6:  { accent: '#0D9488', grad1: '#F0FDFA', grad2: '#CCFBF1' },
-      7:  { accent: '#2563EB', grad1: '#EFF6FF', grad2: '#DBEAFE' },
-      8:  { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#BAE6FD' },
-      9:  { accent: '#EA580C', grad1: '#FFF7ED', grad2: '#FFEDD5' },
+      0: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#E0F2FE' },
+      1: { accent: '#0891B2', grad1: '#ECFEFF', grad2: '#CFFAFE' },
+      2: { accent: '#0369A1', grad1: '#F0F9FF', grad2: '#BAE6FD' },
+      3: { accent: '#059669', grad1: '#ECFDF5', grad2: '#D1FAE5' },
+      4: { accent: '#D97706', grad1: '#FFFBEB', grad2: '#FEF3C7' },
+      5: { accent: '#E11D48', grad1: '#FFF1F2', grad2: '#FFE4E6' },
+      6: { accent: '#0D9488', grad1: '#F0FDFA', grad2: '#CCFBF1' },
+      7: { accent: '#2563EB', grad1: '#EFF6FF', grad2: '#DBEAFE' },
+      8: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#BAE6FD' },
+      9: { accent: '#EA580C', grad1: '#FFF7ED', grad2: '#FFEDD5' },
       10: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
     };
 
@@ -1736,11 +1852,11 @@
       const canvas = document.getElementById('confetti-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      canvas.width  = window.innerWidth;
+      canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
       // Bright, non-purple palette
-      const colors = ['#0EA5E9','#10B981','#F59E0B','#EF4444','#F97316','#06B6D4','#34D399','#FBBF24'];
+      const colors = ['#0EA5E9', '#10B981', '#F59E0B', '#EF4444', '#F97316', '#06B6D4', '#34D399', '#FBBF24'];
       const pieces = Array.from({ length: 160 }, () => ({
         x: Math.random() * canvas.width,
         y: -20 - Math.random() * 120,
@@ -1774,36 +1890,42 @@
         }
       }
       frame = requestAnimationFrame(draw);
-      setTimeout(() => { cancelAnimationFrame(frame); ctx.clearRect(0,0,canvas.width,canvas.height); }, 5000);
+      setTimeout(() => { cancelAnimationFrame(frame); ctx.clearRect(0, 0, canvas.width, canvas.height); }, 5000);
     }
 
     // ============================================================
     // Profile card reveal on thank-you screen
     // ============================================================
     function revealProfileCard(band, topFeatures) {
-      const badge    = document.getElementById('profileBadge');
-      const label    = document.getElementById('profileLabel');
-      const fill     = document.getElementById('meterFill');
-      const subtext  = document.getElementById('meterSubtext');
-      const tip      = document.getElementById('profileTip');
+      const badge = document.getElementById('profileBadge');
+      const label = document.getElementById('profileLabel');
+      const fill = document.getElementById('meterFill');
+      const subtext = document.getElementById('meterSubtext');
+      const tip = document.getElementById('profileTip');
       if (!badge) return;
 
       const config = {
-        High:   { cls:'high',   pct:'78%', label:'High Stress',   sub:'Your scores suggest significant stress load.',
-                  tip:'The biggest driver of your stress appears to be your wellbeing scores. Try one small habit this week: 7 hrs sleep, a 20-min walk, or talking to someone you trust.' },
-        Medium: { cls:'medium', pct:'48%', label:'Moderate Stress', sub:'Some stress signals detected — manageable with small changes.',
-                  tip:'You\'re in a manageable range! Small tweaks to sleep or exercise can make a big difference. StressEQ\'s AI Coach will suggest personalised actions when it launches.' },
-        Low:    { cls:'low',    pct:'22%', label:'Low Stress',      sub:'You\'re doing well — your scores look healthy!',
-                  tip:'Keep it up! Low stress is linked to better performance and wellbeing. Share StressEQ with friends who might need a check-in.' },
+        High: {
+          cls: 'high', pct: '78%', label: 'High Stress', sub: 'Your scores suggest significant stress load.',
+          tip: 'The biggest driver of your stress appears to be your wellbeing scores. Try one small habit this week: 7 hrs sleep, a 20-min walk, or talking to someone you trust.'
+        },
+        Medium: {
+          cls: 'medium', pct: '48%', label: 'Moderate Stress', sub: 'Some stress signals detected — manageable with small changes.',
+          tip: 'You\'re in a manageable range! Small tweaks to sleep or exercise can make a big difference. StressEQ\'s AI Coach will suggest personalised actions when it launches.'
+        },
+        Low: {
+          cls: 'low', pct: '22%', label: 'Low Stress', sub: 'You\'re doing well — your scores look healthy!',
+          tip: 'Keep it up! Low stress is linked to better performance and wellbeing. Share StressEQ with friends who might need a check-in.'
+        },
       };
 
       const c = config[band] || config['Medium'];
       badge.textContent = c.label;
-      badge.className   = `level-badge ${c.cls}`;
+      badge.className = `level-badge ${c.cls}`;
       label.textContent = c.label;
       subtext.textContent = c.sub;
-      tip.textContent     = c.tip;
-      fill.className      = `stress-meter-fill meter-${c.cls}`;
+      tip.textContent = c.tip;
+      fill.className = `stress-meter-fill meter-${c.cls}`;
 
       // Animate meter after brief delay
       setTimeout(() => { fill.style.width = c.pct; }, 300);
@@ -2015,9 +2137,9 @@
       // Medium   : PHQ-9 ≥  5  OR  GAD-7 ≥  5   → subclinical
       // Low      : everything else                → minimal symptoms
       let band;
-      if      (phq >= 10 || gad >= 10) band = 'High';
-      else if (phq >=  5 || gad >=  5) band = 'Medium';
-      else                              band = 'Low';
+      if (phq >= 10 || gad >= 10) band = 'High';
+      else if (phq >= 5 || gad >= 5) band = 'Medium';
+      else band = 'Low';
 
       data.phq9_score = phq;
       data.gad7_score = gad;
