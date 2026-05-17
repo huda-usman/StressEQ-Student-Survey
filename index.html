@@ -754,17 +754,18 @@
       margin-top: 16px;
       padding: 10px 24px;
       border-radius: 30px;
-      border: 2px solid rgba(255, 255, 255, 0.6);
+      border: 2px solid var(--primary);
       background: transparent;
-      color: #fff;
+      color: var(--primary);
       font-weight: 600;
       font-size: 0.9em;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
 
     .share-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--primary);
+      color: white;
     }
 
     /* ---- Step transition animation ---- */
@@ -1653,19 +1654,28 @@
 
     // Convert any unit input to canonical cm/kg
     function getCanonicalHeightCm() {
-      const cm = parseFloat(document.querySelector('[name="height_cm"]').value);
-      if (cm) return cm;
-      const ft = parseFloat(document.querySelector('[name="height_ft"]').value);
-      const inch = parseFloat(document.querySelector('[name="height_in"]').value || 0);
-      if (ft) return Math.round((ft * 30.48) + (inch * 2.54));
-      return null;
+      const isCmActive = document.querySelector('.unit-btn[data-target="height"][data-unit="cm"]').classList.contains('active');
+      if (isCmActive) {
+        const cm = parseFloat(document.querySelector('[name="height_cm"]').value);
+        return isNaN(cm) ? null : cm;
+      } else {
+        const ft = parseFloat(document.querySelector('[name="height_ft"]').value);
+        const inch = parseFloat(document.querySelector('[name="height_in"]').value || 0);
+        if (!isNaN(ft)) return Math.round((ft * 30.48) + (inch * 2.54));
+        return null;
+      }
     }
+
     function getCanonicalWeightKg() {
-      const kg = parseFloat(document.querySelector('[name="weight_kg"]').value);
-      if (kg) return kg;
-      const lb = parseFloat(document.querySelector('[name="weight_lb"]').value);
-      if (lb) return Math.round(lb * 0.453592 * 10) / 10;
-      return null;
+      const isKgActive = document.querySelector('.unit-btn[data-target="weight"][data-unit="kg"]').classList.contains('active');
+      if (isKgActive) {
+        const kg = parseFloat(document.querySelector('[name="weight_kg"]').value);
+        return isNaN(kg) ? null : kg;
+      } else {
+        const lb = parseFloat(document.querySelector('[name="weight_lb"]').value);
+        if (!isNaN(lb)) return Math.round(lb * 0.453592 * 10) / 10;
+        return null;
+      }
     }
 
     function updateLiveBMI() {
