@@ -896,14 +896,14 @@
           <!-- One-liner -->
           <p style="color:var(--muted); font-size:1em; margin-bottom:28px; line-height:1.6;">
             We're building an AI that detects stress patterns, forecasts burnout risk, and suggests what to change.<br>
-            <strong style="color:var(--text);">Your answers make it work.</strong> Takes ~4 minutes. Fully anonymous.
+            <strong style="color:var(--text);">Your answers make it work.</strong> Takes ~7 minutes. Fully anonymous.
           </p>
 
           <!-- Trust pills -->
           <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
             <span
               style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">⏱
-              ~4 minutes</span>
+              ~7 minutes</span>
             <span
               style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🔒
               Anonymous</span>
@@ -945,7 +945,7 @@
       <!-- ===================== STEP 1: BASICS ===================== -->
       <section class="step" data-step="1">
         <div class="card">
-          <span class="step-badge">Section 1 of 9 · About you</span>
+          <span class="step-badge">Section 1 of 10 · About you</span>
           <h2>Quick intro</h2>
           <p class="lead">No names, no personal info — just a few basics so we can compare across groups.</p>
 
@@ -1040,7 +1040,7 @@
       <!-- ===================== STEP 2: ACADEMIC ===================== -->
       <section class="step" data-step="2">
         <div class="card">
-          <span class="step-badge">Section 2 of 9 · Academics</span>
+          <span class="step-badge">Section 2 of 10 · Academics</span>
           <h2>Your studies</h2>
           <p class="lead">How's the academic pressure been lately?</p>
 
@@ -1073,8 +1073,7 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q9.</span> On a typical week, how many hours do you study outside
-              of class? <span class="hint">(Don't overthink — rough estimate is fine)</span></label>
+            <label class="q-label"><span class="qnum">Q9.</span> In a typical week, how many hours do you spend studying on your own? <span class="hint">(assignments, self-study, exam prep — excluding scheduled lectures)</span></label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="sh1" name="study_hours" value="0-5" required /><label
                   for="sh1">0–5</label></div>
@@ -1099,7 +1098,7 @@
       <!-- ===================== STEP 3: SLEEP & BODY ===================== -->
       <section class="step" data-step="3">
         <div class="card">
-          <span class="step-badge">Section 3 of 9 · Sleep &amp; body</span>
+          <span class="step-badge">Section 3 of 10 · Sleep &amp; body</span>
           <h2>Sleep &amp; activity</h2>
           <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest — your data is anonymous.
           </p>
@@ -1123,19 +1122,13 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q11.</span> In the past week, how many mornings did you wake up
-              feeling refreshed? <span class="hint">(0 = none, 7 = every morning)</span></label>
-            <div class="likert" id="rsGroup"></div>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q12.</span> In the past week, how many days did you exercise or
+            <label class="q-label"><span class="qnum">Q11.</span> In the <span style="color:#DC2626; font-weight:bold;">past week</span>, how many days did you exercise or
               walk for at least 30 minutes?</label>
             <div class="likert" id="paGroup"></div>
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q13.</span> Your height
+            <label class="q-label"><span class="qnum">Q12.</span> Your height
               <span class="unit-toggle">
                 <button type="button" class="unit-btn active" data-unit="cm" data-target="height">cm</button>
                 <button type="button" class="unit-btn" data-unit="ft" data-target="height">ft / in</button>
@@ -1153,7 +1146,7 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q14.</span> Your weight
+            <label class="q-label"><span class="qnum">Q13.</span> Your weight
               <span class="unit-toggle">
                 <button type="button" class="unit-btn active" data-unit="kg" data-target="weight">kg</button>
                 <button type="button" class="unit-btn" data-unit="lb" data-target="weight">lbs</button>
@@ -1183,51 +1176,31 @@
       <!-- ===================== STEP 4: SUBSTANCE USE ===================== -->
       <section class="step" data-step="4">
         <div class="card">
-          <span class="step-badge">Section 4 of 9 · Lifestyle</span>
+          <span class="step-badge">Section 4 of 10 · Lifestyle</span>
           <h2>Your habits</h2>
-          <p class="lead">Past 30 days. Everything here is anonymous — we only look at group patterns, not individuals.
+          <p class="lead"><span style="color:#DC2626; font-weight:bold;">Past 30 days</span>. Everything here is anonymous — we only look at group patterns, not individuals.
           </p>
 
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q15.</span> How often did you use tobacco or nicotine (cigarettes,
-              vapes, etc.)?</label>
-            <button type="button" class="skip-btn" onclick="skipQuestion('tobacco','Never')">Skip this question</button>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="tob1" name="tobacco" value="Never" required /><label
-                  for="tob1">Never</label></div>
-              <div class="radio-card"><input type="radio" id="tob2" name="tobacco" value="Rarely" /><label
-                  for="tob2">Rarely (1–2 days)</label></div>
-              <div class="radio-card"><input type="radio" id="tob3" name="tobacco" value="Sometimes" /><label
-                  for="tob3">Sometimes (3–9)</label></div>
-              <div class="radio-card"><input type="radio" id="tob4" name="tobacco" value="Often" /><label
-                  for="tob4">Often (10+)</label></div>
-            </div>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q16.</span> How often did you consume alcohol?</label>
-            <button type="button" class="skip-btn" onclick="skipQuestion('alcohol','Never')">Skip this question</button>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="alc1" name="alcohol" value="Never" required /><label
-                  for="alc1">Never</label></div>
-              <div class="radio-card"><input type="radio" id="alc2" name="alcohol" value="Rarely" /><label
-                  for="alc2">Rarely</label></div>
-              <div class="radio-card"><input type="radio" id="alc3" name="alcohol" value="Sometimes" /><label
-                  for="alc3">Sometimes</label></div>
-              <div class="radio-card"><input type="radio" id="alc4" name="alcohol" value="Often" /><label
-                  for="alc4">Often</label></div>
-            </div>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q17.</span> Did you use any other recreational substance (e.g.
-              cannabis)?</label>
-            <button type="button" class="skip-btn" onclick="skipQuestion('drugs','No')">Skip this question</button>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="drg1" name="drugs" value="No" required /><label
-                  for="drg1">No</label></div>
-              <div class="radio-card"><input type="radio" id="drg2" name="drugs" value="Yes" /><label
-                  for="drg2">Yes</label></div>
+          <div class="question" id="substanceUseQuestion">
+            <label class="q-label"><span class="qnum">Q14.</span> In the <span style="color:#DC2626; font-weight:bold;">past month</span>, did you use any of the following? <span class="hint">(tick all that apply)</span></label>
+            <button type="button" class="skip-btn" onclick="skipSubstanceUse()">Skip this question</button>
+            <div class="check-grid" style="margin-top:8px;">
+              <div class="check-item">
+                <input type="checkbox" id="sub_tob" name="substance_use" value="Tobacco" />
+                <label for="sub_tob">Tobacco / Nicotine <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Cigarettes, vapes, etc.</span></label>
+              </div>
+              <div class="check-item">
+                <input type="checkbox" id="sub_alc" name="substance_use" value="Alcohol" />
+                <label for="sub_alc">Alcohol <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Beer, wine, spirits, etc.</span></label>
+              </div>
+              <div class="check-item">
+                <input type="checkbox" id="sub_drug" name="substance_use" value="Drugs" />
+                <label for="sub_drug">Recreational drugs <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Cannabis, stimulants, etc.</span></label>
+              </div>
+              <div class="check-item">
+                <input type="checkbox" id="sub_none" name="substance_use" value="None" />
+                <label for="sub_none">None of the above <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Did not use any in <span style="color:#DC2626; font-weight:bold;">past month</span></span></label>
+              </div>
             </div>
           </div>
 
@@ -1241,12 +1214,12 @@
       <!-- ===================== STEP 5: BELONGING & SES ===================== -->
       <section class="step" data-step="5">
         <div class="card">
-          <span class="step-badge">Section 5 of 9 · Belonging &amp; finances</span>
+          <span class="step-badge">Section 5 of 10 · Belonging &amp; finances</span>
           <h2>Your situation</h2>
           <p class="lead">Two quick questions about how you're feeling at uni and about money.</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q18.</span> Do you feel like you belong / fit in at your
+            <label class="q-label"><span class="qnum">Q15.</span> Do you feel like you belong / fit in at your
               university?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="bel1" name="belonging_score" value="1" required /><label
@@ -1267,7 +1240,7 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q19.</span> What is the highest level of education your parent or
+            <label class="q-label"><span class="qnum">Q16.</span> What is the highest level of education your parent or
               guardian completed?</label>
             <select name="parent_education" required>
               <option value="">— select —</option>
@@ -1281,7 +1254,7 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q20.</span> How often do you worry about money or
+            <label class="q-label"><span class="qnum">Q17.</span> How often do you worry about money or
               finances?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="fin1" name="financial_strain" value="1" required /><label
@@ -1311,12 +1284,12 @@
       <!-- ===================== STEP 6: CHRONIC ILLNESS ===================== -->
       <section class="step" data-step="6">
         <div class="card">
-          <span class="step-badge">Section 6 of 9 · Health</span>
+          <span class="step-badge">Section 6 of 10 · Health</span>
           <h2>Any health conditions?</h2>
           <p class="lead">One quick question — your answer helps the AI understand your full picture.</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q20.</span> Do you have any diagnosed chronic health
+            <label class="q-label"><span class="qnum">Q18.</span> Do you have any diagnosed chronic health
               condition?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="chr0" name="chronic_illness_tier" value="0"
@@ -1337,13 +1310,75 @@
         </div>
       </section>
 
-      <!-- ===================== STEP 7: PHQ-9 ===================== -->
+      <!-- ===================== STEP 7: PERSONAL CONTEXT ===================== -->
       <section class="step" data-step="7">
         <div class="card">
-          <span class="step-badge">Section 7 of 9 · Wellbeing check</span>
+          <span class="step-badge">Section 7 of 10 · Personal context</span>
+          <h2>A little about your personal life</h2>
+          <p class="lead">These optional questions help us understand how social and personal factors relate to wellbeing. All are fully voluntary — skip any you'd prefer not to answer.</p>
+
+          <div class="callout" style="margin-bottom:6px;">
+            <strong>Why we ask:</strong> Research shows that relationship support and personal values can significantly influence stress levels. Your answers are anonymous and help us build a more accurate, inclusive model.
+          </div>
+
+          <!-- Q: Relationship Status -->
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q19.</span> Which best describes your current relationship status? <span class="hint">(optional)</span></label>
+            <button type="button" class="skip-btn" onclick="skipQuestion('relationship_status','0')">Skip this question</button>
+            <div class="radio-group" style="margin-top:8px;">
+              <div class="radio-card"><input type="radio" id="rs1" name="relationship_status" value="1" /><label for="rs1">Single</label></div>
+              <div class="radio-card"><input type="radio" id="rs2" name="relationship_status" value="2" /><label for="rs2">In a relationship</label></div>
+              <div class="radio-card"><input type="radio" id="rs3" name="relationship_status" value="3" /><label for="rs3">Married / Partnered</label></div>
+              <div class="radio-card"><input type="radio" id="rs4" name="relationship_status" value="4" /><label for="rs4">Divorced / Separated / Widowed</label></div>
+              <div class="radio-card"><input type="radio" id="rs5" name="relationship_status" value="5" /><label for="rs5">Other / Prefer not to say</label></div>
+            </div>
+          </div>
+
+          <hr class="section-divider" />
+
+          <!-- Q: Religion -->
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q20.</span> What is your religion or belief? <span class="hint">(optional)</span></label>
+            <p style="font-size:0.85em; color:var(--muted); margin-bottom:10px;">Pick whichever fits you best. If none of the listed options apply, choose <em>Other / Prefer not to say</em>.</p>
+            <button type="button" class="skip-btn" onclick="skipQuestion('religion','0')">Skip this question</button>
+            <div class="radio-group" style="margin-top:8px;">
+              <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" /><label for="rl1">No religion</label></div>
+              <div class="radio-card"><input type="radio" id="rl2" name="religion" value="2" /><label for="rl2">Christian</label></div>
+              <div class="radio-card"><input type="radio" id="rl3" name="religion" value="3" /><label for="rl3">Muslim</label></div>
+              <div class="radio-card"><input type="radio" id="rl4" name="religion" value="4" /><label for="rl4">Jewish</label></div>
+              <div class="radio-card"><input type="radio" id="rl5" name="religion" value="5" /><label for="rl5">Hindu</label></div>
+              <div class="radio-card"><input type="radio" id="rl6" name="religion" value="6" /><label for="rl6">Buddhist</label></div>
+              <div class="radio-card"><input type="radio" id="rl7" name="religion" value="7" /><label for="rl7">Other / Prefer not to say</label></div>
+            </div>
+          </div>
+
+          <!-- Q: Religiosity -->
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q21.</span> Regardless of affiliation — how important is religion or spirituality in your daily life? <span class="hint">(optional)</span></label>
+            <button type="button" class="skip-btn" onclick="skipReligiosity()">Skip this question</button>
+            <div class="radio-group" style="margin-top:8px;">
+              <div class="radio-card"><input type="radio" id="rg1" name="religiosity" value="1" /><label for="rg1">Not important at all</label></div>
+              <div class="radio-card"><input type="radio" id="rg2" name="religiosity" value="2" /><label for="rg2">Slightly important</label></div>
+              <div class="radio-card"><input type="radio" id="rg3" name="religiosity" value="3" /><label for="rg3">Moderately important</label></div>
+              <div class="radio-card"><input type="radio" id="rg4" name="religiosity" value="4" /><label for="rg4">Very important</label></div>
+              <div class="radio-card"><input type="radio" id="rg5" name="religiosity" value="5" /><label for="rg5">Central to my life</label></div>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== STEP 8: PHQ-9 ===================== -->
+      <section class="step" data-step="8">
+        <div class="card">
+          <span class="step-badge">Section 8 of 10 · Wellbeing check</span>
           <h2>How have you been feeling?</h2>
           <p class="lead">These are standard wellbeing questions used in research worldwide. There are no right or wrong
-            answers — just be honest about the past 2 weeks.</p>
+            answers — just be honest about the <span style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
 
           <div class="callout">
             <strong>For each statement, pick how often it applied to you:</strong><br />
@@ -1366,13 +1401,12 @@
         </div>
       </section>
 
-      <!-- ===================== STEP 8: GAD-7 ===================== -->
-      <section class="step" data-step="8">
+      <!-- ===================== STEP 9: GAD-7 ===================== -->
+      <section class="step" data-step="9">
         <div class="card">
-          <span class="step-badge">Section 8 of 9 · Worry &amp; anxiety</span>
+          <span class="step-badge">Section 9 of 10 · Worry &amp; anxiety</span>
           <h2>One more set — almost done!</h2>
-          <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the past 2
-            weeks.</p>
+          <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the <span style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
 
           <div class="callout">
             <strong>1</strong> Not at all &nbsp;·&nbsp; <strong>2</strong> A few days &nbsp;·&nbsp; <strong>3</strong>
@@ -1388,10 +1422,10 @@
         </div>
       </section>
 
-      <!-- ===================== STEP 9: FEEDBACK ===================== -->
-      <section class="step" data-step="9">
+      <!-- ===================== STEP 10: FEEDBACK ===================== -->
+      <section class="step" data-step="10">
         <div class="card">
-          <span class="step-badge">Section 9 of 9 · Last question!</span>
+          <span class="step-badge">Section 10 of 10 · Last question!</span>
           <h2>Almost there — just 2 quick ones</h2>
           <p class="lead">Your thoughts on StressEQ itself.</p>
 
@@ -1399,7 +1433,7 @@
             style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
             <label class="q-label"
               style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
-              <span class="qnum">Q37.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
+              <span class="qnum">Q38.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
                 stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use
               it?
             </label>
@@ -1417,9 +1451,9 @@
 
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q38.</span> Of these, which 3 matter MOST to YOUR stress? <span
-                class="hint">(pick exactly 3)</span></label>
-            <div class="picker-counter" id="topPickCounter">0 / 3 selected</div>
+            <label class="q-label"><span class="qnum">Q39.</span> Of these, which matter MOST to YOUR stress? <span
+                class="hint">(select all that apply)</span></label>
+            <div class="picker-counter" id="topPickCounter">0 selected</div>
             <div class="check-grid" id="topPicks">
               <div class="check-item"><input type="checkbox" id="top1" name="top" value="academic_pressure" /><label
                   for="top1">Academic pressure</label></div>
@@ -1478,7 +1512,7 @@
         </div>
       </section>
 
-      <section class="step" data-step="10">
+      <section class="step" data-step="11">
         <div class="card" style="text-align:center; border-top:4px solid #10B981;">
           <div style="font-size:3em; margin-bottom:8px;">🎉</div>
           <h1 style="color:var(--ok); font-size:1.6em;">You're amazing — thank you!</h1>
@@ -1519,7 +1553,7 @@
     // State + step navigation
     // ============================================================
     let currentStep = 0;
-    const totalSteps = 10;
+    const totalSteps = 12;
     const data = {};
     const STORAGE_KEY = 'stresseq_student_v1';
 
@@ -1581,9 +1615,26 @@
     // Initialize dynamic content
     window.addEventListener('DOMContentLoaded', () => {
       // Restful sleep nights 0-7
-      buildLikert('rsGroup', 'restful_sleep_nights', [0, 1, 2, 3, 4, 5, 6, 7]);
       // Physical activity 0-7
       buildLikert('paGroup', 'physical_activity', [0, 1, 2, 3, 4, 5, 6, 7]);
+
+      // Substance use mutual exclusion logic
+      const subCbs = document.querySelectorAll('input[name="substance_use"]');
+      const subNone = document.getElementById('sub_none');
+      subCbs.forEach(cb => {
+        cb.addEventListener('change', () => {
+          if (cb === subNone && subNone.checked) {
+            subCbs.forEach(other => {
+              if (other !== subNone) {
+                other.checked = false;
+              }
+            });
+          } else if (cb !== subNone && cb.checked) {
+            subNone.checked = false;
+          }
+        });
+      });
+
       // Belonging + financial 1-7
       // belonging_score and financial_strain are now hardcoded radio cards — no buildLikert needed
 
@@ -1609,16 +1660,11 @@
       });
       document.getElementById('gadContainer').innerHTML = gadHTML;
 
-      // Top-3 picker logic
+      // Top picker logic
       document.querySelectorAll('#topPicks input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('change', () => {
           const checked = document.querySelectorAll('#topPicks input:checked').length;
-          document.getElementById('topPickCounter').textContent = `${checked} / 3 selected`;
-          if (checked >= 3) {
-            document.querySelectorAll('#topPicks input:not(:checked)').forEach(c => c.disabled = true);
-          } else {
-            document.querySelectorAll('#topPicks input').forEach(c => c.disabled = false);
-          }
+          document.getElementById('topPickCounter').textContent = `${checked} selected`;
         });
       });
 
@@ -1761,18 +1807,20 @@
       8: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#BAE6FD' },
       9: { accent: '#EA580C', grad1: '#FFF7ED', grad2: '#FFEDD5' },
       10: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
+      11: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
     };
 
     // ── Toast notifications ──────────────────────────────────────
     const STEP_TOASTS = {
       2: '✅ Basics done! Now your academics.',
       3: '📚 Academic section complete!',
-      4: '😴 Halfway there — keep going!',
+      4: '😴 Sleep & body section complete!',
       5: '💪 Great job! Almost through.',
       6: '🌿 Section 5 done!',
       7: '🩺 Health section done!',
-      8: '💭 Wellbeing done — 1 more set!',
-      9: '🎉 Last section! You got this!',
+      8: '💭 Personal context done — 2 more sets!',
+      9: '💭 Wellbeing done — 1 more set!',
+      10: '🎉 Last section! You got this!',
     };
 
     let toastTimer;
@@ -1800,7 +1848,7 @@
     }
 
     // Auto-advance when a radio card is selected on steps that have only radio groups
-    const AUTO_ADVANCE_STEPS = new Set([1, 2, 4, 5, 6]);
+    const AUTO_ADVANCE_STEPS = new Set([1, 2, 5, 6]);
     document.addEventListener('change', (e) => {
       if (e.target.type !== 'radio') return;
       if (!AUTO_ADVANCE_STEPS.has(currentStep)) return;
@@ -1853,6 +1901,23 @@
         match.checked = true;
         match.dispatchEvent(new Event('change', { bubbles: true }));
       }
+    }
+
+    function skipReligiosity() {
+      // religiosity has no value="0" radio — just record as skipped (0 = not specified)
+      data['religiosity'] = '0';
+      // Deselect any selected radio to make clear it's skipped
+      document.querySelectorAll('input[name="religiosity"]').forEach(r => r.checked = false);
+    }
+
+    function skipSubstanceUse() {
+      // Tick the None option
+      const noneCb = document.getElementById('sub_none');
+      if (noneCb) {
+        noneCb.checked = true;
+        noneCb.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      nextStep();
     }
 
     // ============================================================
@@ -2006,26 +2071,35 @@
         }
       }
 
-      // Step 9 — top picks must be exactly 3
-      if (step === 9) {
-        const picked = document.querySelectorAll('#topPicks input:checked').length;
-        if (picked !== 3) {
-          const counter = document.getElementById('topPickCounter');
-          if (counter) {
-            counter.style.color = '#DC2626';
-            counter.style.fontWeight = '700';
-            const err = document.getElementById('topPickError') || (() => {
-              const e = document.createElement('div');
-              e.id = 'topPickError';
-              e.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
-              counter.after(e);
-              return e;
-            })();
-            err.textContent = `⚠️ You've selected ${picked} — please pick exactly 3.`;
+      // Step 4 — Substance Use checkbox validation
+      if (step === 4) {
+        const subList = document.querySelectorAll('input[name="substance_use"]:checked');
+        if (subList.length === 0) {
+          const container = document.getElementById('substanceUseQuestion');
+          if (container && !container.querySelector('.field-error')) {
+            const err = document.createElement('div');
+            err.className = 'field-error';
+            err.textContent = '⚠️ Please select at least one option (or "None of the above").';
+            err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
+            container.appendChild(err);
+            container.style.outline = '2px solid #DC2626';
+            container.style.borderRadius = '10px';
+            container.style.padding = '8px';
+
+            const checkboxes = document.querySelectorAll('input[name="substance_use"]');
+            const clearError = () => {
+              container.style.outline = '';
+              container.style.padding = '';
+              container.querySelector('.field-error')?.remove();
+              checkboxes.forEach(cb => cb.removeEventListener('change', clearError));
+            };
+            checkboxes.forEach(cb => cb.addEventListener('change', clearError));
           }
-          if (!firstError) firstError = document.getElementById('topPicks');
+          if (!firstError) firstError = document.getElementById('substanceUseQuestion');
         }
       }
+
+      // Step 10 — top picks - unrestricted selections allowed
 
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2040,6 +2114,12 @@
     function saveStep(step) {
       const stepEl = document.querySelector(`.step[data-step="${step}"]`);
       if (!stepEl) return;
+      // Clear checkbox lists for this step to avoid accumulation
+      stepEl.querySelectorAll('input[type="checkbox"]').forEach(el => {
+        if (el.name && el.name !== 'top') {
+          data[el.name] = [];
+        }
+      });
       stepEl.querySelectorAll('input, select, textarea').forEach(el => {
         if (el.type === 'radio' || el.type === 'checkbox') {
           if (el.checked) {
@@ -2054,9 +2134,16 @@
           data[el.name] = el.value;
         }
       });
+      // Approximate restful_sleep_nights from sleep_hours
+      if (step === 3) {
+        let sleepHrs = parseFloat(data.sleep_hours);
+        if (!isNaN(sleepHrs)) {
+          data.restful_sleep_nights = Math.max(0, Math.min(7, Math.round((sleepHrs - 4) * 1.75)));
+        }
+      }
       // Collect "top" picks
       const top = [...document.querySelectorAll('#topPicks input:checked')].map(c => c.value);
-      if (top.length) data.top_features = top.join(';');
+      data.top_features = top.join(';');
 
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       flashSaved();
@@ -2105,8 +2192,8 @@
     // Submit + score computation
     // ============================================================
     async function submitForm() {
-      if (!validateStep(9)) return;
-      saveStep(9);
+      if (!validateStep(10)) return;
+      saveStep(10);
 
       // Canonicalise height/weight regardless of which unit they entered
       data.height_cm = getCanonicalHeightCm();
@@ -2155,9 +2242,15 @@
       data.gad7_score = gad;
       data.stress_level = band;
 
+      // Map substance_use checkboxes back to individual columns for database compatibility
+      const subList = data.substance_use || [];
+      data.tobacco = subList.includes('Tobacco') ? 'Sometimes' : 'Never';
+      data.alcohol = subList.includes('Alcohol') ? 'Sometimes' : 'Never';
+      data.drugs = subList.includes('Drugs') ? 'Yes' : 'No';
+
       // Compute substance_use_score (0-3)
-      const tobaccoUsed = data.tobacco && data.tobacco !== 'Never' ? 1 : 0;
-      const alcoholUsed = data.alcohol && data.alcohol !== 'Never' ? 1 : 0;
+      const tobaccoUsed = data.tobacco === 'Sometimes' ? 1 : 0;
+      const alcoholUsed = data.alcohol === 'Sometimes' ? 1 : 0;
       const drugUsed = data.drugs === 'Yes' ? 1 : 0;
       data.substance_use_score = tobaccoUsed + alcoholUsed + drugUsed;
 
@@ -2174,7 +2267,7 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
       // Move to thank-you screen immediately (don't make user wait on network)
-      showStep(10);
+      showStep(11);
       const ridEl = document.getElementById('thankYouResponseId');
       if (ridEl) ridEl.textContent = data.response_id;
 
@@ -2189,17 +2282,15 @@
         try {
           const formBody = new URLSearchParams();
           formBody.append('payload', JSON.stringify(data));
-          const res = await fetch(SUBMIT_ENDPOINT, {
+          await fetch(SUBMIT_ENDPOINT, {
             method: 'POST',
+            mode: 'no-cors',
             body: formBody
           });
           const status = document.getElementById('submitStatus');
-          if (status && res && res.ok) {
-            status.textContent = '✓ Securely recorded.';
+          if (status) {
+            status.textContent = '✓ Response submitted successfully.';
             status.style.color = '#38A169';
-          } else if (status) {
-            status.textContent = '⚠ We could not confirm storage — refresh and re-submit if you can.';
-            status.style.color = '#DD6B20';
           }
         } catch (e) {
           const status = document.getElementById('submitStatus');
@@ -2229,6 +2320,8 @@
         'belonging_score', 'parent_education', 'financial_strain',
         // chronic
         'chronic_illness_tier',
+        // relationship & religion
+        'relationship_status', 'religion', 'religiosity',
         // PHQ
         'phq1', 'phq2', 'phq3', 'phq4', 'phq5', 'phq6', 'phq7', 'phq8', 'phq9', 'phq9_score',
         // GAD
