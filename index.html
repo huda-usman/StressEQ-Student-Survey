@@ -1847,24 +1847,7 @@
       document.documentElement.style.setProperty('--bg-grad-2', theme.grad2);
     }
 
-    // Auto-advance when a radio card is selected on steps that have only radio groups
-    const AUTO_ADVANCE_STEPS = new Set([1, 2, 5, 6]);
-    document.addEventListener('change', (e) => {
-      if (e.target.type !== 'radio') return;
-      if (!AUTO_ADVANCE_STEPS.has(currentStep)) return;
-      const stepEl = document.querySelector(`.step[data-step="${currentStep}"]`);
-      if (!stepEl) return;
-      // Check all required radio groups in the step are answered
-      const requiredNames = new Set(
-        [...stepEl.querySelectorAll('input[type="radio"][required]')].map(r => r.name)
-      );
-      const allAnswered = [...requiredNames].every(name =>
-        stepEl.querySelector(`input[name="${name}"]:checked`)
-      );
-      if (allAnswered) {
-        setTimeout(() => nextStep(), 420); // short delay so user sees their selection
-      }
-    });
+
 
     // ============================================================
     // Skip optional question
@@ -1917,7 +1900,6 @@
         noneCb.checked = true;
         noneCb.dispatchEvent(new Event('change', { bubbles: true }));
       }
-      nextStep();
     }
 
     // ============================================================
