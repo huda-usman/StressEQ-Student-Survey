@@ -987,69 +987,69 @@
           <div class="row-2">
             <div class="question">
               <label class="q-label"><span class="qnum">Q1.</span> University / Institution name</label>
-              <input type="text" name="university" id="universityInput" list="universityList"
-                placeholder="e.g., NUST, COMSATS, UCL…" required autocomplete="off" />
-              <datalist id="universityList">
-                <option value="NUST (National University of Sciences &amp; Technology)">
-                <option value="COMSATS University Islamabad">
-                <option value="FAST-NUCES">
-                <option value="University of Engineering &amp; Technology (UET) Lahore">
-                <option value="Lahore University of Management Sciences (LUMS)">
-                <option value="University of the Punjab">
-                <option value="Quaid-i-Azam University">
-                <option value="University of Karachi">
-                <option value="University of Peshawar">
-                <option value="Shifa Tameer-e-Millat University">
-                <option value="IBA Karachi">
-                <option value="SZABIST">
-                <option value="Air University Islamabad">
-                <option value="Bahria University">
-                <option value="Virtual University of Pakistan">
-                <option value="University of Oxford">
-                <option value="University of Cambridge">
-                <option value="MIT">
-                <option value="Harvard University">
-                <option value="Stanford University">
-                <option value="University of Toronto">
-                <option value="University of Melbourne">
-                <option value="King Abdulaziz University">
-                <option value="King Saud University">
-              </datalist>
-              <p style="font-size:0.78em; color:var(--muted); margin-top:5px;">💡 Not listed? Just type your university
-                name.</p>
+              <select name="university_select" id="universitySelect" onchange="toggleUniversityCustomField()" required>
+                <option value="">— select university —</option>
+                <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of Sciences &amp; Technology)</option>
+                <option value="COMSATS University Islamabad">COMSATS University Islamabad</option>
+                <option value="FAST-NUCES">FAST-NUCES</option>
+                <option value="University of Engineering &amp; Technology (UET) Lahore">University of Engineering &amp; Technology (UET) Lahore</option>
+                <option value="Lahore University of Management Sciences (LUMS)">Lahore University of Management Sciences (LUMS)</option>
+                <option value="University of the Punjab">University of the Punjab</option>
+                <option value="Quaid-i-Azam University">Quaid-i-Azam University</option>
+                <option value="University of Karachi">University of Karachi</option>
+                <option value="University of Peshawar">University of Peshawar</option>
+                <option value="Shifa Tameer-e-Millat University">Shifa Tameer-e-Millat University</option>
+                <option value="IBA Karachi">IBA Karachi</option>
+                <option value="SZABIST">SZABIST</option>
+                <option value="Air University Islamabad">Air University Islamabad</option>
+                <option value="Bahria University">Bahria University</option>
+                <option value="Virtual University of Pakistan">Virtual University of Pakistan</option>
+                <option value="University of Oxford">University of Oxford</option>
+                <option value="University of Cambridge">University of Cambridge</option>
+                <option value="MIT">MIT</option>
+                <option value="Harvard University">Harvard University</option>
+                <option value="Stanford University">Stanford University</option>
+                <option value="University of Toronto">University of Toronto</option>
+                <option value="University of Melbourne">University of Melbourne</option>
+                <option value="King Abdulaziz University">King Abdulaziz University</option>
+                <option value="King Saud University">King Saud University</option>
+                <option value="Other">Other (Not listed)</option>
+              </select>
+              <input type="text" id="universityCustomInput" name="university_custom"
+                placeholder="Type your university name…" style="display:none; margin-top:8px;" />
             </div>
             <div class="question">
               <label class="q-label"><span class="qnum">Q2.</span> Country</label>
-              <input type="text" name="country" id="countryInput" list="countryList"
-                placeholder="e.g., Pakistan, UK, USA…" required autocomplete="off" />
-              <datalist id="countryList">
-                <option value="Pakistan">
-                <option value="United Kingdom">
-                <option value="United States">
-                <option value="Canada">
-                <option value="Australia">
-                <option value="India">
-                <option value="Saudi Arabia">
-                <option value="United Arab Emirates">
-                <option value="Germany">
-                <option value="France">
-                <option value="Turkey">
-                <option value="Malaysia">
-                <option value="Bangladesh">
-                <option value="Nigeria">
-                <option value="Switzerland">
-                <option value="South Africa">
-                <option value="China">
-                <option value="Indonesia">
-                <option value="New Zealand">
-                <option value="Netherlands">
-                <option value="Sweden">
-                <option value="Norway">
-                <option value="Jordan">
-                <option value="Kenya">
-              </datalist>
-              <p style="font-size:0.78em; color:var(--muted); margin-top:5px;">💡 Not listed? Just type your country
-                name.</p>
+              <select name="country_select" id="countrySelect" onchange="toggleCountryCustomField()" required>
+                <option value="">— select country —</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="India">India</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="Germany">Germany</option>
+                <option value="France">France</option>
+                <option value="Turkey">Turkey</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="South Africa">South Africa</option>
+                <option value="China">China</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Sweden">Sweden</option>
+                <option value="Norway">Norway</option>
+                <option value="Jordan">Jordan</option>
+                <option value="Kenya">Kenya</option>
+                <option value="Other">Other (Not listed)</option>
+              </select>
+              <input type="text" id="countryCustomInput" name="country_custom"
+                placeholder="Type your country name…" style="display:none; margin-top:8px;" />
             </div>
           </div>
 
@@ -2069,6 +2069,26 @@
       }
     }
 
+    function toggleUniversityCustomField() {
+      const sel = document.getElementById('universitySelect');
+      const inp = document.getElementById('universityCustomInput');
+      if (sel && inp) {
+        inp.style.display = sel.value === 'Other' ? 'block' : 'none';
+        inp.required = sel.value === 'Other';
+        if (sel.value !== 'Other') inp.value = '';
+      }
+    }
+
+    function toggleCountryCustomField() {
+      const sel = document.getElementById('countrySelect');
+      const inp = document.getElementById('countryCustomInput');
+      if (sel && inp) {
+        inp.style.display = sel.value === 'Other' ? 'block' : 'none';
+        inp.required = sel.value === 'Other';
+        if (sel.value !== 'Other') inp.value = '';
+      }
+    }
+
     // ── Skip helpers ────────────────────────────────────────────
     function markSkipBtn(btn) {
       if (!btn) return;
@@ -2462,6 +2482,18 @@
       const top = [...document.querySelectorAll('#topPicks input:checked')].map(c => c.value);
       data.top_features = top.join(';');
 
+      // Resolve custom university/country values
+      if (data.university_select === 'Other') {
+        data.university = document.getElementById('universityCustomInput')?.value || '';
+      } else {
+        data.university = data.university_select || '';
+      }
+      if (data.country_select === 'Other') {
+        data.country = document.getElementById('countryCustomInput')?.value || '';
+      } else {
+        data.country = data.country_select || '';
+      }
+
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       flashSaved();
     }
@@ -2490,6 +2522,10 @@
             });
           }
         });
+        toggleUniversityCustomField();
+        toggleCountryCustomField();
+        toggleYearOtherField();
+        toggleOtherField();
       } catch (e) { }
     }
 
