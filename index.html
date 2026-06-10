@@ -649,7 +649,7 @@
     .skip-btn:hover {
       color: var(--primary);
       border-color: var(--primary);
-      background: rgba(2,132,199,0.06);
+      background: rgba(2, 132, 199, 0.06);
     }
 
     /* Highlighted state after user clicks Skip */
@@ -658,7 +658,8 @@
       border: 1.5px solid #94A3B8;
       color: #475569;
       font-weight: 600;
-      pointer-events: none;   /* prevent double-click */
+      pointer-events: none;
+      /* prevent double-click */
     }
 
     /* Options area greyed out after skip */
@@ -975,13 +976,82 @@
           <h2>Quick intro</h2>
           <p class="lead">No names, no personal info — just a few basics so we can compare across groups.</p>
 
+          <div class="row-2">
+            <div class="question">
+              <label class="q-label"><span class="qnum">Q1.</span> University / Institution name</label>
+              <input type="text" name="university" id="universityInput" list="universityList"
+                placeholder="e.g., NUST, COMSATS, UCL…" required autocomplete="off" />
+              <datalist id="universityList">
+                <option value="NUST (National University of Sciences &amp; Technology)">
+                <option value="COMSATS University Islamabad">
+                <option value="FAST-NUCES">
+                <option value="University of Engineering &amp; Technology (UET) Lahore">
+                <option value="Lahore University of Management Sciences (LUMS)">
+                <option value="University of the Punjab">
+                <option value="Quaid-i-Azam University">
+                <option value="University of Karachi">
+                <option value="University of Peshawar">
+                <option value="Shifa Tameer-e-Millat University">
+                <option value="IBA Karachi">
+                <option value="SZABIST">
+                <option value="Air University Islamabad">
+                <option value="Bahria University">
+                <option value="Virtual University of Pakistan">
+                <option value="University of Oxford">
+                <option value="University of Cambridge">
+                <option value="MIT">
+                <option value="Harvard University">
+                <option value="Stanford University">
+                <option value="University of Toronto">
+                <option value="University of Melbourne">
+                <option value="King Abdulaziz University">
+                <option value="King Saud University">
+              </datalist>
+              <p style="font-size:0.78em; color:var(--muted); margin-top:5px;">💡 Not listed? Just type your university
+                name.</p>
+            </div>
+            <div class="question">
+              <label class="q-label"><span class="qnum">Q2.</span> Country</label>
+              <input type="text" name="country" id="countryInput" list="countryList"
+                placeholder="e.g., Pakistan, UK, USA…" required autocomplete="off" />
+              <datalist id="countryList">
+                <option value="Pakistan">
+                <option value="United Kingdom">
+                <option value="United States">
+                <option value="Canada">
+                <option value="Australia">
+                <option value="India">
+                <option value="Saudi Arabia">
+                <option value="United Arab Emirates">
+                <option value="Germany">
+                <option value="France">
+                <option value="Turkey">
+                <option value="Malaysia">
+                <option value="Bangladesh">
+                <option value="Nigeria">
+                <option value="Switzerland">
+                <option value="South Africa">
+                <option value="China">
+                <option value="Indonesia">
+                <option value="New Zealand">
+                <option value="Netherlands">
+                <option value="Sweden">
+                <option value="Norway">
+                <option value="Jordan">
+                <option value="Kenya">
+              </datalist>
+              <p style="font-size:0.78em; color:var(--muted); margin-top:5px;">💡 Not listed? Just type your country
+                name.</p>
+            </div>
+          </div>
+
           <div class="question">
-            <label class="q-label"><span class="qnum">Q1.</span> What is your age?</label>
+            <label class="q-label"><span class="qnum">Q3.</span> What is your age?</label>
             <input type="number" name="age" min="16" max="60" placeholder="e.g., 21" required />
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q2.</span> Gender</label>
+            <label class="q-label"><span class="qnum">Q4.</span> Gender</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="g1" name="gender" value="Female" required /><label
                   for="g1">Female</label></div>
@@ -993,7 +1063,7 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q3.</span> Are you an international student?</label>
+            <label class="q-label"><span class="qnum">Q5.</span> Are you an international student?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="intl1" name="is_international" value="Yes"
                   required /><label for="intl1">Yes</label></div>
@@ -1002,9 +1072,8 @@
             </div>
           </div>
 
-
           <div class="question">
-            <label class="q-label"><span class="qnum">Q4.</span> Which best describes your background?</label>
+            <label class="q-label"><span class="qnum">Q6.</span> Which best describes your background?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="r1" name="race" value="Asian" required /><label
                   for="r1">Asian</label></div>
@@ -1021,7 +1090,7 @@
 
           <div class="row-2">
             <div class="question">
-              <label class="q-label"><span class="qnum">Q5.</span> What year are you in?</label>
+              <label class="q-label"><span class="qnum">Q7.</span> What year are you in?</label>
               <select name="education_level" required id="yearSelect" onchange="toggleYearOtherField()">
                 <option value="">— select —</option>
                 <option>Bachelor's Year 1</option>
@@ -1038,7 +1107,7 @@
                 placeholder="Please specify your year / programme…" style="display:none; margin-top:8px;" />
             </div>
             <div class="question">
-              <label class="q-label"><span class="qnum">Q6.</span> Field of study</label>
+              <label class="q-label"><span class="qnum">Q8.</span> Field of study</label>
               <select name="field_of_study" required id="fieldSelect" onchange="toggleOtherField()">
                 <option value="">— select —</option>
                 <option>Engineering / Computing</option>
@@ -1070,12 +1139,12 @@
           <p class="lead">How's the academic pressure been lately?</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q7.</span> What is your current CGPA or Percentage?</label>
+            <label class="q-label"><span class="qnum">Q9.</span> What is your current CGPA or Percentage?</label>
             <input type="number" name="gpa" step="0.01" min="0" max="100" placeholder="e.g., 3.45 or 82" required />
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q8.</span> How heavy has your study workload felt lately? <span
+            <label class="q-label"><span class="qnum">Q10.</span> How heavy has your study workload felt lately? <span
                 class="hint">(past 4 weeks)</span></label>
             <div class="likert">
               <div class="likert-item"><input type="radio" id="ap1" name="academic_pressure" value="1" required /><label
@@ -1097,7 +1166,9 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q9.</span> In a typical week, how many hours do you spend studying on your own? <span class="hint">(assignments, self-study, exam prep — excluding scheduled lectures)</span></label>
+            <label class="q-label"><span class="qnum">Q11.</span> In a typical week, how many hours do you spend studying
+              on your own? <span class="hint">(assignments, self-study, exam prep — excluding scheduled
+                lectures)</span></label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="sh1" name="study_hours" value="0-5" required /><label
                   for="sh1">0–5</label></div>
@@ -1128,7 +1199,7 @@
           </p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q10.</span> How many hours do you usually sleep per night?</label>
+            <label class="q-label"><span class="qnum">Q12.</span> How many hours do you usually sleep per night?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="sl1" name="sleep_hours" value="4" required /><label
                   for="sl1">Less than 5 hrs</label></div>
@@ -1146,48 +1217,58 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q11.</span> In the <span style="color:#DC2626; font-weight:bold;">past week</span>, how many days did you exercise or
+            <label class="q-label"><span class="qnum">Q13.</span> In the <span
+                style="color:#DC2626; font-weight:bold;">past week</span>, how many days did you exercise or
               walk for at least 30 minutes?</label>
             <div class="likert" id="paGroup"></div>
           </div>
 
           <div class="question" id="heightQuestion">
-            <label class="q-label"><span class="qnum">Q12.</span> Your height
+            <label class="q-label"><span class="qnum">Q14.</span> Your height
               <span class="unit-toggle">
                 <button type="button" class="unit-btn active" data-unit="cm" data-target="height">cm</button>
                 <button type="button" class="unit-btn" data-unit="ft" data-target="height">ft / in</button>
               </span>
             </label>
             <div id="height-cm-input">
-              <input type="number" name="height_cm" id="heightCmInput" min="100" max="230" placeholder="e.g., 170" oninput="clearHeightSkip()" />
+              <input type="number" name="height_cm" id="heightCmInput" min="100" max="230" placeholder="e.g., 170"
+                oninput="clearHeightSkip()" />
             </div>
             <div id="height-ft-input" style="display:none;">
               <div class="row-2">
-                <input type="number" name="height_ft" min="3" max="7" placeholder="ft (e.g., 5)" oninput="clearHeightSkip()" />
-                <input type="number" name="height_in" min="0" max="11" placeholder="in (e.g., 7)" oninput="clearHeightSkip()" />
+                <input type="number" name="height_ft" min="3" max="7" placeholder="ft (e.g., 5)"
+                  oninput="clearHeightSkip()" />
+                <input type="number" name="height_in" min="0" max="11" placeholder="in (e.g., 7)"
+                  oninput="clearHeightSkip()" />
               </div>
             </div>
-            <label style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
-              <input type="checkbox" id="heightUnknown" name="height_unknown" value="1" onchange="toggleHeightSkip()" style="width:16px; height:16px; cursor:pointer;" />
+            <label
+              style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
+              <input type="checkbox" id="heightUnknown" name="height_unknown" value="1" onchange="toggleHeightSkip()"
+                style="width:16px; height:16px; cursor:pointer;" />
               I don't know my height / prefer not to say
             </label>
           </div>
 
           <div class="question" id="weightQuestion">
-            <label class="q-label"><span class="qnum">Q13.</span> Your weight
+            <label class="q-label"><span class="qnum">Q15.</span> Your weight
               <span class="unit-toggle">
                 <button type="button" class="unit-btn active" data-unit="kg" data-target="weight">kg</button>
                 <button type="button" class="unit-btn" data-unit="lb" data-target="weight">lbs</button>
               </span>
             </label>
             <div id="weight-kg-input">
-              <input type="number" name="weight_kg" id="weightKgInput" min="30" max="200" placeholder="e.g., 65" oninput="clearWeightSkip()" />
+              <input type="number" name="weight_kg" id="weightKgInput" min="30" max="200" placeholder="e.g., 65"
+                oninput="clearWeightSkip()" />
             </div>
             <div id="weight-lb-input" style="display:none;">
-              <input type="number" name="weight_lb" id="weightLbInput" min="65" max="450" placeholder="e.g., 145" oninput="clearWeightSkip()" />
+              <input type="number" name="weight_lb" id="weightLbInput" min="65" max="450" placeholder="e.g., 145"
+                oninput="clearWeightSkip()" />
             </div>
-            <label style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
-              <input type="checkbox" id="weightUnknown" name="weight_unknown" value="1" onchange="toggleWeightSkip()" style="width:16px; height:16px; cursor:pointer;" />
+            <label
+              style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
+              <input type="checkbox" id="weightUnknown" name="weight_unknown" value="1" onchange="toggleWeightSkip()"
+                style="width:16px; height:16px; cursor:pointer;" />
               I don't know my weight / prefer not to say
             </label>
           </div>
@@ -1210,28 +1291,39 @@
         <div class="card">
           <span class="step-badge">Section 4 of 10 · Lifestyle</span>
           <h2>Your habits</h2>
-          <p class="lead"><span style="color:#DC2626; font-weight:bold;">Past 30 days</span>. Everything here is anonymous — we only look at group patterns, not individuals.
+          <p class="lead"><span style="color:#DC2626; font-weight:bold;">Past 30 days</span>. Everything here is
+            anonymous — we only look at group patterns, not individuals.
           </p>
 
           <div class="question" id="substanceUseQuestion">
-            <label class="q-label"><span class="qnum">Q14.</span> In the <span style="color:#DC2626; font-weight:bold;">past month</span>, did you use any of the following? <span class="hint">(tick all that apply)</span></label>
+            <label class="q-label"><span class="qnum">Q16.</span> In the <span
+                style="color:#DC2626; font-weight:bold;">past month</span>, did you use any of the following? <span
+                class="hint">(tick all that apply)</span></label>
             <button type="button" class="skip-btn" onclick="skipSubstanceUse()">Skip this question</button>
             <div class="check-grid" style="margin-top:8px;">
               <div class="check-item">
                 <input type="checkbox" id="sub_tob" name="substance_use" value="Tobacco" />
-                <label for="sub_tob">Tobacco / Nicotine <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Cigarettes, vapes, etc.</span></label>
+                <label for="sub_tob">Tobacco / Nicotine <span
+                    style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Cigarettes, vapes,
+                    etc.</span></label>
               </div>
               <div class="check-item">
                 <input type="checkbox" id="sub_alc" name="substance_use" value="Alcohol" />
-                <label for="sub_alc">Alcohol <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Beer, wine, spirits, etc.</span></label>
+                <label for="sub_alc">Alcohol <span
+                    style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Beer, wine, spirits,
+                    etc.</span></label>
               </div>
               <div class="check-item">
                 <input type="checkbox" id="sub_drug" name="substance_use" value="Drugs" />
-                <label for="sub_drug">Recreational drugs <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Cannabis, stimulants, etc.</span></label>
+                <label for="sub_drug">Recreational drugs <span
+                    style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Cannabis, stimulants,
+                    etc.</span></label>
               </div>
               <div class="check-item">
                 <input type="checkbox" id="sub_none" name="substance_use" value="None" />
-                <label for="sub_none">None of the above <span style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Did not use any in <span style="color:#DC2626; font-weight:bold;">past month</span></span></label>
+                <label for="sub_none">None of the above <span
+                    style="font-size:0.82em; opacity:0.85; display:block; margin-top:2px;">Did not use any in <span
+                      style="color:#DC2626; font-weight:bold;">past month</span></span></label>
               </div>
             </div>
           </div>
@@ -1251,7 +1343,7 @@
           <p class="lead">Two quick questions about how you're feeling at uni and about money.</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q15.</span> Do you feel like you belong / fit in at your
+            <label class="q-label"><span class="qnum">Q17.</span> Do you feel like you belong / fit in at your
               university?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="bel1" name="belonging_score" value="1" required /><label
@@ -1272,7 +1364,7 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q16.</span> What is the highest level of education your parent or
+            <label class="q-label"><span class="qnum">Q18.</span> What is the highest level of education your parent or
               guardian completed?</label>
             <select name="parent_education" required>
               <option value="">— select —</option>
@@ -1286,7 +1378,7 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q17.</span> How often do you worry about money or
+            <label class="q-label"><span class="qnum">Q19.</span> How often do you worry about money or
               finances?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="fin1" name="financial_strain" value="1" required /><label
@@ -1321,7 +1413,7 @@
           <p class="lead">One quick question — your answer helps the AI understand your full picture.</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q18.</span> Do you have any diagnosed chronic health
+            <label class="q-label"><span class="qnum">Q20.</span> Do you have any diagnosed chronic health
               condition?</label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="chr0" name="chronic_illness_tier" value="0"
@@ -1350,48 +1442,68 @@
           <p class="lead">These questions help us understand how social and personal factors relate to wellbeing.</p>
 
           <div class="callout" style="margin-bottom:6px;">
-            <strong>Why we ask:</strong> Research shows that relationship support and personal values can significantly influence stress levels. Your answers are anonymous and help us build a more accurate, inclusive model.
+            <strong>Why we ask:</strong> Research shows that relationship support and personal values can significantly
+            influence stress levels. Your answers are anonymous and help us build a more accurate, inclusive model.
           </div>
 
           <!-- Q: Relationship Status -->
           <div class="question">
-            <label class="q-label"><span class="qnum">Q19.</span> Which best describes your current relationship status?</label>
+            <label class="q-label"><span class="qnum">Q21.</span> Which best describes your current relationship
+              status?</label>
 
             <div class="radio-group" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rs1" name="relationship_status" value="1" required /><label for="rs1">Single</label></div>
-              <div class="radio-card"><input type="radio" id="rs2" name="relationship_status" value="2" /><label for="rs2">In a relationship</label></div>
-              <div class="radio-card"><input type="radio" id="rs3" name="relationship_status" value="3" /><label for="rs3">Married / Partnered</label></div>
-              <div class="radio-card"><input type="radio" id="rs4" name="relationship_status" value="4" /><label for="rs4">Divorced / Separated / Widowed</label></div>
-              <div class="radio-card"><input type="radio" id="rs5" name="relationship_status" value="5" /><label for="rs5">Other / Prefer not to say</label></div>
+              <div class="radio-card"><input type="radio" id="rs1" name="relationship_status" value="1"
+                  required /><label for="rs1">Single</label></div>
+              <div class="radio-card"><input type="radio" id="rs2" name="relationship_status" value="2" /><label
+                  for="rs2">In a relationship</label></div>
+              <div class="radio-card"><input type="radio" id="rs3" name="relationship_status" value="3" /><label
+                  for="rs3">Married / Partnered</label></div>
+              <div class="radio-card"><input type="radio" id="rs4" name="relationship_status" value="4" /><label
+                  for="rs4">Divorced / Separated / Widowed</label></div>
+              <div class="radio-card"><input type="radio" id="rs5" name="relationship_status" value="5" /><label
+                  for="rs5">Other / Prefer not to say</label></div>
             </div>
           </div>
 
           <hr class="section-divider" />
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q20.</span> What is your religion or belief?</label>
+            <label class="q-label"><span class="qnum">Q22.</span> What is your religion or belief?</label>
 
             <div class="radio-group" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" required /><label for="rl1">No religion</label></div>
-              <div class="radio-card"><input type="radio" id="rl2" name="religion" value="2" /><label for="rl2">Christian</label></div>
-              <div class="radio-card"><input type="radio" id="rl3" name="religion" value="3" /><label for="rl3">Muslim</label></div>
-              <div class="radio-card"><input type="radio" id="rl4" name="religion" value="4" /><label for="rl4">Jewish</label></div>
-              <div class="radio-card"><input type="radio" id="rl5" name="religion" value="5" /><label for="rl5">Hindu</label></div>
-              <div class="radio-card"><input type="radio" id="rl6" name="religion" value="6" /><label for="rl6">Buddhist</label></div>
-              <div class="radio-card"><input type="radio" id="rl7" name="religion" value="7" /><label for="rl7">Other / Prefer not to say</label></div>
+              <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" required /><label
+                  for="rl1">No religion</label></div>
+              <div class="radio-card"><input type="radio" id="rl2" name="religion" value="2" /><label
+                  for="rl2">Christian</label></div>
+              <div class="radio-card"><input type="radio" id="rl3" name="religion" value="3" /><label
+                  for="rl3">Muslim</label></div>
+              <div class="radio-card"><input type="radio" id="rl4" name="religion" value="4" /><label
+                  for="rl4">Jewish</label></div>
+              <div class="radio-card"><input type="radio" id="rl5" name="religion" value="5" /><label
+                  for="rl5">Hindu</label></div>
+              <div class="radio-card"><input type="radio" id="rl6" name="religion" value="6" /><label
+                  for="rl6">Buddhist</label></div>
+              <div class="radio-card"><input type="radio" id="rl7" name="religion" value="7" /><label for="rl7">Other /
+                  Prefer not to say</label></div>
             </div>
           </div>
 
           <!-- Q: Religiosity -->
           <div class="question">
-            <label class="q-label"><span class="qnum">Q21.</span> Regardless of affiliation — how important is religion or spirituality in your daily life?</label>
+            <label class="q-label"><span class="qnum">Q23.</span> Regardless of affiliation — how important is religion
+              or spirituality in your daily life?</label>
 
             <div class="radio-group long-options" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rg1" name="religiosity" value="1" required /><label for="rg1">Not important at all</label></div>
-              <div class="radio-card"><input type="radio" id="rg2" name="religiosity" value="2" /><label for="rg2">Slightly important</label></div>
-              <div class="radio-card"><input type="radio" id="rg3" name="religiosity" value="3" /><label for="rg3">Moderately important</label></div>
-              <div class="radio-card"><input type="radio" id="rg4" name="religiosity" value="4" /><label for="rg4">Very important</label></div>
-              <div class="radio-card"><input type="radio" id="rg5" name="religiosity" value="5" /><label for="rg5">Central to my life</label></div>
+              <div class="radio-card"><input type="radio" id="rg1" name="religiosity" value="1" required /><label
+                  for="rg1">Not important at all</label></div>
+              <div class="radio-card"><input type="radio" id="rg2" name="religiosity" value="2" /><label
+                  for="rg2">Slightly important</label></div>
+              <div class="radio-card"><input type="radio" id="rg3" name="religiosity" value="3" /><label
+                  for="rg3">Moderately important</label></div>
+              <div class="radio-card"><input type="radio" id="rg4" name="religiosity" value="4" /><label for="rg4">Very
+                  important</label></div>
+              <div class="radio-card"><input type="radio" id="rg5" name="religiosity" value="5" /><label
+                  for="rg5">Central to my life</label></div>
             </div>
           </div>
 
@@ -1436,7 +1548,8 @@
         <div class="card">
           <span class="step-badge">Section 9 of 10 · Worry &amp; anxiety</span>
           <h2>One more set — almost done!</h2>
-          <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the <span style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
+          <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the <span
+              style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
 
           <div class="callout">
             <strong>1</strong> Not at all &nbsp;·&nbsp; <strong>2</strong> A few days &nbsp;·&nbsp; <strong>3</strong>
@@ -1463,7 +1576,7 @@
             style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
             <label class="q-label"
               style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
-              <span class="qnum">Q38.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
+              <span class="qnum">Q40.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
                 stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use
               it?
             </label>
@@ -1481,7 +1594,7 @@
 
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q39.</span> Of these, which matter MOST to YOUR stress? <span
+            <label class="q-label"><span class="qnum">Q41.</span> Of these, which matter MOST to YOUR stress? <span
                 class="hint">(select all that apply)</span></label>
             <div class="picker-counter" id="topPickCounter">0 selected</div>
             <div class="check-grid" id="topPicks">
@@ -1523,8 +1636,7 @@
                   share our findings when StressEQ launches.</div>
               </div>
             </div>
-            <input type="email" name="email" id="emailInput" placeholder=""
-              autocomplete="email"
+            <input type="email" name="email" id="emailInput" placeholder="" autocomplete="email"
               style="width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:10px; padding:11px 14px; font-size:0.95em; background:var(--card); color:var(--text); outline:none; transition:border-color 0.2s;"
               oninput="validateEmailField(this)" onfocus="this.style.borderColor='var(--primary)'"
               onblur="this.style.borderColor=this.value&&!this.validity.valid?'#DC2626':this.value?'#10B981':'var(--border)'" />
@@ -1668,10 +1780,10 @@
       // Belonging + financial 1-7
       // belonging_score and financial_strain are now hardcoded radio cards — no buildLikert needed
 
-      // Build PHQ-9 items (Q22..Q30)
+      // Build PHQ-9 items (Q24..Q32)
       let phqHTML = '';
       PHQ_ITEMS.forEach((item, i) => {
-        phqHTML += buildFreq4(`phq${i + 1}`, `phq${i + 1}`, 22 + i, item);
+        phqHTML += buildFreq4(`phq${i + 1}`, `phq${i + 1}`, 24 + i, item);
       });
       document.getElementById('phqContainer').innerHTML = phqHTML;
 
@@ -1683,10 +1795,10 @@
         });
       });
 
-      // Build GAD-7 items (Q31..Q37)
+      // Build GAD-7 items (Q33..Q39)
       let gadHTML = '';
       GAD_ITEMS.forEach((item, i) => {
-        gadHTML += buildFreq4(`gad${i + 1}`, `gad${i + 1}`, 31 + i, item);
+        gadHTML += buildFreq4(`gad${i + 1}`, `gad${i + 1}`, 33 + i, item);
       });
       document.getElementById('gadContainer').innerHTML = gadHTML;
 
@@ -1814,9 +1926,9 @@
       if (!bmi) { box.style.display = 'none'; return; }
       let cat = '', color = '#48BB78';
       if (bmi < 18.5) { cat = 'Underweight'; color = '#3182CE'; }
-      else if (bmi < 25) { cat = 'Healthy';     color = '#48BB78'; }
-      else if (bmi < 30) { cat = 'Overweight';  color = '#DD6B20'; }
-      else               { cat = 'Obese';       color = '#C53030'; }
+      else if (bmi < 25) { cat = 'Healthy'; color = '#48BB78'; }
+      else if (bmi < 30) { cat = 'Overweight'; color = '#DD6B20'; }
+      else { cat = 'Obese'; color = '#C53030'; }
       document.getElementById('bmiValue').textContent = bmi;
       document.getElementById('bmiValue').style.color = color;
       document.getElementById('bmiCat').textContent = cat;
@@ -1962,10 +2074,10 @@
       // Disable all interactive inputs
       questionEl.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(inp => {
         inp.disabled = true;
-        inp.checked  = false;   // ensure nothing stays selected
+        inp.checked = false;   // ensure nothing stays selected
       });
       // Grey out every option wrapper (.radio-group, .check-grid, .likert, etc.)
-      ['radio-group','check-grid','likert','freq4','row-2'].forEach(cls => {
+      ['radio-group', 'check-grid', 'likert', 'freq4', 'row-2'].forEach(cls => {
         const el = questionEl.querySelector('.' + cls);
         if (el) el.classList.add('options-disabled');
       });
@@ -2171,13 +2283,13 @@
         const weightSkipped = document.getElementById('weightUnknown')?.checked;
 
         const isCmActive = document.querySelector('.unit-btn[data-target="height"][data-unit="cm"]')?.classList.contains('active');
-        const heightCm   = parseFloat(document.getElementById('heightCmInput')?.value);
-        const heightFt   = parseFloat(document.querySelector('[name="height_ft"]')?.value);
+        const heightCm = parseFloat(document.getElementById('heightCmInput')?.value);
+        const heightFt = parseFloat(document.querySelector('[name="height_ft"]')?.value);
         const hasHeightValue = isCmActive ? (heightCm >= 100) : (heightFt >= 3);
 
         const isKgActive = document.querySelector('.unit-btn[data-target="weight"][data-unit="kg"]')?.classList.contains('active');
-        const weightKg   = parseFloat(document.getElementById('weightKgInput')?.value);
-        const weightLb   = parseFloat(document.getElementById('weightLbInput')?.value);
+        const weightKg = parseFloat(document.getElementById('weightKgInput')?.value);
+        const weightLb = parseFloat(document.getElementById('weightLbInput')?.value);
         const hasWeightValue = isKgActive ? (weightKg >= 30) : (weightLb >= 65);
 
         if (!heightSkipped && !hasHeightValue) {
@@ -2449,6 +2561,8 @@
     function downloadCSV() {
       const cols = [
         'response_id', 'submitted_at',
+        // provenance
+        'university', 'country',
         // demographics
         'age', 'gender', 'is_international', 'race', 'education_level', 'field_of_study',
         // academic
@@ -2471,7 +2585,7 @@
         'stress_level',
         // feedback
         'would_use', 'top_features', 'missing',
-        // optional contact (last column so it visually separates from data)
+        // optional contact
         'email'
       ];
       const header = cols.join(',');
