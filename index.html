@@ -217,6 +217,10 @@
       min-width: 140px;
     }
 
+    .radio-group.long-options .radio-card {
+      min-width: 180px;
+    }
+
     .radio-card input {
       display: none;
     }
@@ -1066,8 +1070,7 @@
           <p class="lead">How's the academic pressure been lately?</p>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q7.</span> What is your current CGPA or Percentage? <span
-                class="hint">(We'll convert it automatically)</span></label>
+            <label class="q-label"><span class="qnum">Q7.</span> What is your current CGPA or Percentage?</label>
             <input type="number" name="gpa" step="0.01" min="0" max="100" placeholder="e.g., 3.45 or 82" required />
           </div>
 
@@ -1365,10 +1368,8 @@
 
           <hr class="section-divider" />
 
-          <!-- Q: Religion -->
           <div class="question">
             <label class="q-label"><span class="qnum">Q20.</span> What is your religion or belief?</label>
-            <p style="font-size:0.85em; color:var(--muted); margin-bottom:10px;">Pick whichever fits you best. If none of the listed options apply, choose <em>Other / Prefer not to say</em>.</p>
 
             <div class="radio-group" style="margin-top:8px;">
               <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" required /><label for="rl1">No religion</label></div>
@@ -1385,7 +1386,7 @@
           <div class="question">
             <label class="q-label"><span class="qnum">Q21.</span> Regardless of affiliation — how important is religion or spirituality in your daily life?</label>
 
-            <div class="radio-group" style="margin-top:8px;">
+            <div class="radio-group long-options" style="margin-top:8px;">
               <div class="radio-card"><input type="radio" id="rg1" name="religiosity" value="1" required /><label for="rg1">Not important at all</label></div>
               <div class="radio-card"><input type="radio" id="rg2" name="religiosity" value="2" /><label for="rg2">Slightly important</label></div>
               <div class="radio-card"><input type="radio" id="rg3" name="religiosity" value="3" /><label for="rg3">Moderately important</label></div>
