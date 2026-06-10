@@ -377,6 +377,15 @@
       font-weight: 600;
     }
 
+    .check-item input:checked+label span {
+      color: white !important;
+    }
+
+    .radio-card input:checked+label .hint,
+    .check-item input:checked+label .hint {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+
     .check-tier {
       font-size: 0.72em;
       color: var(--muted);
@@ -658,7 +667,6 @@
       border: 1.5px solid #94A3B8;
       color: #475569;
       font-weight: 600;
-      pointer-events: none;
       /* prevent double-click */
     }
 
@@ -2098,32 +2106,89 @@
     }
 
     function skipQuestion(fieldName) {
-      data[fieldName] = '';
       const btn = document.querySelector(`.skip-btn[onclick*="${fieldName}"]`);
-      const currentQ = btn?.closest('.question');
-      disableQuestionOptions(currentQ);
-      markSkipBtn(btn);
-      scrollToNextQuestion(currentQ);
+      if (!btn) return;
+      const currentQ = btn.closest('.question');
+      if (!currentQ) return;
+
+      const isSkipped = btn.classList.contains('skipped');
+      if (isSkipped) {
+        currentQ.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(inp => {
+          inp.disabled = false;
+        });
+        ['radio-group', 'check-grid', 'likert', 'freq4', 'row-2'].forEach(cls => {
+          const el = currentQ.querySelector('.' + cls);
+          if (el) el.classList.remove('options-disabled');
+        });
+        btn.textContent = 'Skip this question';
+        btn.classList.remove('skipped');
+        data[fieldName] = '';
+      } else {
+        disableQuestionOptions(currentQ);
+        markSkipBtn(btn);
+        scrollToNextQuestion(currentQ);
+        data[fieldName] = '';
+      }
+      saveStep(currentStep);
     }
 
     function skipReligiosity() {
-      data['religiosity'] = '';
       const btn = document.querySelector('.skip-btn[onclick*="skipReligiosity"]');
-      const currentQ = btn?.closest('.question');
-      disableQuestionOptions(currentQ);
-      markSkipBtn(btn);
-      scrollToNextQuestion(currentQ);
+      if (!btn) return;
+      const currentQ = btn.closest('.question');
+      if (!currentQ) return;
+
+      const isSkipped = btn.classList.contains('skipped');
+      if (isSkipped) {
+        currentQ.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(inp => {
+          inp.disabled = false;
+        });
+        ['radio-group', 'check-grid', 'likert', 'freq4', 'row-2'].forEach(cls => {
+          const el = currentQ.querySelector('.' + cls);
+          if (el) el.classList.remove('options-disabled');
+        });
+        btn.textContent = 'Skip this question';
+        btn.classList.remove('skipped');
+        data.religiosity = '';
+      } else {
+        disableQuestionOptions(currentQ);
+        markSkipBtn(btn);
+        scrollToNextQuestion(currentQ);
+        data.religiosity = '';
+      }
+      saveStep(currentStep);
     }
 
     function skipSubstanceUse() {
       const btn = document.querySelector('.skip-btn[onclick*="skipSubstanceUse"]');
-      const currentQ = btn?.closest('.question');
-      disableQuestionOptions(currentQ);          // disables & unchecks all inputs
-      // Tick "None" AFTER disabling — validation checks :checked, disabled inputs are still matched
-      const noneCb = document.getElementById('sub_none');
-      if (noneCb) { noneCb.checked = true; }
-      markSkipBtn(btn);
-      scrollToNextQuestion(currentQ);
+      if (!btn) return;
+      const currentQ = btn.closest('.question');
+      if (!currentQ) return;
+
+      const isSkipped = btn.classList.contains('skipped');
+      if (isSkipped) {
+        currentQ.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(inp => {
+          inp.disabled = false;
+        });
+        const noneCb = document.getElementById('sub_none');
+        if (noneCb) { noneCb.checked = false; }
+        ['radio-group', 'check-grid', 'likert', 'freq4', 'row-2'].forEach(cls => {
+          const el = currentQ.querySelector('.' + cls);
+          if (el) el.classList.remove('options-disabled');
+        });
+        btn.textContent = 'Skip this question';
+        btn.classList.remove('skipped');
+        data.substance_use = [];
+      } else {
+        disableQuestionOptions(currentQ);          // disables & unchecks all inputs
+        // Tick "None" AFTER disabling — validation checks :checked, disabled inputs are still matched
+        const noneCb = document.getElementById('sub_none');
+        if (noneCb) { noneCb.checked = true; }
+        markSkipBtn(btn);
+        scrollToNextQuestion(currentQ);
+        data.substance_use = ['None'];
+      }
+      saveStep(currentStep);
     }
 
     // ============================================================
