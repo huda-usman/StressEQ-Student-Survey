@@ -628,19 +628,41 @@
 
     /* ---- Skip button ---- */
     .skip-btn {
-      display: inline-block;
-      margin-top: 6px;
-      font-size: 0.8em;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      font-size: 0.82em;
       color: var(--muted);
       background: none;
-      border: none;
+      border: 1.5px dashed var(--border);
+      border-radius: 20px;
       cursor: pointer;
-      text-decoration: underline;
-      padding: 0;
+      padding: 5px 14px;
+      transition: all 0.2s;
     }
 
     .skip-btn:hover {
       color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(2,132,199,0.06);
+    }
+
+    /* Highlighted state after user clicks Skip */
+    .skip-btn.skipped {
+      background: #F1F5F9;
+      border: 1.5px solid #94A3B8;
+      color: #475569;
+      font-weight: 600;
+      pointer-events: none;   /* prevent double-click */
+    }
+
+    /* Options area greyed out after skip */
+    .options-disabled {
+      opacity: 0.35;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 0.25s;
     }
 
     /* ---- Toast milestone ---- */
@@ -1127,7 +1149,7 @@
             <div class="likert" id="paGroup"></div>
           </div>
 
-          <div class="question">
+          <div class="question" id="heightQuestion">
             <label class="q-label"><span class="qnum">Q12.</span> Your height
               <span class="unit-toggle">
                 <button type="button" class="unit-btn active" data-unit="cm" data-target="height">cm</button>
@@ -1135,17 +1157,21 @@
               </span>
             </label>
             <div id="height-cm-input">
-              <input type="number" name="height_cm" min="100" max="230" placeholder="e.g., 170" />
+              <input type="number" name="height_cm" id="heightCmInput" min="100" max="230" placeholder="e.g., 170" oninput="clearHeightSkip()" />
             </div>
             <div id="height-ft-input" style="display:none;">
               <div class="row-2">
-                <input type="number" name="height_ft" min="3" max="7" placeholder="ft (e.g., 5)" />
-                <input type="number" name="height_in" min="0" max="11" placeholder="in (e.g., 7)" />
+                <input type="number" name="height_ft" min="3" max="7" placeholder="ft (e.g., 5)" oninput="clearHeightSkip()" />
+                <input type="number" name="height_in" min="0" max="11" placeholder="in (e.g., 7)" oninput="clearHeightSkip()" />
               </div>
             </div>
+            <label style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
+              <input type="checkbox" id="heightUnknown" name="height_unknown" value="1" onchange="toggleHeightSkip()" style="width:16px; height:16px; cursor:pointer;" />
+              I don't know my height / prefer not to say
+            </label>
           </div>
 
-          <div class="question">
+          <div class="question" id="weightQuestion">
             <label class="q-label"><span class="qnum">Q13.</span> Your weight
               <span class="unit-toggle">
                 <button type="button" class="unit-btn active" data-unit="kg" data-target="weight">kg</button>
@@ -1153,11 +1179,15 @@
               </span>
             </label>
             <div id="weight-kg-input">
-              <input type="number" name="weight_kg" min="30" max="200" placeholder="e.g., 65" />
+              <input type="number" name="weight_kg" id="weightKgInput" min="30" max="200" placeholder="e.g., 65" oninput="clearWeightSkip()" />
             </div>
             <div id="weight-lb-input" style="display:none;">
-              <input type="number" name="weight_lb" min="65" max="450" placeholder="e.g., 145" />
+              <input type="number" name="weight_lb" id="weightLbInput" min="65" max="450" placeholder="e.g., 145" oninput="clearWeightSkip()" />
             </div>
+            <label style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
+              <input type="checkbox" id="weightUnknown" name="weight_unknown" value="1" onchange="toggleWeightSkip()" style="width:16px; height:16px; cursor:pointer;" />
+              I don't know my weight / prefer not to say
+            </label>
           </div>
 
           <div id="bmiLive" class="bmi-live" style="display:none;">
@@ -1315,7 +1345,7 @@
         <div class="card">
           <span class="step-badge">Section 7 of 10 · Personal context</span>
           <h2>A little about your personal life</h2>
-          <p class="lead">These optional questions help us understand how social and personal factors relate to wellbeing. All are fully voluntary — skip any you'd prefer not to answer.</p>
+          <p class="lead">These questions help us understand how social and personal factors relate to wellbeing.</p>
 
           <div class="callout" style="margin-bottom:6px;">
             <strong>Why we ask:</strong> Research shows that relationship support and personal values can significantly influence stress levels. Your answers are anonymous and help us build a more accurate, inclusive model.
@@ -1323,10 +1353,10 @@
 
           <!-- Q: Relationship Status -->
           <div class="question">
-            <label class="q-label"><span class="qnum">Q19.</span> Which best describes your current relationship status? <span class="hint">(optional)</span></label>
-            <button type="button" class="skip-btn" onclick="skipQuestion('relationship_status','0')">Skip this question</button>
+            <label class="q-label"><span class="qnum">Q19.</span> Which best describes your current relationship status?</label>
+
             <div class="radio-group" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rs1" name="relationship_status" value="1" /><label for="rs1">Single</label></div>
+              <div class="radio-card"><input type="radio" id="rs1" name="relationship_status" value="1" required /><label for="rs1">Single</label></div>
               <div class="radio-card"><input type="radio" id="rs2" name="relationship_status" value="2" /><label for="rs2">In a relationship</label></div>
               <div class="radio-card"><input type="radio" id="rs3" name="relationship_status" value="3" /><label for="rs3">Married / Partnered</label></div>
               <div class="radio-card"><input type="radio" id="rs4" name="relationship_status" value="4" /><label for="rs4">Divorced / Separated / Widowed</label></div>
@@ -1338,11 +1368,11 @@
 
           <!-- Q: Religion -->
           <div class="question">
-            <label class="q-label"><span class="qnum">Q20.</span> What is your religion or belief? <span class="hint">(optional)</span></label>
+            <label class="q-label"><span class="qnum">Q20.</span> What is your religion or belief?</label>
             <p style="font-size:0.85em; color:var(--muted); margin-bottom:10px;">Pick whichever fits you best. If none of the listed options apply, choose <em>Other / Prefer not to say</em>.</p>
-            <button type="button" class="skip-btn" onclick="skipQuestion('religion','0')">Skip this question</button>
+
             <div class="radio-group" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" /><label for="rl1">No religion</label></div>
+              <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" required /><label for="rl1">No religion</label></div>
               <div class="radio-card"><input type="radio" id="rl2" name="religion" value="2" /><label for="rl2">Christian</label></div>
               <div class="radio-card"><input type="radio" id="rl3" name="religion" value="3" /><label for="rl3">Muslim</label></div>
               <div class="radio-card"><input type="radio" id="rl4" name="religion" value="4" /><label for="rl4">Jewish</label></div>
@@ -1354,10 +1384,10 @@
 
           <!-- Q: Religiosity -->
           <div class="question">
-            <label class="q-label"><span class="qnum">Q21.</span> Regardless of affiliation — how important is religion or spirituality in your daily life? <span class="hint">(optional)</span></label>
-            <button type="button" class="skip-btn" onclick="skipReligiosity()">Skip this question</button>
+            <label class="q-label"><span class="qnum">Q21.</span> Regardless of affiliation — how important is religion or spirituality in your daily life?</label>
+
             <div class="radio-group" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rg1" name="religiosity" value="1" /><label for="rg1">Not important at all</label></div>
+              <div class="radio-card"><input type="radio" id="rg1" name="religiosity" value="1" required /><label for="rg1">Not important at all</label></div>
               <div class="radio-card"><input type="radio" id="rg2" name="religiosity" value="2" /><label for="rg2">Slightly important</label></div>
               <div class="radio-card"><input type="radio" id="rg3" name="religiosity" value="3" /><label for="rg3">Moderately important</label></div>
               <div class="radio-card"><input type="radio" id="rg4" name="religiosity" value="4" /><label for="rg4">Very important</label></div>
@@ -1523,7 +1553,7 @@
           <div
             style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6;">
             🔒 Your answers are stored anonymously under a random ID — never linked to your name.<br>
-            📊 Results will be used to train the StressEQ AI and shared only as group statistics in our FYP.
+            📊 Results will be used to validate the StressEQ AI and shared only as group statistics in our FYP.
           </div>
 
           <div
@@ -1698,8 +1728,49 @@
       updateProgressBar();
     });
 
+    // ── Height / Weight "Don't know" toggle helpers ──────────────
+    function toggleHeightSkip() {
+      const skip = document.getElementById('heightUnknown').checked;
+      const cmIn = document.getElementById('heightCmInput');
+      const ftIn = document.querySelector('[name="height_ft"]');
+      const inIn = document.querySelector('[name="height_in"]');
+      [cmIn, ftIn, inIn].forEach(el => { if (el) { el.disabled = skip; el.style.opacity = skip ? '0.35' : '1'; if (skip) el.value = ''; } });
+      // Clear any error on skip
+      const hq = document.getElementById('heightQuestion');
+      if (hq) { hq.querySelector('.field-error')?.remove(); hq.style.outline = ''; hq.style.padding = ''; }
+      updateLiveBMI();
+    }
+
+    function clearHeightSkip() {
+      const cb = document.getElementById('heightUnknown');
+      if (cb && cb.checked) { cb.checked = false; toggleHeightSkip(); }
+      const hq = document.getElementById('heightQuestion');
+      if (hq) { hq.querySelector('.field-error')?.remove(); hq.style.outline = ''; hq.style.padding = ''; }
+    }
+
+    function toggleWeightSkip() {
+      const skip = document.getElementById('weightUnknown').checked;
+      const kgIn = document.getElementById('weightKgInput');
+      const lbIn = document.getElementById('weightLbInput');
+      [kgIn, lbIn].forEach(el => { if (el) { el.disabled = skip; el.style.opacity = skip ? '0.35' : '1'; if (skip) el.value = ''; } });
+      // Clear any error on skip
+      const wq = document.getElementById('weightQuestion');
+      if (wq) { wq.querySelector('.field-error')?.remove(); wq.style.outline = ''; wq.style.padding = ''; }
+      updateLiveBMI();
+    }
+
+    function clearWeightSkip() {
+      const cb = document.getElementById('weightUnknown');
+      if (cb && cb.checked) { cb.checked = false; toggleWeightSkip(); }
+      const wq = document.getElementById('weightQuestion');
+      if (wq) { wq.querySelector('.field-error')?.remove(); wq.style.outline = ''; wq.style.padding = ''; }
+    }
+
     // Convert any unit input to canonical cm/kg
+    // Returns height in cm — null if user skipped or left blank
     function getCanonicalHeightCm() {
+      // If user ticked "don't know", treat as unknown
+      if (document.getElementById('heightUnknown')?.checked) return null;
       const isCmActive = document.querySelector('.unit-btn[data-target="height"][data-unit="cm"]').classList.contains('active');
       if (isCmActive) {
         const cm = parseFloat(document.querySelector('[name="height_cm"]').value);
@@ -1712,7 +1783,10 @@
       }
     }
 
+    // Returns weight in kg — null if user skipped or left blank
     function getCanonicalWeightKg() {
+      // If user ticked "don't know", treat as unknown
+      if (document.getElementById('weightUnknown')?.checked) return null;
       const isKgActive = document.querySelector('.unit-btn[data-target="weight"][data-unit="kg"]').classList.contains('active');
       if (isKgActive) {
         const kg = parseFloat(document.querySelector('[name="weight_kg"]').value);
@@ -1724,25 +1798,25 @@
       }
     }
 
+    // Computes and returns BMI — null when either measurement is unavailable
+    function computeBMI(h, w) {
+      if (!h || !w || h < 120 || h > 230 || w < 30 || w > 250) return null;
+      const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
+      return (bmi < 10 || bmi > 60) ? null : bmi;
+    }
+
     function updateLiveBMI() {
       const h = getCanonicalHeightCm();
       const w = getCanonicalWeightKg();
       const box = document.getElementById('bmiLive');
-      // Only display when BOTH values are within realistic adult ranges —
-      // prevents wild BMI numbers while user is still typing partial input
-      // (e.g., "5" in cm field would otherwise yield a bmi in the thousands).
-      if (!h || !w || h < 120 || h > 230 || w < 30 || w > 250) {
-        box.style.display = 'none';
-        return;
-      }
-      const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
-      // Sanity guard: BMI itself must look human (10–60 covers 99.99% of adults)
-      if (bmi < 10 || bmi > 60) { box.style.display = 'none'; return; }
+      const bmi = computeBMI(h, w);
+      // Hide the live BMI card when either value is missing or out of range
+      if (!bmi) { box.style.display = 'none'; return; }
       let cat = '', color = '#48BB78';
       if (bmi < 18.5) { cat = 'Underweight'; color = '#3182CE'; }
-      else if (bmi < 25) { cat = 'Healthy'; color = '#48BB78'; }
-      else if (bmi < 30) { cat = 'Overweight'; color = '#DD6B20'; }
-      else { cat = 'Obese'; color = '#C53030'; }
+      else if (bmi < 25) { cat = 'Healthy';     color = '#48BB78'; }
+      else if (bmi < 30) { cat = 'Overweight';  color = '#DD6B20'; }
+      else               { cat = 'Obese';       color = '#C53030'; }
       document.getElementById('bmiValue').textContent = bmi;
       document.getElementById('bmiValue').style.color = color;
       document.getElementById('bmiCat').textContent = cat;
@@ -1875,31 +1949,69 @@
       }
     }
 
-    function skipQuestion(fieldName, defaultValue) {
-      // Set the default value silently
-      data[fieldName] = defaultValue;
-      // Visually tick the matching radio so validation passes
-      const match = document.querySelector(`input[name="${fieldName}"][value="${defaultValue}"]`);
-      if (match) {
-        match.checked = true;
-        match.dispatchEvent(new Event('change', { bubbles: true }));
+    // ── Skip helpers ────────────────────────────────────────────
+    function markSkipBtn(btn) {
+      if (!btn) return;
+      btn.textContent = '✓ Skipped';
+      btn.classList.add('skipped');
+    }
+
+    // Disable and grey-out every input option inside the question container
+    function disableQuestionOptions(questionEl) {
+      if (!questionEl) return;
+      // Disable all interactive inputs
+      questionEl.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(inp => {
+        inp.disabled = true;
+        inp.checked  = false;   // ensure nothing stays selected
+      });
+      // Grey out every option wrapper (.radio-group, .check-grid, .likert, etc.)
+      ['radio-group','check-grid','likert','freq4','row-2'].forEach(cls => {
+        const el = questionEl.querySelector('.' + cls);
+        if (el) el.classList.add('options-disabled');
+      });
+    }
+
+    function scrollToNextQuestion(currentQuestion) {
+      if (!currentQuestion) return;
+      let el = currentQuestion.nextElementSibling;
+      while (el) {
+        if (el.classList.contains('question')) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        el = el.nextElementSibling;
       }
+      const btnRow = currentQuestion.closest('.card')?.querySelector('.button-row');
+      if (btnRow) btnRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function skipQuestion(fieldName) {
+      data[fieldName] = '';
+      const btn = document.querySelector(`.skip-btn[onclick*="${fieldName}"]`);
+      const currentQ = btn?.closest('.question');
+      disableQuestionOptions(currentQ);
+      markSkipBtn(btn);
+      scrollToNextQuestion(currentQ);
     }
 
     function skipReligiosity() {
-      // religiosity has no value="0" radio — just record as skipped (0 = not specified)
-      data['religiosity'] = '0';
-      // Deselect any selected radio to make clear it's skipped
-      document.querySelectorAll('input[name="religiosity"]').forEach(r => r.checked = false);
+      data['religiosity'] = '';
+      const btn = document.querySelector('.skip-btn[onclick*="skipReligiosity"]');
+      const currentQ = btn?.closest('.question');
+      disableQuestionOptions(currentQ);
+      markSkipBtn(btn);
+      scrollToNextQuestion(currentQ);
     }
 
     function skipSubstanceUse() {
-      // Tick the None option
+      const btn = document.querySelector('.skip-btn[onclick*="skipSubstanceUse"]');
+      const currentQ = btn?.closest('.question');
+      disableQuestionOptions(currentQ);          // disables & unchecks all inputs
+      // Tick "None" AFTER disabling — validation checks :checked, disabled inputs are still matched
       const noneCb = document.getElementById('sub_none');
-      if (noneCb) {
-        noneCb.checked = true;
-        noneCb.dispatchEvent(new Event('change', { bubbles: true }));
-      }
+      if (noneCb) { noneCb.checked = true; }
+      markSkipBtn(btn);
+      scrollToNextQuestion(currentQ);
     }
 
     // ============================================================
@@ -2053,6 +2165,52 @@
         }
       }
 
+      // Step 3 — Height & Weight validation
+      if (step === 3) {
+        const heightSkipped = document.getElementById('heightUnknown')?.checked;
+        const weightSkipped = document.getElementById('weightUnknown')?.checked;
+
+        const isCmActive = document.querySelector('.unit-btn[data-target="height"][data-unit="cm"]')?.classList.contains('active');
+        const heightCm   = parseFloat(document.getElementById('heightCmInput')?.value);
+        const heightFt   = parseFloat(document.querySelector('[name="height_ft"]')?.value);
+        const hasHeightValue = isCmActive ? (heightCm >= 100) : (heightFt >= 3);
+
+        const isKgActive = document.querySelector('.unit-btn[data-target="weight"][data-unit="kg"]')?.classList.contains('active');
+        const weightKg   = parseFloat(document.getElementById('weightKgInput')?.value);
+        const weightLb   = parseFloat(document.getElementById('weightLbInput')?.value);
+        const hasWeightValue = isKgActive ? (weightKg >= 30) : (weightLb >= 65);
+
+        if (!heightSkipped && !hasHeightValue) {
+          const hq = document.getElementById('heightQuestion');
+          if (hq && !hq.querySelector('.field-error')) {
+            const err = document.createElement('div');
+            err.className = 'field-error';
+            err.textContent = '⚠️ Please enter your height, or tick "I don\'t know my height" to continue.';
+            err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
+            hq.appendChild(err);
+            hq.style.outline = '2px solid #DC2626';
+            hq.style.borderRadius = '10px';
+            hq.style.padding = '8px';
+          }
+          if (!firstError) firstError = document.getElementById('heightQuestion');
+        }
+
+        if (!weightSkipped && !hasWeightValue) {
+          const wq = document.getElementById('weightQuestion');
+          if (wq && !wq.querySelector('.field-error')) {
+            const err = document.createElement('div');
+            err.className = 'field-error';
+            err.textContent = '⚠️ Please enter your weight, or tick "I don\'t know my weight" to continue.';
+            err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
+            wq.appendChild(err);
+            wq.style.outline = '2px solid #DC2626';
+            wq.style.borderRadius = '10px';
+            wq.style.padding = '8px';
+          }
+          if (!firstError) firstError = document.getElementById('weightQuestion');
+        }
+      }
+
       // Step 4 — Substance Use checkbox validation
       if (step === 4) {
         const subList = document.querySelectorAll('input[name="substance_use"]:checked');
@@ -2177,15 +2335,17 @@
       if (!validateStep(10)) return;
       saveStep(10);
 
-      // Canonicalise height/weight regardless of which unit they entered
-      data.height_cm = getCanonicalHeightCm();
-      data.weight_kg = getCanonicalWeightKg();
+      // Canonicalise height/weight — null when user skipped or left blank
+      data.height_cm = getCanonicalHeightCm() ?? '';
+      data.weight_kg = getCanonicalWeightKg() ?? '';
 
-      // Validate height/weight provided
-      if (!data.height_cm || !data.weight_kg) {
-        alert('Please go back and enter your height and weight (any unit).');
-        return;
-      }
+      // Compute BMI only when both measurements are available
+      // If either is missing (skipped / unknown), BMI is recorded as empty string
+      const bmiVal = computeBMI(
+        data.height_cm === '' ? null : data.height_cm,
+        data.weight_kg === '' ? null : data.weight_kg
+      );
+      data.bmi = bmiVal !== null ? bmiVal : '';
 
       // Canonicalise GPA to 4.0 scale for the ML model
       let rawGpa = parseFloat(data.gpa);
@@ -2240,8 +2400,7 @@
       const chrEl = document.querySelector('input[name="chronic_illness_tier"]:checked');
       data.chronic_illness_tier = chrEl ? parseInt(chrEl.value) : 0;
 
-      // BMI from canonical values
-      data.bmi = +(data.weight_kg / Math.pow(data.height_cm / 100, 2)).toFixed(1);
+      // (BMI already computed above via computeBMI — no duplicate needed)
 
       data.submitted_at = new Date().toISOString();
       data.response_id = 'r_' + Math.random().toString(36).slice(2, 10) + '_' + Date.now();
