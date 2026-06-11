@@ -967,23 +967,40 @@
       max-height: 235px;
       overflow-y: auto;
       display: none;
+      /* Hide native scrollbar but keep scroll functionality */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
     }
 
-    /* Styled scrollbar to indicate scrollability */
     .custom-select-options::-webkit-scrollbar {
-      width: 8px;
-      display: block;
+      display: none !important; /* Safari and Chrome */
+      width: 0 !important;
+      height: 0 !important;
     }
-    .custom-select-options::-webkit-scrollbar-track {
+
+    /* Custom scrollbar divs */
+    .custom-scroll-track {
+      position: absolute;
+      top: 6px;
+      right: 3px;
+      bottom: 6px;
+      width: 6px;
       background: #E2E8F0;
-      border-radius: 0 10px 10px 0;
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: 1001;
+      opacity: 0.9;
+      transition: opacity 0.2s;
     }
-    .custom-select-options::-webkit-scrollbar-thumb {
+
+    .custom-scroll-thumb {
+      position: absolute;
+      left: 0;
+      width: 6px;
       background: #94A3B8;
       border-radius: 10px;
-    }
-    .custom-select-options::-webkit-scrollbar-thumb:hover {
-      background: #64748B;
+      pointer-events: none;
+      transition: background 0.2s;
     }
 
     .custom-select-wrapper.open .custom-select-options {
@@ -991,7 +1008,7 @@
     }
 
     .custom-select-option {
-      padding: 10px 14px;
+      padding: 10px 20px 10px 14px;
       cursor: pointer;
       transition: background 0.15s, color 0.15s;
       color: var(--text);
@@ -2255,12 +2272,40 @@
 
         wrapper.appendChild(optionsContainer);
 
+        // Create custom scrollbar elements
+        const scrollTrack = document.createElement('div');
+        scrollTrack.className = 'custom-scroll-track';
+        const scrollThumb = document.createElement('div');
+        scrollThumb.className = 'custom-scroll-thumb';
+        scrollTrack.appendChild(scrollThumb);
+        wrapper.appendChild(scrollTrack);
+
+        const updateScrollbar = () => {
+          const sh = optionsContainer.scrollHeight;
+          const ch = optionsContainer.clientHeight;
+          if (sh <= ch) {
+            scrollTrack.style.display = 'none';
+          } else {
+            scrollTrack.style.display = 'block';
+            const scrollPercent = optionsContainer.scrollTop / (sh - ch);
+            const thumbHeight = Math.max((ch / sh) * ch, 24); // min 24px thumb
+            const maxThumbTop = ch - thumbHeight - 12; // account for track offsets (6px top + 6px bottom = 12px)
+            const thumbTop = scrollPercent * maxThumbTop;
+            
+            scrollThumb.style.height = `${thumbHeight}px`;
+            scrollThumb.style.transform = `translateY(${thumbTop}px)`;
+          }
+        };
+
+        optionsContainer.addEventListener('scroll', updateScrollbar);
+
         trigger.addEventListener('click', (e) => {
           e.stopPropagation();
           const isOpen = wrapper.classList.contains('open');
           document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
           if (!isOpen) {
             wrapper.classList.add('open');
+            setTimeout(updateScrollbar, 0); // calculate once rendered
           }
         });
 
