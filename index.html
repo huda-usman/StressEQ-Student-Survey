@@ -953,7 +953,7 @@
       box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
     }
 
-    .custom-select-options {
+    .custom-select-options-wrapper {
       position: absolute;
       top: 100%;
       left: 0;
@@ -964,9 +964,17 @@
       border-radius: 10px;
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       z-index: 1000;
+      display: none;
+      overflow: hidden;
+    }
+
+    .custom-select-wrapper.open .custom-select-options-wrapper {
+      display: block;
+    }
+
+    .custom-select-options {
       max-height: 235px;
       overflow-y: auto;
-      display: none;
       /* Hide native scrollbar but keep scroll functionality */
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none; /* IE 10+ */
@@ -1001,10 +1009,6 @@
       border-radius: 10px;
       pointer-events: none;
       transition: background 0.2s;
-    }
-
-    .custom-select-wrapper.open .custom-select-options {
-      display: block;
     }
 
     .custom-select-option {
@@ -2240,6 +2244,9 @@
         
         wrapper.appendChild(trigger);
 
+        const optionsWrapper = document.createElement('div');
+        optionsWrapper.className = 'custom-select-options-wrapper';
+
         const optionsContainer = document.createElement('div');
         optionsContainer.className = 'custom-select-options';
 
@@ -2270,7 +2277,8 @@
           optionsContainer.appendChild(optionEl);
         });
 
-        wrapper.appendChild(optionsContainer);
+        optionsWrapper.appendChild(optionsContainer);
+        wrapper.appendChild(optionsWrapper);
 
         // Create custom scrollbar elements
         const scrollTrack = document.createElement('div');
@@ -2278,7 +2286,7 @@
         const scrollThumb = document.createElement('div');
         scrollThumb.className = 'custom-scroll-thumb';
         scrollTrack.appendChild(scrollThumb);
-        wrapper.appendChild(scrollTrack);
+        optionsWrapper.appendChild(scrollTrack);
 
         const updateScrollbar = () => {
           const sh = optionsContainer.scrollHeight;
@@ -2289,8 +2297,8 @@
             scrollTrack.style.display = 'block';
             const scrollPercent = optionsContainer.scrollTop / (sh - ch);
             const thumbHeight = Math.max((ch / sh) * ch, 24); // min 24px thumb
-            const maxThumbTop = ch - thumbHeight - 12; // account for track offsets (6px top + 6px bottom = 12px)
-            const thumbTop = scrollPercent * maxThumbTop;
+            const maxThumbTop = Math.max(ch - thumbHeight - 12, 0); // account for track offsets (6px top + 6px bottom = 12px)
+            const thumbTop = Math.max(scrollPercent * maxThumbTop, 0);
             
             scrollThumb.style.height = `${thumbHeight}px`;
             scrollThumb.style.transform = `translateY(${thumbTop}px)`;
