@@ -302,13 +302,14 @@
 
     /* PHQ/GAD 0-3 scale */
     .freq4 {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 6px;
       margin-top: 6px;
     }
 
     .freq4-item {
-      flex: 1;
+      display: flex;
     }
 
     .freq4-item input {
@@ -316,8 +317,12 @@
     }
 
     .freq4-item label {
-      display: block;
-      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 12px 4px;
       border: 1.5px solid var(--border);
       border-radius: 10px;
       cursor: pointer;
@@ -989,11 +994,14 @@
               <label class="q-label"><span class="qnum">Q1.</span> University / Institution name</label>
               <select name="university_select" id="universitySelect" onchange="toggleUniversityCustomField()" required>
                 <option value="">— select university —</option>
-                <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of Sciences &amp; Technology)</option>
+                <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of
+                  Sciences &amp; Technology)</option>
                 <option value="COMSATS University Islamabad">COMSATS University Islamabad</option>
                 <option value="FAST-NUCES">FAST-NUCES</option>
-                <option value="University of Engineering &amp; Technology (UET) Lahore">University of Engineering &amp; Technology (UET) Lahore</option>
-                <option value="Lahore University of Management Sciences (LUMS)">Lahore University of Management Sciences (LUMS)</option>
+                <option value="University of Engineering &amp; Technology (UET) Lahore">University of Engineering &amp;
+                  Technology (UET) Lahore</option>
+                <option value="Lahore University of Management Sciences (LUMS)">Lahore University of Management Sciences
+                  (LUMS)</option>
                 <option value="University of the Punjab">University of the Punjab</option>
                 <option value="Quaid-i-Azam University">Quaid-i-Azam University</option>
                 <option value="University of Karachi">University of Karachi</option>
@@ -1048,8 +1056,8 @@
                 <option value="Kenya">Kenya</option>
                 <option value="Other">Other (Not listed)</option>
               </select>
-              <input type="text" id="countryCustomInput" name="country_custom"
-                placeholder="Type your country name…" style="display:none; margin-top:8px;" />
+              <input type="text" id="countryCustomInput" name="country_custom" placeholder="Type your country name…"
+                style="display:none; margin-top:8px;" />
             </div>
           </div>
 
@@ -1174,7 +1182,8 @@
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q11.</span> In a typical week, how many hours do you spend studying
+            <label class="q-label"><span class="qnum">Q11.</span> In a typical week, how many hours do you spend
+              studying
               on your own? <span class="hint">(assignments, self-study, exam prep — excluding scheduled
                 lectures)</span></label>
             <div class="radio-group">
