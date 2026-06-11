@@ -901,6 +901,109 @@
         align-items: stretch;
       }
     }
+
+    /* Custom select dropdown */
+    .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .custom-select-trigger {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.97em;
+      color: var(--text);
+      background: white;
+      transition: border 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .custom-select-trigger:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    .custom-select-arrow {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg);
+      transition: transform 0.2s ease, border-color 0.2s;
+      margin-right: 4px;
+      flex-shrink: 0;
+    }
+
+    .custom-select-wrapper.open .custom-select-arrow {
+      transform: rotate(-135deg);
+      border-color: var(--primary);
+    }
+
+    .custom-select-wrapper.open .custom-select-trigger {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    .custom-select-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 4px;
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      max-height: 220px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .custom-select-wrapper.open .custom-select-options {
+      display: block;
+    }
+
+    .custom-select-option {
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      color: var(--text);
+      font-size: 0.95em;
+      text-align: left;
+    }
+
+    .custom-select-option:hover {
+      background: var(--soft);
+      color: var(--primary);
+    }
+
+    .custom-select-option.selected {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+
+    .visual-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
   </style>
 </head>
 
@@ -1852,6 +1955,9 @@
         });
       });
 
+      // Set up custom select dropdowns
+      setupCustomSelects();
+
       // Restore saved progress
       loadProgress();
       updateProgressBar();
@@ -2067,6 +2173,127 @@
         inp.style.display = sel.value === 'Other' ? 'block' : 'none';
         inp.required = sel.value === 'Other';
       }
+    }
+
+    // ============================================================
+    // Custom Select Component
+    // ============================================================
+    function setupCustomSelects() {
+      document.querySelectorAll('select').forEach(select => {
+        if (select.closest('.custom-select-wrapper')) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'custom-select-wrapper';
+        
+        select.parentNode.insertBefore(wrapper, select);
+        wrapper.appendChild(select);
+        select.classList.add('visual-hidden');
+
+        const trigger = document.createElement('div');
+        trigger.className = 'custom-select-trigger';
+        trigger.tabIndex = 0;
+        
+        const triggerText = document.createElement('span');
+        triggerText.className = 'custom-select-text';
+        
+        const selectedOpt = select.options[select.selectedIndex] || select.options[0];
+        triggerText.textContent = selectedOpt ? selectedOpt.textContent : '';
+        trigger.appendChild(triggerText);
+        
+        const arrow = document.createElement('span');
+        arrow.className = 'custom-select-arrow';
+        trigger.appendChild(arrow);
+        
+        wrapper.appendChild(trigger);
+
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'custom-select-options';
+
+        Array.from(select.options).forEach((opt, idx) => {
+          const optionEl = document.createElement('div');
+          optionEl.className = 'custom-select-option';
+          optionEl.textContent = opt.textContent;
+          optionEl.dataset.value = opt.value;
+          
+          if (idx === select.selectedIndex) {
+            optionEl.classList.add('selected');
+          }
+
+          optionEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            select.value = opt.value;
+            triggerText.textContent = opt.textContent;
+            
+            optionsContainer.querySelectorAll('.custom-select-option').forEach(el => el.classList.remove('selected'));
+            optionEl.classList.add('selected');
+            
+            wrapper.classList.remove('open');
+            
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+            select.dispatchEvent(new Event('input', { bubbles: true }));
+          });
+
+          optionsContainer.appendChild(optionEl);
+        });
+
+        wrapper.appendChild(optionsContainer);
+
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = wrapper.classList.contains('open');
+          document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+          if (!isOpen) {
+            wrapper.classList.add('open');
+          }
+        });
+
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            trigger.click();
+          } else if (e.key === 'ArrowDown' && wrapper.classList.contains('open')) {
+            e.preventDefault();
+            const options = Array.from(optionsContainer.querySelectorAll('.custom-select-option'));
+            const activeIdx = options.findIndex(opt => opt.classList.contains('selected'));
+            const nextIdx = (activeIdx + 1) % options.length;
+            options[nextIdx].click();
+          } else if (e.key === 'ArrowUp' && wrapper.classList.contains('open')) {
+            e.preventDefault();
+            const options = Array.from(optionsContainer.querySelectorAll('.custom-select-option'));
+            const activeIdx = options.findIndex(opt => opt.classList.contains('selected'));
+            const prevIdx = (activeIdx - 1 + options.length) % options.length;
+            options[prevIdx].click();
+          } else if (e.key === 'Escape') {
+            wrapper.classList.remove('open');
+          }
+        });
+      });
+
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+      });
+    }
+
+    function syncCustomSelects() {
+      document.querySelectorAll('select').forEach(select => {
+        const wrapper = select.closest('.custom-select-wrapper');
+        if (!wrapper) return;
+        const triggerText = wrapper.querySelector('.custom-select-text');
+        const selectedOpt = select.options[select.selectedIndex];
+        if (triggerText && selectedOpt) {
+          triggerText.textContent = selectedOpt.textContent;
+        }
+        const optionsContainer = wrapper.querySelector('.custom-select-options');
+        if (optionsContainer) {
+          optionsContainer.querySelectorAll('.custom-select-option').forEach(el => {
+            if (el.dataset.value === select.value) {
+              el.classList.add('selected');
+            } else {
+              el.classList.remove('selected');
+            }
+          });
+        }
+      });
     }
 
     function toggleOtherField() {
@@ -2352,8 +2579,17 @@
             if (!firstError) firstError = el;
           }
         } else if (!el.value.trim()) {
-          el.style.borderColor = '#DC2626';
-          el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.15)';
+          const wrapper = el.closest('.custom-select-wrapper');
+          if (wrapper) {
+            const trigger = wrapper.querySelector('.custom-select-trigger');
+            if (trigger) {
+              trigger.style.borderColor = '#DC2626';
+              trigger.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.15)';
+            }
+          } else {
+            el.style.borderColor = '#DC2626';
+            el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.15)';
+          }
           const container = el.closest('.question') || el.parentElement;
           if (!container.querySelector('.field-error')) {
             const err = document.createElement('div');
@@ -2362,11 +2598,20 @@
             err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
             container.appendChild(err);
           }
-          el.addEventListener('input', () => {
+          const clearErr = () => {
             el.style.borderColor = '';
             el.style.boxShadow = '';
+            if (wrapper) {
+              const trigger = wrapper.querySelector('.custom-select-trigger');
+              if (trigger) {
+                trigger.style.borderColor = '';
+                trigger.style.boxShadow = '';
+              }
+            }
             container.querySelector('.field-error')?.remove();
-          }, { once: true });
+          };
+          el.addEventListener('input', clearErr, { once: true });
+          el.addEventListener('change', clearErr, { once: true });
           if (!firstError) firstError = el;
         }
       }
@@ -2535,6 +2780,7 @@
         toggleCountryCustomField();
         toggleYearOtherField();
         toggleOtherField();
+        syncCustomSelects();
       } catch (e) { }
     }
 
