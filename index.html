@@ -348,9 +348,15 @@
     /* Checkbox grid (chronic illness, top features) */
     .check-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 8px;
       margin-top: 6px;
+      align-items: stretch;
+    }
+
+    .check-item {
+      display: flex;
+      width: 100%;
     }
 
     .check-item input {
@@ -358,7 +364,12 @@
     }
 
     .check-item label {
-      display: block;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 64px;
       padding: 11px 14px;
       border: 1.5px solid var(--border);
       border-radius: 10px;
@@ -368,6 +379,23 @@
       color: var(--text);
       transition: all 0.15s;
       user-select: none;
+    }
+
+    #topPicks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #topPicks .check-item {
+      flex: 1 1 200px;
+      max-width: calc(33.333% - 8px);
+    }
+
+    @media (max-width: 650px) {
+      #topPicks .check-item {
+        max-width: 100%;
+      }
     }
 
     .check-item label:hover {
@@ -1508,11 +1536,12 @@
             <select name="parent_education" required>
               <option value="">— select —</option>
               <option>No formal education</option>
-              <option>Primary</option>
-              <option>Secondary</option>
-              <option>Bachelor's</option>
-              <option>Master's</option>
-              <option>PhD / Professional</option>
+              <option>Primary (up to Grade 5)</option>
+              <option>Secondary (Matric / O-Levels / Grade 10)</option>
+              <option>Higher Secondary (Intermediate / A-Levels / Grade 12)</option>
+              <option>Bachelor's degree</option>
+              <option>Master's degree</option>
+              <option>PhD</option>
             </select>
           </div>
 
@@ -1611,7 +1640,7 @@
 
             <div class="radio-group" style="margin-top:8px;">
               <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" required /><label
-                  for="rl1">No religion</label></div>
+                  for="rl1">Atheist</label></div>
               <div class="radio-card"><input type="radio" id="rl2" name="religion" value="2" /><label
                   for="rl2">Christian</label></div>
               <div class="radio-card"><input type="radio" id="rl3" name="religion" value="3" /><label
@@ -1643,6 +1672,20 @@
                   important</label></div>
               <div class="radio-card"><input type="radio" id="rg5" name="religiosity" value="5" /><label
                   for="rg5">Central to my life</label></div>
+            </div>
+          </div>
+
+          <hr class="section-divider" />
+
+          <!-- Q: Therapy / Counseling History -->
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q24.</span> Have you ever taken therapy or counseling services, or are you currently receiving them?</label>
+            <div class="radio-group long-options" style="margin-top:8px;">
+              <div class="radio-card"><input type="radio" id="th1" name="therapy_history" value="Yes, currently receiving support" required /><label for="th1">Yes, currently receiving support</label></div>
+              <div class="radio-card"><input type="radio" id="th2" name="therapy_history" value="Yes, received support in the past" /><label for="th2">Yes, received support in the past</label></div>
+              <div class="radio-card"><input type="radio" id="th3" name="therapy_history" value="No, but I have considered it" /><label for="th3">No, but I have considered it</label></div>
+              <div class="radio-card"><input type="radio" id="th4" name="therapy_history" value="No, and I have never felt the need" /><label for="th4">No, and I have never felt the need</label></div>
+              <div class="radio-card"><input type="radio" id="th5" name="therapy_history" value="Prefer not to say" /><label for="th5">Prefer not to say</label></div>
             </div>
           </div>
 
@@ -1715,7 +1758,7 @@
             style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
             <label class="q-label"
               style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
-              <span class="qnum">Q40.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
+              <span class="qnum">Q42.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
                 stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use
               it?
             </label>
@@ -1733,7 +1776,7 @@
 
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q41.</span> Of these, which matter MOST to YOUR stress? <span
+            <label class="q-label"><span class="qnum">Q43.</span> Of these, which matter MOST to YOUR stress? <span
                 class="hint">(select all that apply)</span></label>
             <div class="picker-counter" id="topPickCounter">0 selected</div>
             <div class="check-grid" id="topPicks">
@@ -1757,6 +1800,10 @@
                   for="top9">Parental education</label></div>
               <div class="check-item"><input type="checkbox" id="top10" name="top" value="bmi" /><label
                   for="top10">BMI</label></div>
+              <div class="check-item"><input type="checkbox" id="top11" name="top" value="interpersonal_conflict" /><label
+                  for="top11">Interpersonal conflict</label></div>
+              <div class="check-item"><input type="checkbox" id="top12" name="top" value="grief" /><label
+                  for="top12">Grief or loss</label></div>
             </div>
           </div>
 
@@ -1814,6 +1861,8 @@
 
           <button class="share-btn" onclick="shareLink()" style="margin-top:8px;">Share survey with a friend 🚀</button>
 
+          <p style="color:var(--muted); font-size:0.88em; margin-top:20px;" id="submitStatus"></p>
+
           <p style="color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response
             counts.</p>
         </div>
@@ -1848,7 +1897,8 @@
       "Feeling like a failure, or like you've let yourself or others down",
       "Trouble concentrating (studying, reading, watching something)",
       "Moving noticeably slower than usual — OR feeling unusually restless",
-      "Thoughts that life isn't worth living, or of harming yourself"
+      "Thoughts that life isn't worth living",
+      "Thoughts of harming yourself"
     ];
 
     const GAD_ITEMS = [
@@ -1919,25 +1969,29 @@
       // Belonging + financial 1-7
       // belonging_score and financial_strain are now hardcoded radio cards — no buildLikert needed
 
-      // Build PHQ-9 items (Q24..Q32)
+      // Build PHQ items (Q25..Q34)
       let phqHTML = '';
       PHQ_ITEMS.forEach((item, i) => {
-        phqHTML += buildFreq4(`phq${i + 1}`, `phq${i + 1}`, 24 + i, item);
+        phqHTML += buildFreq4(`phq${i + 1}`, `phq${i + 1}`, 25 + i, item);
       });
       document.getElementById('phqContainer').innerHTML = phqHTML;
 
-      // Hook PHQ9 (Q9 = self-harm) → show crisis warning if not "Not at all" (which is now 1)
-      document.querySelectorAll('input[name="phq9"]').forEach(el => {
-        el.addEventListener('change', () => {
-          const v = parseInt(el.value);
-          document.getElementById('crisisWarn').classList.toggle('show', v >= 2 && el.checked);
-        });
+      // Hook PHQ9 and PHQ10 (suicide/self-harm risk) → show crisis warning if either is >= 2
+      function checkCrisis() {
+        const q9Checked = document.querySelector('input[name="phq9"]:checked');
+        const q10Checked = document.querySelector('input[name="phq10"]:checked');
+        const v9 = q9Checked ? parseInt(q9Checked.value) : 1;
+        const v10 = q10Checked ? parseInt(q10Checked.value) : 1;
+        document.getElementById('crisisWarn').classList.toggle('show', v9 >= 2 || v10 >= 2);
+      }
+      document.querySelectorAll('input[name="phq9"], input[name="phq10"]').forEach(el => {
+        el.addEventListener('change', checkCrisis);
       });
 
-      // Build GAD-7 items (Q33..Q39)
+      // Build GAD-7 items (Q35..Q41)
       let gadHTML = '';
       GAD_ITEMS.forEach((item, i) => {
-        gadHTML += buildFreq4(`gad${i + 1}`, `gad${i + 1}`, 33 + i, item);
+        gadHTML += buildFreq4(`gad${i + 1}`, `gad${i + 1}`, 35 + i, item);
       });
       document.getElementById('gadContainer').innerHTML = gadHTML;
 
@@ -1967,10 +2021,11 @@
         });
       });
 
-      // Live BMI computation — fires on every height/weight change
-      ['height_cm', 'height_ft', 'height_in', 'weight_kg', 'weight_lb'].forEach(name => {
+      // Live BMI computation — fires on every height/weight, age, or gender change
+      ['height_cm', 'height_ft', 'height_in', 'weight_kg', 'weight_lb', 'age', 'gender'].forEach(name => {
         document.querySelectorAll(`[name="${name}"]`).forEach(el => {
           el.addEventListener('input', updateLiveBMI);
+          el.addEventListener('change', updateLiveBMI);
         });
       });
 
@@ -2066,11 +2121,42 @@
       const bmi = computeBMI(h, w);
       // Hide the live BMI card when either value is missing or out of range
       if (!bmi) { box.style.display = 'none'; return; }
+      
+      // Fetch current age and gender to support standard clinical logics
+      const ageEl = document.querySelector('[name="age"]');
+      const ageVal = ageEl ? parseInt(ageEl.value) : null;
+      const genderEl = document.querySelector('[name="gender"]:checked');
+      const genderVal = genderEl ? genderEl.value.toLowerCase() : '';
+
       let cat = '', color = '#48BB78';
-      if (bmi < 18.5) { cat = 'Underweight'; color = '#3182CE'; }
-      else if (bmi < 25) { cat = 'Healthy'; color = '#48BB78'; }
-      else if (bmi < 30) { cat = 'Overweight'; color = '#DD6B20'; }
-      else { cat = 'Obese'; color = '#C53030'; }
+
+      // Check if teen BMI-for-age percentiles apply (under 20, ages 16-19)
+      if (ageVal && ageVal >= 16 && ageVal <= 19 && (genderVal === 'male' || genderVal === 'female')) {
+        const key = `${genderVal}_${ageVal}`;
+        // CDC growth percentile thresholds: [underweight_5th, overweight_85th, obesity_95th]
+        const thresholds = {
+          "male_16": [17.5, 24.2, 27.6],
+          "male_17": [18.1, 24.9, 28.2],
+          "male_18": [18.6, 25.6, 29.0],
+          "male_19": [19.0, 26.2, 29.7],
+          "female_16": [17.2, 24.7, 28.9],
+          "female_17": [17.5, 25.2, 29.3],
+          "female_18": [17.8, 25.6, 29.8],
+          "female_19": [18.0, 26.0, 30.0]
+        }[key];
+
+        if (bmi < thresholds[0]) { cat = 'Underweight'; color = '#3182CE'; }
+        else if (bmi < thresholds[1]) { cat = 'Healthy'; color = '#48BB78'; }
+        else if (bmi < thresholds[2]) { cat = 'Overweight'; color = '#DD6B20'; }
+        else { cat = 'Obese'; color = '#C53030'; }
+      } else {
+        // Standard adult WHO/CDC BMI categories
+        if (bmi < 18.5) { cat = 'Underweight'; color = '#3182CE'; }
+        else if (bmi < 25) { cat = 'Healthy'; color = '#48BB78'; }
+        else if (bmi < 30) { cat = 'Overweight'; color = '#DD6B20'; }
+        else { cat = 'Obese'; color = '#C53030'; }
+      }
+
       document.getElementById('bmiValue').textContent = bmi;
       document.getElementById('bmiValue').style.color = color;
       document.getElementById('bmiCat').textContent = cat;
@@ -2879,11 +2965,15 @@
       }
 
       // Compute PHQ-9 (converting 1-4 scale back to clinical 0-3 for score)
+      // Since item 9 was split into phq9 and phq10, we combine them via Math.max
       let phq = 0;
-      for (let i = 1; i <= 9; i++) {
+      for (let i = 1; i <= 8; i++) {
         const v = parseInt(data[`phq${i}`] || 1);
         phq += isNaN(v) ? 0 : (v - 1);
       }
+      const v9 = parseInt(data['phq9'] || 1);
+      const v10 = parseInt(data['phq10'] || 1);
+      phq += Math.max(v9 - 1, v10 - 1);
       // Compute GAD-7 (converting 1-4 scale back to clinical 0-3 for score)
       let gad = 0;
       for (let i = 1; i <= 7; i++) {
@@ -2983,9 +3073,9 @@
         // chronic
         'chronic_illness_tier',
         // relationship & religion
-        'relationship_status', 'religion', 'religiosity',
+        'relationship_status', 'therapy_history', 'religion', 'religiosity',
         // PHQ
-        'phq1', 'phq2', 'phq3', 'phq4', 'phq5', 'phq6', 'phq7', 'phq8', 'phq9', 'phq9_score',
+        'phq1', 'phq2', 'phq3', 'phq4', 'phq5', 'phq6', 'phq7', 'phq8', 'phq9', 'phq10', 'phq9_score',
         // GAD
         'gad1', 'gad2', 'gad3', 'gad4', 'gad5', 'gad6', 'gad7', 'gad7_score',
         // target
