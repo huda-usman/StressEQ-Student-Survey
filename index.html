@@ -864,13 +864,38 @@
       transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
+    /* Progress area — question counter + bar + pct */
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .q-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72em;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+      transition: background 0.4s;
+      white-space: nowrap;
+    }
+
+    .q-counter .q-icon { font-size: 0.9em; }
+
     /* Progress % label */
     .progress-pct {
       text-align: right;
-      font-size: 0.75em;
+      font-size: 0.72em;
       color: var(--muted);
-      padding: 2px 2px 0;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     /* Mobile */
@@ -1082,10 +1107,13 @@
       <div class="save-state" id="saveState">Auto-saved</div>
     </div>
 
+    <div class="progress-header">
+      <span class="q-counter" id="qCounter"><span class="q-icon">📋</span> <span id="qCounterText">Start the survey</span></span>
+      <span class="progress-pct" id="progressPct"></span>
+    </div>
     <div class="progress-wrap">
       <div class="progress-bar" id="progressBar"></div>
     </div>
-    <div class="progress-pct" id="progressPct">0%</div>
 
     <form id="surveyForm">
 
@@ -1188,7 +1216,7 @@
                 <option value="Other">Other (Not listed)</option>
               </select>
               <input type="text" id="universityCustomInput" name="university_custom"
-                placeholder="Type your university name…" style="display:none; margin-top:8px;" />
+                placeholder="Type your university name…" maxlength="150" style="display:none; margin-top:8px;" />
             </div>
             <div class="question">
               <label class="q-label"><span class="qnum">Q2.</span> Country</label>
@@ -1207,13 +1235,15 @@
                 <option value="Other">Other (Not listed)</option>
               </select>
               <input type="text" id="countryCustomInput" name="country_custom" placeholder="Type your country name…"
-                style="display:none; margin-top:8px;" />
+                maxlength="100" style="display:none; margin-top:8px;" />
             </div>
           </div>
 
           <div class="question">
             <label class="q-label"><span class="qnum">Q3.</span> What is your age?</label>
-            <input type="number" name="age" min="16" max="60" placeholder="e.g., 21" required />
+             <input type="number" name="age" min="16" max="60" step="1"
+               onblur="let v=parseInt(this.value); if(!isNaN(v)){if(v<16)this.value=16; if(v>60)this.value=60;} "
+               placeholder="e.g., 21" required />
           </div>
 
           <div class="question">
@@ -1270,7 +1300,7 @@
                 <option value="Other">Other</option>
               </select>
               <input type="text" id="yearOtherInput" name="education_level_other"
-                placeholder="Please specify your year / programme…" style="display:none; margin-top:8px;" />
+                placeholder="Please specify your year / programme…" maxlength="100" style="display:none; margin-top:8px;" />
             </div>
             <div class="question">
               <label class="q-label"><span class="qnum">Q8.</span> Field of study</label>
@@ -1286,7 +1316,7 @@
                 <option value="Other">Other</option>
               </select>
               <input type="text" id="fieldOtherInput" name="field_of_study_other"
-                placeholder="Please specify your field…" style="display:none; margin-top:8px;" />
+                placeholder="Please specify your field…" maxlength="100" style="display:none; margin-top:8px;" />
             </div>
           </div>
 
@@ -1304,9 +1334,24 @@
           <h2>Your studies</h2>
           <p class="lead">How's the academic pressure been lately?</p>
 
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q9.</span> What is your current CGPA or Percentage?</label>
-            <input type="number" name="gpa" step="0.01" min="0" max="100" placeholder="e.g., 3.45 or 82" required />
+          <div class="question" id="gpaQuestion">
+             <label class="q-label"><span class="qnum">Q9.</span> What is your current CGPA or Percentage?</label>
+             <div style="display:flex; gap:8px; margin-bottom:8px;">
+               <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;" id="gpaScaleCGPA">
+                 <input type="radio" name="gpa_scale" value="cgpa" checked onchange="updateGpaScale()" style="accent-color:var(--primary);"> CGPA (0 – 4.0)
+               </label>
+               <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;" id="gpaScalePct">
+                 <input type="radio" name="gpa_scale" value="pct" onchange="updateGpaScale()" style="accent-color:var(--primary);"> Percentage (0 – 100)
+               </label>
+             </div>
+             <input type="number" name="gpa" id="gpaInput" step="0.01" min="0" max="4.0"
+               placeholder="e.g., 3.45" required
+               oninput="clampGpa(this); validateGpaLive(this)"
+               onblur="validateGpaLive(this)" />
+             <div id="gpaHint" style="font-size:0.80em;color:var(--muted);margin-top:4px;">
+               CGPA scale: enter a value between <strong>0</strong> and <strong>4.0</strong>
+             </div>
+             <div id="gpaWarn" style="display:none;color:#DC2626;font-size:0.82em;margin-top:4px;font-weight:600;"></div>
           </div>
 
           <div class="question">
@@ -1835,7 +1880,7 @@
 
           <div class="button-row">
             <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
-            <button type="button" class="btn-primary" onclick="submitForm()">Submit ✓</button>
+            <button type="button" class="btn-primary" id="submitBtn" onclick="submitForm()">Submit ✓</button>
           </div>
         </div>
       </section>
@@ -2050,6 +2095,51 @@
       updateLiveBMI();
     }
 
+    // ── GPA / CGPA scale selector ────────────────────────────────
+    function updateGpaScale() {
+      const isCgpa = document.querySelector('[name="gpa_scale"]:checked')?.value === 'cgpa';
+      const inp    = document.getElementById('gpaInput');
+      const hint   = document.getElementById('gpaHint');
+      if (!inp) return;
+      if (isCgpa) {
+        inp.max = 4.0; inp.step = 0.01; inp.placeholder = 'e.g., 3.45';
+        if (hint) hint.innerHTML = 'CGPA scale: enter a value between <strong>0</strong> and <strong>4.0</strong>';
+        if (inp.value && parseFloat(inp.value) > 4.0) inp.value = '';
+      } else {
+        inp.max = 100; inp.step = 0.1; inp.placeholder = 'e.g., 82.5';
+        if (hint) hint.innerHTML = 'Percentage scale: enter a value between <strong>0</strong> and <strong>100</strong>';
+      }
+      validateGpaLive(inp);
+    }
+
+    function clampGpa(inp) {
+      const max = parseFloat(inp.max) || 4.0;
+      const v = parseFloat(inp.value);
+      if (!isNaN(v)) {
+        if (v < 0) inp.value = '0';
+        if (v > max) inp.value = max.toFixed(2);
+      }
+    }
+
+    function validateGpaLive(inp) {
+      const warn = document.getElementById('gpaWarn');
+      if (!warn || !inp.value) { if (warn) warn.style.display = 'none'; return; }
+      const isCgpa = document.querySelector('[name="gpa_scale"]:checked')?.value === 'cgpa';
+      const v = parseFloat(inp.value);
+      if (isCgpa && v > 4.0) {
+        warn.textContent = '⚠ CGPA cannot exceed 4.0. Did you mean to select Percentage?';
+        warn.style.display = 'block'; inp.style.borderColor = '#DC2626';
+      } else if (!isCgpa && v > 0 && v < 5) {
+        warn.textContent = '⚠ That looks like a CGPA value. Did you mean to select CGPA?';
+        warn.style.display = 'block'; inp.style.borderColor = '#F59E0B';
+      } else if (v < 0) {
+        warn.textContent = '⚠ Value cannot be negative.';
+        warn.style.display = 'block'; inp.style.borderColor = '#DC2626';
+      } else {
+        warn.style.display = 'none'; inp.style.borderColor = '#10B981';
+      }
+    }
+
     function clearHeightSkip() {
       const cb = document.getElementById('heightUnknown');
       if (cb && cb.checked) { cb.checked = false; toggleHeightSkip(); }
@@ -2247,11 +2337,105 @@
       toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
     }
 
+    // ── Real-time question answer counter ────────────────────────
+    // Maps question number → field name(s) (any non-empty = answered)
+    const TOTAL_QUESTIONS = 43;
+    const QUESTION_FIELDS = {
+      1:  ['university_select', 'university_custom'],
+      2:  ['country_select', 'country_custom'],
+      3:  ['age'],
+      4:  ['gender'],
+      5:  ['is_international'],
+      6:  ['race'],
+      7:  ['education_level'],
+      8:  ['field_of_study'],
+      9:  ['gpa'],
+      10: ['academic_pressure'],
+      11: ['study_hours'],
+      12: ['sleep_hours'],
+      13: ['sl1','sl2','sl3','sl4','sl5','sl6'],   // sleep quality likert
+      14: ['height_cm','height_ft','height_unknown'],
+      15: ['weight_kg','weight_lb','weight_unknown'],
+      16: ['substance_use'],
+      17: ['belonging_score'],
+      18: ['parent_education'],
+      19: ['financial_strain'],
+      20: ['chronic_illness_tier'],
+      21: ['relationship_status'],
+      22: ['religion'],
+      23: ['religiosity'],
+      24: ['therapy_history'],
+      // PHQ-9 (dynamically built Q25–Q34)
+      25: ['phq1'], 26: ['phq2'], 27: ['phq3'], 28: ['phq4'], 29: ['phq5'],
+      30: ['phq6'], 31: ['phq7'], 32: ['phq8'], 33: ['phq9'], 34: ['phq10'],
+      // GAD-7 (dynamically built Q35–Q41)
+      35: ['gad1'], 36: ['gad2'], 37: ['gad3'], 38: ['gad4'],
+      39: ['gad5'], 40: ['gad6'], 41: ['gad7'],
+      42: ['would_use'],
+      43: ['top'],
+    };
+
+    function isFieldAnswered(fieldNames) {
+      for (const name of fieldNames) {
+        const els = document.querySelectorAll(`[name="${name}"]`);
+        for (const el of els) {
+          if (el.type === 'radio' || el.type === 'checkbox') {
+            if (el.checked) return true;
+          } else if (el.value && el.value.trim() !== '') {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    function countAnsweredQuestions() {
+      let count = 0;
+      for (const qnum in QUESTION_FIELDS) {
+        if (isFieldAnswered(QUESTION_FIELDS[qnum])) count++;
+      }
+      return count;
+    }
+
+    // Also keep step-range info for section label
+    const STEP_Q_RANGE = {
+      1:  { start: 1,  end: 8  },
+      2:  { start: 9,  end: 11 },
+      3:  { start: 12, end: 15 },
+      4:  { start: 16, end: 16 },
+      5:  { start: 17, end: 19 },
+      6:  { start: 20, end: 20 },
+      7:  { start: 21, end: 24 },
+      8:  { start: 25, end: 34 },
+      9:  { start: 35, end: 41 },
+      10: { start: 42, end: 43 },
+    };
+
     function updateProgressBar() {
       const pct = Math.round((currentStep / (totalSteps - 1)) * 100);
       document.getElementById('progressBar').style.width = pct + '%';
-      const pctEl = document.getElementById('progressPct');
-      if (pctEl) pctEl.textContent = currentStep === 0 ? '' : pct + '% complete';
+      const pctEl    = document.getElementById('progressPct');
+      const counterEl = document.getElementById('qCounterText');
+
+      const answered = countAnsweredQuestions();
+
+      if (currentStep === 0) {
+        if (pctEl) pctEl.textContent = '';
+        if (counterEl) counterEl.textContent = 'Start the survey';
+      } else if (currentStep >= totalSteps - 1) {
+        if (pctEl) pctEl.textContent = '100% complete';
+        if (counterEl) counterEl.textContent = `All ${TOTAL_QUESTIONS} of ${TOTAL_QUESTIONS} answered ✓`;
+      } else {
+        const range = STEP_Q_RANGE[currentStep];
+        if (pctEl) pctEl.textContent = `${pct}% complete`;
+        if (counterEl) {
+          if (range) {
+            counterEl.textContent = `${answered} of ${TOTAL_QUESTIONS} answered  ·  Q${range.start}–Q${range.end}`;
+          } else {
+            counterEl.textContent = `${answered} of ${TOTAL_QUESTIONS} answered`;
+          }
+        }
+      }
 
       // Apply section color theme
       const theme = STEP_THEMES[currentStep] || STEP_THEMES[0];
@@ -2918,6 +3102,7 @@
         toggleYearOtherField();
         toggleOtherField();
         syncCustomSelects();
+        updateGpaScale(); // restore correct max/placeholder after GPA scale radio is repopulated
       } catch (e) { }
     }
 
@@ -2929,9 +3114,9 @@
       saveTimer = setTimeout(() => { el.textContent = 'Auto-saved ✓'; }, 400);
     }
 
-    // Auto-save on any input change
-    document.addEventListener('input', () => saveStep(currentStep));
-    document.addEventListener('change', () => saveStep(currentStep));
+    // Auto-save on any input change + update live question counter
+    document.addEventListener('input', () => { saveStep(currentStep); updateProgressBar(); });
+    document.addEventListener('change', () => { saveStep(currentStep); updateProgressBar(); });
 
     // ============================================================
     // Submit + score computation
@@ -2939,6 +3124,10 @@
     async function submitForm() {
       if (!validateStep(10)) return;
       saveStep(10);
+
+      // Prevent double-submission
+      const btn = document.getElementById('submitBtn');
+      if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
 
       // Canonicalise height/weight — null when user skipped or left blank
       data.height_cm = getCanonicalHeightCm() ?? '';
@@ -3042,12 +3231,16 @@
             status.textContent = '✓ Response submitted successfully.';
             status.style.color = '#38A169';
           }
+          // Clear saved progress so a refresh starts a fresh form
+          localStorage.removeItem(STORAGE_KEY);
         } catch (e) {
           const status = document.getElementById('submitStatus');
           if (status) {
             status.textContent = '⚠ Network issue — please refresh and re-submit if possible.';
             status.style.color = '#DD6B20';
           }
+          // Re-enable button so user can retry
+          if (btn) { btn.disabled = false; btn.textContent = 'Submit ✓'; }
         }
       }
     }
@@ -3063,7 +3256,7 @@
         // demographics
         'age', 'gender', 'is_international', 'race', 'education_level', 'field_of_study',
         // academic
-        'gpa', 'academic_pressure', 'study_hours',
+        'gpa', 'gpa_scale', 'academic_pressure', 'study_hours',
         // sleep / body
         'sleep_hours', 'restful_sleep_nights', 'physical_activity', 'height_cm', 'weight_kg', 'bmi',
         // substance
