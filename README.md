@@ -1,1 +1,1 @@
-# StressEQ-Survey
+# StressEQ-Student-Survey
