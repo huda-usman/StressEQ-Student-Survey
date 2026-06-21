@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>StressEQ — Student Survey</title>
+  <title>StressEQ: Student Survey</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -1158,7 +1158,7 @@
 
           <!-- Fine print -->
           <p style="color:var(--muted); font-size:0.75em; margin-top:16px; line-height:1.4;">
-            Responses are stored under a random ID — never linked to your name.<br>
+            Responses are stored under a random ID: never linked to your name.<br>
             A few questions use standard clinical screeners (PHQ-9, GAD-7) used in research worldwide.
           </p>
         </div>
@@ -1184,13 +1184,13 @@
         <div class="card">
           <span class="step-badge">Section 1 of 10 · About you</span>
           <h2>Quick intro</h2>
-          <p class="lead">No names, no personal info — just a few basics so we can compare across groups.</p>
+          <p class="lead">No names, no personal info: just a few basics so we can compare across groups.</p>
 
           <div class="row-2">
             <div class="question">
               <label class="q-label"><span class="qnum">Q1.</span> University / Institution name</label>
               <select name="university_select" id="universitySelect" onchange="toggleUniversityCustomField()" required>
-                <option value="">— select university —</option>
+                <option value="">select university:</option>
                 <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of Sciences &amp; Technology)</option>
                 <option value="FAST-NUCES">FAST-NUCES</option>
                 <option value="COMSATS University">COMSATS University</option>
@@ -1221,7 +1221,7 @@
             <div class="question">
               <label class="q-label"><span class="qnum">Q2.</span> Country</label>
               <select name="country_select" id="countrySelect" onchange="toggleCountryCustomField()" required>
-                <option value="">— select country —</option>
+                <option value="">select country:</option>
                 <option value="Pakistan">Pakistan</option>
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="United States">United States</option>
@@ -1288,7 +1288,7 @@
             <div class="question">
               <label class="q-label"><span class="qnum">Q7.</span> What year are you in?</label>
               <select name="education_level" required id="yearSelect" onchange="toggleYearOtherField()">
-                <option value="">— select —</option>
+                <option value="">select:</option>
                 <option>Bachelor's Year 1</option>
                 <option>Bachelor's Year 2</option>
                 <option>Bachelor's Year 3</option>
@@ -1305,7 +1305,7 @@
             <div class="question">
               <label class="q-label"><span class="qnum">Q8.</span> Field of study</label>
               <select name="field_of_study" required id="fieldSelect" onchange="toggleOtherField()">
-                <option value="">— select —</option>
+                <option value="">select:</option>
                 <option>Engineering / Computing</option>
                 <option>Medicine / Health Sciences</option>
                 <option>Business / Economics</option>
@@ -1336,7 +1336,18 @@
 
           <div class="question" id="gpaQuestion">
              <label class="q-label"><span class="qnum">Q9.</span> What is your current CGPA or Percentage?</label>
-             <div style="display:flex; gap:8px; margin-bottom:8px;">
+
+             <!-- Skip checkbox for 1st-semester / no result yet -->
+             <label id="gpaSkipLabel" style="display:inline-flex;align-items:center;gap:7px;cursor:pointer;
+               font-size:0.85em;font-weight:600;color:var(--muted);
+               background:var(--bg-grad-1);border:1.5px dashed var(--border);
+               border-radius:20px;padding:5px 14px;margin-bottom:10px;transition:all 0.2s;">
+               <input type="checkbox" id="gpaUnknown" onchange="toggleGpaSkip()"
+                 style="accent-color:var(--primary);width:15px;height:15px;">
+               Not available yet &nbsp;<span style="font-weight:400;">(e.g. 1st semester / results pending)</span>
+             </label>
+
+             <div id="gpaScaleRow" style="display:flex; gap:8px; margin-bottom:8px;">
                <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;" id="gpaScaleCGPA">
                  <input type="radio" name="gpa_scale" value="cgpa" checked onchange="updateGpaScale()" style="accent-color:var(--primary);"> CGPA (0 – 4.0)
                </label>
@@ -1379,7 +1390,7 @@
           <div class="question">
             <label class="q-label"><span class="qnum">Q11.</span> In a typical week, how many hours do you spend
               studying
-              on your own? <span class="hint">(assignments, self-study, exam prep — excluding scheduled
+              on your own? <span class="hint">(assignments, self-study, exam prep: excluding scheduled
                 lectures)</span></label>
             <div class="radio-group">
               <div class="radio-card"><input type="radio" id="sh1" name="study_hours" value="0-5" required /><label
@@ -1407,8 +1418,7 @@
         <div class="card">
           <span class="step-badge">Section 3 of 10 · Sleep &amp; body</span>
           <h2>Sleep &amp; activity</h2>
-          <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest — your data is anonymous.
-          </p>
+          <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest: your data is anonymous.</p>
 
           <div class="question">
             <label class="q-label"><span class="qnum">Q12.</span> How many hours do you usually sleep per night?</label>
@@ -1504,7 +1514,7 @@
           <span class="step-badge">Section 4 of 10 · Lifestyle</span>
           <h2>Your habits</h2>
           <p class="lead"><span style="color:#DC2626; font-weight:bold;">Past 30 days</span>. Everything here is
-            anonymous — we only look at group patterns, not individuals.
+            anonymous: we only look at group patterns, not individuals.
           </p>
 
           <div class="question" id="substanceUseQuestion">
@@ -1579,7 +1589,7 @@
             <label class="q-label"><span class="qnum">Q18.</span> What is the highest level of education your parent or
               guardian completed?</label>
             <select name="parent_education" required>
-              <option value="">— select —</option>
+              <option value="">select:</option>
               <option>No formal education</option>
               <option>Primary (up to Grade 5)</option>
               <option>Secondary (Matric / O-Levels / Grade 10)</option>
@@ -1623,7 +1633,7 @@
         <div class="card">
           <span class="step-badge">Section 6 of 10 · Health</span>
           <h2>Any health conditions?</h2>
-          <p class="lead">One quick question — your answer helps the AI understand your full picture.</p>
+          <p class="lead">One quick question: your answer helps the AI understand your full picture.</p>
 
           <div class="question">
             <label class="q-label"><span class="qnum">Q20.</span> Do you have any diagnosed chronic health
@@ -1703,7 +1713,7 @@
 
           <!-- Q: Religiosity -->
           <div class="question">
-            <label class="q-label"><span class="qnum">Q23.</span> Regardless of affiliation — how important is religion
+            <label class="q-label"><span class="qnum">Q23.</span> Regardless of affiliation: how important is religion
               or spirituality in your daily life?</label>
 
             <div class="radio-group long-options" style="margin-top:8px;">
@@ -1747,7 +1757,7 @@
           <span class="step-badge">Section 8 of 10 · Wellbeing check</span>
           <h2>How have you been feeling?</h2>
           <p class="lead">These are standard wellbeing questions used in research worldwide. There are no right or wrong
-            answers — just be honest about the <span style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
+            answers: just be honest about the <span style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
 
           <div class="callout">
             <strong>For each statement, pick how often it applied to you:</strong><br />
@@ -1758,7 +1768,7 @@
           <div id="phqContainer"></div>
 
           <div class="crisis-warn" id="crisisWarn">
-            <strong>If you're having thoughts of self-harm</strong>, please reach out — you matter. Talk to someone you
+            <strong>If you're having thoughts of self-harm</strong>, please reach out: you matter. Talk to someone you
             trust (a family member, close friend, or a teacher you respect), or call a confidential mental-health
             helpline in your country. You don't have to go through this alone.
           </div>
@@ -1774,7 +1784,7 @@
       <section class="step" data-step="9">
         <div class="card">
           <span class="step-badge">Section 9 of 10 · Worry &amp; anxiety</span>
-          <h2>One more set — almost done!</h2>
+          <h2>One more set: almost done!</h2>
           <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the <span
               style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
 
@@ -1796,23 +1806,23 @@
       <section class="step" data-step="10">
         <div class="card">
           <span class="step-badge">Section 10 of 10 · Last question!</span>
-          <h2>Almost there — just 2 quick ones</h2>
+          <h2>Almost there: just 2 quick ones</h2>
           <p class="lead">Your thoughts on StressEQ itself.</p>
 
           <div class="question"
             style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
             <label class="q-label"
               style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
-              <span class="qnum">Q42.</span> Be honest — if StressEQ could <span style="color:#0369A1;">detect your
+              <span class="qnum">Q42.</span> Be honest: if StressEQ could <span style="color:#0369A1;">detect your
                 stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use
               it?
             </label>
             <div class="radio-group" style="margin-top:4px;">
               <div class="radio-card"><input type="radio" id="use1" name="would_use"
-                  value="Yes — I genuinely need something like this" required /><label for="use1">💯 Yes — I genuinely
+                  value="Yes: I genuinely need something like this" required /><label for="use1">💯 Yes: I genuinely
                   need something like this</label></div>
               <div class="radio-card"><input type="radio" id="use2" name="would_use"
-                  value="No — stress isn't really a problem for me" /><label for="use2">😌 Stress isn't really a problem
+                  value="No: stress isn't really a problem for me" /><label for="use2">😌 Stress isn't really a problem
                   for me</label></div>
             </div>
           </div>
@@ -1888,14 +1898,14 @@
       <section class="step" data-step="11">
         <div class="card" style="text-align:center; border-top:4px solid #10B981;">
           <div style="font-size:3em; margin-bottom:8px;">🎉</div>
-          <h1 style="color:var(--ok); font-size:1.6em;">You're amazing — thank you!</h1>
+          <h1 style="color:var(--ok); font-size:1.6em;">You're amazing: thank you!</h1>
           <p class="lead" style="color:var(--text); margin-top:8px; font-size:1em;">
             Your response has been recorded and will directly improve StressEQ's accuracy.
           </p>
 
           <div
             style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6;">
-            🔒 Your answers are stored anonymously under a random ID — never linked to your name.<br>
+            🔒 Your answers are stored anonymously under a random ID: never linked to your name.<br>
             📊 Results will be used to validate the StressEQ AI and shared only as group statistics in our FYP.
           </div>
 
@@ -1941,7 +1951,7 @@
       "Poor appetite or overeating",
       "Feeling like a failure, or like you've let yourself or others down",
       "Trouble concentrating (studying, reading, watching something)",
-      "Moving noticeably slower than usual — OR feeling unusually restless",
+      "Moving noticeably slower than usual: OR feeling unusually restless",
       "Thoughts that life isn't worth living",
       "Thoughts of harming yourself"
     ];
@@ -2096,7 +2106,36 @@
     }
 
     // ── GPA / CGPA scale selector ────────────────────────────────
+    function toggleGpaSkip() {
+      const skip     = document.getElementById('gpaUnknown')?.checked;
+      const inp      = document.getElementById('gpaInput');
+      const scaleRow = document.getElementById('gpaScaleRow');
+      const hint     = document.getElementById('gpaHint');
+      const warn     = document.getElementById('gpaWarn');
+      const radios   = document.querySelectorAll('[name="gpa_scale"]');
+
+      if (skip) {
+        // Disable and grey out the input + scale radios
+        if (inp) { inp.disabled = true; inp.value = ''; inp.removeAttribute('required'); inp.style.opacity = '0.35'; }
+        if (scaleRow) scaleRow.style.opacity = '0.35';
+        radios.forEach(r => r.disabled = true);
+        if (hint) hint.style.display = 'none';
+        if (warn) warn.style.display = 'none';
+        // Record N/A in data object
+        data.gpa = '';
+        data.gpa_scale = 'N/A';
+      } else {
+        // Re-enable
+        if (inp) { inp.disabled = false; inp.setAttribute('required', ''); inp.style.opacity = '1'; }
+        if (scaleRow) scaleRow.style.opacity = '1';
+        radios.forEach(r => r.disabled = false);
+        if (hint) hint.style.display = '';
+        data.gpa_scale = document.querySelector('[name="gpa_scale"]:checked')?.value || 'cgpa';
+      }
+    }
+
     function updateGpaScale() {
+      if (document.getElementById('gpaUnknown')?.checked) return; // skip active, ignore
       const isCgpa = document.querySelector('[name="gpa_scale"]:checked')?.value === 'cgpa';
       const inp    = document.getElementById('gpaInput');
       const hint   = document.getElementById('gpaHint');
@@ -2322,8 +2361,8 @@
       5: '💪 Great job! Almost through.',
       6: '🌿 Section 5 done!',
       7: '🩺 Health section done!',
-      8: '💭 Personal context done — 2 more sets!',
-      9: '💭 Wellbeing done — 1 more set!',
+      8: '💭 Personal context done: 2 more sets!',
+      9: '💭 Wellbeing done: 1 more set!',
       10: '🎉 Last section! You got this!',
     };
 
@@ -2833,11 +2872,11 @@
           tip: 'The biggest driver of your stress appears to be your wellbeing scores. Try one small habit this week: 7 hrs sleep, a 20-min walk, or talking to someone you trust.'
         },
         Medium: {
-          cls: 'medium', pct: '48%', label: 'Moderate Stress', sub: 'Some stress signals detected — manageable with small changes.',
+          cls: 'medium', pct: '48%', label: 'Moderate Stress', sub: 'Some stress signals detected: manageable with small changes.',
           tip: 'You\'re in a manageable range! Small tweaks to sleep or exercise can make a big difference. StressEQ\'s AI Coach will suggest personalised actions when it launches.'
         },
         Low: {
-          cls: 'low', pct: '22%', label: 'Low Stress', sub: 'You\'re doing well — your scores look healthy!',
+          cls: 'low', pct: '22%', label: 'Low Stress', sub: 'You\'re doing well: your scores look healthy!',
           tip: 'Keep it up! Low stress is linked to better performance and wellbeing. Share StressEQ with friends who might need a check-in.'
         },
       };
@@ -3102,7 +3141,13 @@
         toggleYearOtherField();
         toggleOtherField();
         syncCustomSelects();
-        updateGpaScale(); // restore correct max/placeholder after GPA scale radio is repopulated
+        // Restore GPA skip state before calling updateGpaScale
+        if (saved.gpa_scale === 'N/A') {
+          const cb = document.getElementById('gpaUnknown');
+          if (cb) { cb.checked = true; toggleGpaSkip(); }
+        } else {
+          updateGpaScale(); // restore correct max/placeholder after GPA scale radio is repopulated
+        }
       } catch (e) { }
     }
 
@@ -3236,7 +3281,7 @@
         } catch (e) {
           const status = document.getElementById('submitStatus');
           if (status) {
-            status.textContent = '⚠ Network issue — please refresh and re-submit if possible.';
+            status.textContent = '⚠ Network issue: please refresh and re-submit if possible.';
             status.style.color = '#DD6B20';
           }
           // Re-enable button so user can retry
