@@ -1119,6 +1119,7 @@
     <div class="progress-wrap">
       <div class="progress-bar" id="progressBar"></div>
     </div>
+    <div id="certMotivator" style="font-size: 0.95em; color: var(--primary); font-weight: 700; text-align: center; margin-top: 10px; margin-bottom: 22px; padding: 12px 16px; background: var(--soft); border-radius: 12px; border: 1.5px dashed var(--border); transition: all 0.3s; display: none; line-height: 1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"></div>
 
     <form id="surveyForm">
 
@@ -2504,6 +2505,29 @@
             counterEl.textContent = `${answered} of ${TOTAL_QUESTIONS} answered  ·  Q${range.start}–Q${range.end}`;
           } else {
             counterEl.textContent = `${answered} of ${TOTAL_QUESTIONS} answered`;
+          }
+        }
+      }
+
+      // Dynamic certificate motivator message
+      const motivatorEl = document.getElementById('certMotivator');
+      if (motivatorEl) {
+        if (currentStep === 0) {
+          motivatorEl.style.display = 'block';
+          motivatorEl.textContent = 'Complete survey to claim your certificate 🎓';
+        } else if (currentStep >= totalSteps - 2) {
+          motivatorEl.style.display = 'none';
+        } else {
+          motivatorEl.style.display = 'block';
+          const left = 100 - pct;
+          if (pct <= 30) {
+            motivatorEl.textContent = `Keep going! You are ${pct}% closer to your certificate 🎓`;
+          } else if (pct <= 60) {
+            motivatorEl.textContent = `Awesome! Only ${left}% left to claim your certificate 🎓`;
+          } else if (pct <= 90) {
+            motivatorEl.textContent = `Almost there! You are ${pct}% of the way to your certificate 🎓`;
+          } else {
+            motivatorEl.textContent = `Just one step left to get your certificate! 🎓`;
           }
         }
       }
