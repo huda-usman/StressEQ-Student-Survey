@@ -34,6 +34,7 @@
       justify-content: center;
       padding: 40px 20px;
       color: #f1f5f9;
+      overflow-x: hidden;
     }
 
     /* Minimalist control panel */
@@ -108,6 +109,17 @@
       box-shadow: 0 10px 20px -5px rgba(255,255,255,0.15);
     }
 
+    /* Viewport to scale the fixed-size certificate on mobile screens */
+    .certificate-viewport {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
     /* Outer Wrapper for border gradient styling */
     .certificate-wrapper {
       background: linear-gradient(135deg, var(--primary), var(--accent), #06B6D4);
@@ -115,10 +127,11 @@
       border-radius: 24px;
       box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.45);
       position: relative;
-      width: 100%;
-      max-width: 900px;
-      aspect-ratio: 1.414 / 1; /* Standard A4 landscape ratio */
+      width: 900px;
+      height: 636px;
       display: flex;
+      flex-shrink: 0;
+      transform-origin: center center;
       animation: zoomIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -439,8 +452,10 @@
     </button>
   </div>
 
-  <!-- Certificate Frame -->
-  <div class="certificate-wrapper" id="certificate">
+  <!-- Viewport to contain and scale the fixed-size certificate on mobile -->
+  <div class="certificate-viewport" id="certificateViewport">
+    <!-- Certificate Frame -->
+    <div class="certificate-wrapper" id="certificate">
     <!-- Dotted Watermark -->
     <div class="cert-watermark"></div>
 
@@ -497,6 +512,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -521,7 +537,31 @@
       // Current Date
       const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
       document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', dateOptions);
+
+      // Initial scale adjustment
+      adjustScale();
     });
+
+    function adjustScale() {
+      const viewport = document.getElementById('certificateViewport');
+      const certificate = document.getElementById('certificate');
+      if (!viewport || !certificate) return;
+      
+      const viewportWidth = viewport.clientWidth;
+      const baseWidth = 900;
+      const baseHeight = 636;
+      
+      if (viewportWidth < baseWidth) {
+        const scale = viewportWidth / baseWidth;
+        certificate.style.transform = `scale(${scale})`;
+        viewport.style.height = `${baseHeight * scale}px`;
+      } else {
+        certificate.style.transform = 'none';
+        viewport.style.height = `${baseHeight}px`;
+      }
+    }
+
+    window.addEventListener('resize', adjustScale);
 
     function updateName(name) {
       const cleanName = name.trim() ? name : "";
@@ -532,7 +572,19 @@
       const body = document.body;
       body.classList.add('rendering-pdf');
       
-      const element = document.getElementById('certificate');
+      const originalElement = document.getElementById('certificate');
+      
+      // Clone the element to render off-screen without scaling
+      const clone = originalElement.cloneNode(true);
+      clone.id = 'certificate-clone';
+      clone.style.position = 'fixed';
+      clone.style.left = '-9999px';
+      clone.style.top = '0';
+      clone.style.transform = 'none';
+      clone.style.width = '900px';
+      clone.style.height = '636px';
+      body.appendChild(clone);
+      
       const nameInput = document.getElementById('nameInput').value.trim();
       const filename = nameInput ? `StressEQ_Certificate_${nameInput.replace(/\s+/g, '_')}.png` : 'StressEQ_Certificate.png';
       
@@ -540,18 +592,24 @@
         scale: 3, // High quality 3x scaling for crisp text
         useCORS: true,
         logging: false,
-        backgroundColor: null // Maintain transparency outside the rounded border
+        backgroundColor: null
       };
       
-      // Render as canvas and download as PNG
-      html2canvas(element, opt).then(canvas => {
+      // Render the clone and download as PNG
+      html2canvas(clone, opt).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
         link.download = filename;
         link.click();
+        
+        // Cleanup clone
+        body.removeChild(clone);
         body.classList.remove('rendering-pdf');
       }).catch(err => {
         console.error(err);
+        if (clone.parentNode) {
+          body.removeChild(clone);
+        }
         body.classList.remove('rendering-pdf');
       });
     }
