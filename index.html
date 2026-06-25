@@ -4,16 +4,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>StressEQ: Student Survey</title>
+  <title>StressEQ: Faculty & Staff Survey</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --primary: #0284C7;
-      --primary-dark: #0369A1;
-      --accent: #06B6D4;
-      --bg-grad-1: #F0F9FF;
-      --bg-grad-2: #E0F2FE;
+      --primary: #4F46E5;
+      /* Indigo */
+      --primary-dark: #4338CA;
+      --accent: #EC4899;
+      /* Pink/Rose */
+      --bg-grad-1: #EEF2FF;
+      --bg-grad-2: #E0E7FF;
       --text: #1E293B;
       --muted: #64748B;
       --card: #FFFFFF;
@@ -21,7 +23,7 @@
       --soft: #F8FAFC;
       --warn: #F59E0B;
       --ok: #10B981;
-      --step-accent: #0284C7;
+      --step-accent: #4F46E5;
     }
 
     * {
@@ -93,10 +95,11 @@
     .card {
       background: var(--card);
       border-radius: 18px;
-      box-shadow: 0 8px 32px rgba(43, 108, 176, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
       padding: 36px 38px;
       border: 1px solid rgba(255, 255, 255, 0.9);
       animation: fadeIn 0.5s ease;
+      border-top: 4px solid var(--step-accent);
     }
 
     @keyframes fadeIn {
@@ -181,7 +184,7 @@
       margin-bottom: 8px;
     }
 
-    /* Text / number input */
+    /* Inputs */
     input[type="text"],
     input[type="number"],
     select,
@@ -202,10 +205,10 @@
     textarea:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
     }
 
-    /* Radio cards (for gender, race, etc.) */
+    /* Radio cards */
     .radio-group {
       display: flex;
       flex-wrap: wrap;
@@ -215,10 +218,6 @@
     .radio-card {
       flex: 1 1 auto;
       min-width: 140px;
-    }
-
-    .radio-group.long-options .radio-card {
-      min-width: 180px;
     }
 
     .radio-card input {
@@ -248,9 +247,11 @@
       background: var(--primary);
       color: white;
       font-weight: 600;
+      transform: scale(1.04);
+      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* Likert 1-7 scale */
+    /* Likert 1-6 scale */
     .likert {
       display: flex;
       gap: 6px;
@@ -288,7 +289,7 @@
       color: white;
       border-color: var(--primary);
       transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(43, 108, 176, 0.25);
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
     }
 
     .likert-anchors {
@@ -345,7 +346,7 @@
       font-weight: 600;
     }
 
-    /* Checkbox grid (chronic illness, top features) */
+    /* Checkbox grid */
     .check-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -419,21 +420,6 @@
       color: rgba(255, 255, 255, 0.8) !important;
     }
 
-    .check-tier {
-      font-size: 0.72em;
-      color: var(--muted);
-      margin: 12px 0 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 600;
-    }
-
-    .row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
     /* Buttons */
     .button-row {
       display: flex;
@@ -460,20 +446,13 @@
     .btn-primary {
       background: var(--primary);
       color: white;
-      box-shadow: 0 4px 14px rgba(43, 108, 176, 0.3);
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
     }
 
     .btn-primary:hover {
       background: var(--primary-dark);
       transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(43, 108, 176, 0.35);
-    }
-
-    .btn-primary:disabled {
-      background: #CBD5E0;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
+      box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
     }
 
     .btn-secondary {
@@ -489,17 +468,17 @@
 
     /* Callouts */
     .callout {
-      background: linear-gradient(135deg, #EBF8FF, #E6FFFA);
-      border: 1px solid #BEE3F8;
+      background: linear-gradient(135deg, #EEF2FF, #FDF2F8);
+      border: 1px solid #C7D2FE;
       border-radius: 12px;
       padding: 14px 18px;
       margin: 18px 0;
       font-size: 0.92em;
-      color: #2C5282;
+      color: #3730A3;
     }
 
     .callout strong {
-      color: #1A4F8A;
+      color: #312E81;
     }
 
     .crisis-warn {
@@ -517,51 +496,7 @@
       display: block;
     }
 
-    /* Cover & success cards */
-    .cover-emoji {
-      font-size: 3em;
-      margin-bottom: 8px;
-      line-height: 1;
-    }
-
-    .cover-meta {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-      margin: 22px 0;
-    }
-
-    .cover-meta-item {
-      display: flex;
-      flex-direction: column;
-      background: var(--soft);
-      padding: 12px 18px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      flex: 1 1 140px;
-    }
-
-    .cover-meta-item .num {
-      font-size: 1.45em;
-      font-weight: 700;
-      color: var(--primary);
-      line-height: 1.2;
-    }
-
-    .cover-meta-item .lbl {
-      font-size: 0.78em;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-    }
-
-    .success-icon {
-      font-size: 4em;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-
+    /* Success / Success Stats */
     .success-stats {
       background: var(--soft);
       border-radius: 12px;
@@ -583,7 +518,6 @@
       margin-top: 4px;
     }
 
-    /* Tag (for top-3 picker max) */
     .picker-counter {
       font-size: 0.85em;
       color: var(--accent);
@@ -591,127 +525,13 @@
       margin-bottom: 8px;
     }
 
-    /* Section divider */
     .section-divider {
       border: none;
       border-top: 1px dashed var(--border);
       margin: 26px 0 18px;
     }
 
-    /* Unit toggle (cm/ft, kg/lb) */
-    .unit-toggle {
-      float: right;
-      display: inline-flex;
-      background: var(--soft);
-      border-radius: 8px;
-      padding: 2px;
-      margin-left: 8px;
-    }
-
-    .unit-btn {
-      background: transparent;
-      border: none;
-      padding: 4px 12px;
-      font-size: 0.78em;
-      font-weight: 600;
-      color: var(--muted);
-      border-radius: 6px;
-      cursor: pointer;
-      box-shadow: none;
-    }
-
-    .unit-btn.active {
-      background: var(--primary);
-      color: white;
-    }
-
-    .unit-btn:hover:not(.active) {
-      color: var(--primary);
-    }
-
-    /* Live BMI feedback */
-    .bmi-live {
-      margin-top: 14px;
-      padding: 14px 18px;
-      background: linear-gradient(135deg, #EBF8FF, #E6FFFA);
-      border: 1px solid #BEE3F8;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .bmi-label {
-      font-size: 0.82em;
-      color: var(--muted);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .bmi-value {
-      font-size: 1.6em;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .bmi-cat {
-      font-size: 0.88em;
-      color: var(--text);
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: white;
-      border: 1px solid var(--border);
-    }
-
-    /* Hidden steps */
-    /* ---- Step accent stripe ---- */
-    .card {
-      border-top: 4px solid var(--step-accent);
-    }
-
-    /* ---- Skip button ---- */
-    .skip-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 8px;
-      font-size: 0.82em;
-      color: var(--muted);
-      background: none;
-      border: 1.5px dashed var(--border);
-      border-radius: 20px;
-      cursor: pointer;
-      padding: 5px 14px;
-      transition: all 0.2s;
-    }
-
-    .skip-btn:hover {
-      color: var(--primary);
-      border-color: var(--primary);
-      background: rgba(2, 132, 199, 0.06);
-    }
-
-    /* Highlighted state after user clicks Skip */
-    .skip-btn.skipped {
-      background: #F1F5F9;
-      border: 1.5px solid #94A3B8;
-      color: #475569;
-      font-weight: 600;
-      /* prevent double-click */
-    }
-
-    /* Options area greyed out after skip */
-    .options-disabled {
-      opacity: 0.35;
-      pointer-events: none;
-      user-select: none;
-      transition: opacity 0.25s;
-    }
-
-    /* ---- Toast milestone ---- */
+    /* Toast milestone */
     #toast {
       position: fixed;
       bottom: 28px;
@@ -723,7 +543,7 @@
       border-radius: 40px;
       font-size: 0.95em;
       font-weight: 600;
-      box-shadow: 0 8px 32px rgba(79, 70, 229, 0.35);
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.35);
       z-index: 9999;
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
       opacity: 0;
@@ -735,7 +555,7 @@
       opacity: 1;
     }
 
-    /* ---- Confetti canvas ---- */
+    /* Confetti canvas */
     #confetti-canvas {
       position: fixed;
       top: 0;
@@ -746,9 +566,9 @@
       z-index: 9998;
     }
 
-    /* ---- Stress profile card (thank-you) ---- */
+    /* Stress profile card */
     .profile-card {
-      background: linear-gradient(135deg, #0369A1 0%, #06B6D4 100%);
+      background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
       border-radius: 20px;
       padding: 28px 24px;
       color: #fff;
@@ -836,7 +656,7 @@
       color: white;
     }
 
-    /* ---- Step transition animation ---- */
+    /* Step transition animation */
     .step {
       display: none;
     }
@@ -856,17 +676,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Radio card pop on select */
-    .radio-card input:checked+label {
-      transform: scale(1.04);
-      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     /* Progress area — question counter + bar + pct */
@@ -892,72 +701,56 @@
       white-space: nowrap;
     }
 
-    .q-counter .q-icon { font-size: 0.9em; }
+    .q-counter .q-icon {
+      font-size: 0.9em;
+    }
 
-    /* Progress % label */
+    /* Progress label */
     .progress-pct {
       text-align: right;
       font-size: 0.72em;
-      color: var(--muted);
       font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
       white-space: nowrap;
     }
 
-    /* Mobile */
-    @media (max-width: 600px) {
-      body {
-        padding: 12px 10px 36px;
-      }
+    .skip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      font-size: 0.82em;
+      color: var(--muted);
+      background: none;
+      border: 1.5px dashed var(--border);
+      border-radius: 20px;
+      cursor: pointer;
+      padding: 5px 14px;
+      transition: all 0.2s;
+    }
 
-      .card {
-        padding: 20px 18px;
-      }
+    .skip-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(79, 70, 229, 0.06);
+    }
 
-      h1 {
-        font-size: 1.25em;
-      }
+    /* Highlighted state after user clicks Skip */
+    .skip-btn.skipped {
+      background: #F1F5F9;
+      border: 1.5px solid #94A3B8;
+      color: #475569;
+      font-weight: 600;
+    }
 
-      .row-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .likert-item label {
-        padding: 12px 4px;
-        font-size: 0.88em;
-      }
-
-      .freq4-item label {
-        font-size: 0.78em;
-        padding: 10px 4px;
-      }
-
-      .radio-card {
-        min-width: 100%;
-      }
-
-      /* Cover page compact on mobile */
-      .cover-meta {
-        gap: 10px;
-      }
-
-      .cover-meta-item {
-        padding: 8px 12px;
-      }
-
-      .cover-meta-item .num {
-        font-size: 1.1em;
-      }
-
-      /* Full-width Let's go button on mobile */
-      .cover-start-btn {
-        width: 100%;
-        margin-top: 6px;
-      }
-
-      .cover-start-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
+    /* Options area greyed out after skip */
+    .options-disabled {
+      opacity: 0.35;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 0.25s;
     }
 
     /* Custom select dropdown */
@@ -1034,12 +827,15 @@
       max-height: 235px;
       overflow-y: auto;
       /* Hide native scrollbar but keep scroll functionality */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE 10+ */
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE 10+ */
     }
 
     .custom-select-options::-webkit-scrollbar {
-      display: none !important; /* Safari and Chrome */
+      display: none !important;
+      /* Safari and Chrome */
       width: 0 !important;
       height: 0 !important;
     }
@@ -1104,68 +900,58 @@
 </head>
 
 <body>
-  <canvas id="confetti-canvas"></canvas>
-  <div id="toast"></div>
   <div class="shell">
     <div class="topbar">
-      <div class="brand">StressEQ <span class="dot">●</span> Student Survey</div>
-      <div class="save-state" id="saveState">Auto-saved</div>
+      <div class="brand">StressEQ<span class="dot">.</span> <span
+          style="font-weight:400; font-size:0.85em; color:var(--muted);">Faculty &amp; Staff</span></div>
+      <div class="save-state" id="saveState">Auto-saved ✓</div>
     </div>
 
     <div class="progress-header">
-      <span class="q-counter" id="qCounter"><span class="q-icon">📋</span> <span id="qCounterText">Start the survey</span></span>
+      <span class="q-counter" id="qCounter"><span class="q-icon">📋</span> <span id="qCounterText">Start the
+          survey</span></span>
       <span class="progress-pct" id="progressPct"></span>
     </div>
     <div class="progress-wrap">
       <div class="progress-bar" id="progressBar"></div>
     </div>
-    <div id="certMotivator" style="font-size: 0.95em; color: var(--primary); font-weight: 700; text-align: center; margin-top: 10px; margin-bottom: 22px; padding: 12px 16px; background: var(--soft); border-radius: 12px; border: 1.5px dashed var(--border); transition: all 0.3s; display: none; line-height: 1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"></div>
 
     <form id="surveyForm">
 
       <!-- ===================== STEP 0: COVER ===================== -->
       <section class="step active" data-step="0">
         <div class="card" style="text-align:center; padding: 36px 28px 32px;">
-
-          <!-- Hero icon -->
           <div style="font-size:3.2em; margin-bottom:16px; animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;">
-            🧠</div>
-
-          <!-- Headline -->
+            💼</div>
           <h1 style="font-size:1.9em; font-weight:800; line-height:1.2; margin-bottom:10px;">
-            Know your stress. <span style="color:var(--step-accent);">Change your story.</span>
+            Support yourself. <span style="color:var(--step-accent);">Strengthen the institution.</span>
           </h1>
-
-          <!-- One-liner -->
           <p style="color:var(--muted); font-size:1em; margin-bottom:28px; line-height:1.6;">
-            We're building an AI that detects stress patterns, forecasts burnout risk, and suggests what to change.<br>
-            <strong style="color:var(--text);">Your answers make it work.</strong> Takes ~7 minutes. Fully anonymous.
+            We're building an AI that detects workplace burnout triggers, forecasts chronic stress load, and drives
+            supportive wellness changes.<br>
+            <strong style="color:var(--text);">Your voice matters.</strong> Takes 5-7 minutes. Fully anonymous.
           </p>
 
-          <!-- Trust pills -->
           <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
             <span
               style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">⏱
-              ~7 minutes</span>
+              5-7 minutes</span>
             <span
               style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🔒
               Anonymous</span>
             <span
               style="background:var(--soft); border:1px solid var(--border); border-radius:30px; padding:6px 16px; font-size:0.82em; font-weight:600; color:var(--text);">🤝
-              Support our research</span>
+              Faculty &amp; Staff Research</span>
           </div>
 
-
-          <!-- Big CTA -->
           <button type="button" class="btn-primary" onclick="nextStep()"
             style="width:100%; padding:16px; font-size:1.1em; font-weight:700; border-radius:14px; letter-spacing:0.01em;">
             Start Survey →
           </button>
 
-          <!-- Fine print -->
           <p style="color:var(--muted); font-size:0.75em; margin-top:16px; line-height:1.4;">
-            Responses are stored under a random ID: never linked to your name.<br>
-            A few questions use standard clinical screeners (PHQ-9, GAD-7) used in research worldwide.
+            Responses are stored under a random ID: never linked to your name or employment profile.<br>
+            Includes standard clinical wellbeing screeners (PHQ-9, GAD-7) used in research worldwide.
           </p>
         </div>
 
@@ -1184,34 +970,37 @@
         </style>
       </section>
 
-
-      <!-- ===================== STEP 1: BASICS ===================== -->
       <section class="step" data-step="1">
         <div class="card">
-          <span class="step-badge">Section 1 of 10 · About you</span>
-          <h2>Quick intro</h2>
-          <p class="lead">No names, no personal info: just a few basics so we can compare across groups.</p>
+          <span class="step-badge">Section 1 of 9 · About you</span>
+          <h2>Your role &amp; background</h2>
+          <p class="lead">Basic demographic and organizational context variables.</p>
 
           <div class="row-2">
             <div class="question">
               <label class="q-label"><span class="qnum">Q1.</span> University / Institution name</label>
               <select name="university_select" id="universitySelect" onchange="toggleUniversityCustomField()" required>
                 <option value="">select university:</option>
-                <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of Sciences &amp; Technology)</option>
+                <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of
+                  Sciences &amp; Technology)</option>
                 <option value="FAST-NUCES">FAST-NUCES</option>
                 <option value="COMSATS University">COMSATS University</option>
                 <option value="Shifa Tameer-e-Millat University">Shifa Tameer-e-Millat University</option>
-                <option value="Capital University of Science &amp; Technology (CUST)">Capital University of Science &amp; Technology (CUST)</option>
+                <option value="Capital University of Science &amp; Technology (CUST)">Capital University of Science
+                  &amp; Technology (CUST)</option>
                 <option value="Air University">Air University</option>
                 <option value="Bahria University">Bahria University</option>
                 <option value="Quaid-i-Azam University">Quaid-i-Azam University</option>
                 <option value="International Islamic University">International Islamic University</option>
-                <option value="National University of Modern Languages (NUML)">National University of Modern Languages (NUML)</option>
+                <option value="National University of Modern Languages (NUML)">National University of Modern Languages
+                  (NUML)</option>
                 <option value="Riphah International University">Riphah International University</option>
                 <option value="HBS Medical and Dental College">HBS Medical and Dental College</option>
                 <option value="Allama Iqbal Open University">Allama Iqbal Open University</option>
-                <option value="Lahore University of Management Sciences (LUMS)">Lahore University of Management Sciences (LUMS)</option>
-                <option value="University of Engineering &amp; Technology (UET) Lahore">University of Engineering &amp; Technology (UET) Lahore</option>
+                <option value="Lahore University of Management Sciences (LUMS)">Lahore University of Management Sciences
+                  (LUMS)</option>
+                <option value="University of Engineering &amp; Technology (UET) Lahore">University of Engineering &amp;
+                  Technology (UET) Lahore</option>
                 <option value="University of the Punjab">University of the Punjab</option>
                 <option value="University of Karachi">University of Karachi</option>
                 <option value="University of Peshawar">University of Peshawar</option>
@@ -1245,266 +1034,117 @@
             </div>
           </div>
 
-          <div class="question">
+          <div class="question" id="ageQuestion">
             <label class="q-label"><span class="qnum">Q3.</span> What is your age?</label>
-             <input type="number" name="age" min="16" max="60" step="1"
-               onblur="let v=parseInt(this.value); if(!isNaN(v)){if(v<16)this.value=16; if(v>60)this.value=60;} "
-               placeholder="e.g., 21" required />
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="ag0" name="age_group" value="Under 25"
+                  onchange="toggleAgeCustomField()" required /><label for="ag0">Under 25</label></div>
+              <div class="radio-card"><input type="radio" id="ag1" name="age_group" value="2"
+                  onchange="toggleAgeCustomField()" /><label for="ag1">25–34</label></div>
+              <div class="radio-card"><input type="radio" id="ag2" name="age_group" value="3"
+                  onchange="toggleAgeCustomField()" /><label for="ag2">35–44</label></div>
+              <div class="radio-card"><input type="radio" id="ag3" name="age_group" value="4"
+                  onchange="toggleAgeCustomField()" /><label for="ag3">45–54</label></div>
+              <div class="radio-card"><input type="radio" id="ag4" name="age_group" value="5"
+                  onchange="toggleAgeCustomField()" /><label for="ag4">55–64</label></div>
+              <div class="radio-card"><input type="radio" id="ag5" name="age_group" value="6"
+                  onchange="toggleAgeCustomField()" /><label for="ag5">65+</label></div>
+            </div>
+            <input type="number" id="ageCustomInput" name="age_custom" min="16" max="24" step="1"
+              placeholder="Enter your exact age…" style="display:none; margin-top:8px;"
+              onblur="let v=parseInt(this.value); if(!isNaN(v)){if(v<16)this.value=16; if(v>24)this.value=24;}" />
           </div>
 
           <div class="question">
             <label class="q-label"><span class="qnum">Q4.</span> Gender</label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="g1" name="gender" value="Female" required /><label
-                  for="g1">Female</label></div>
-              <div class="radio-card"><input type="radio" id="g2" name="gender" value="Male" /><label
-                  for="g2">Male</label></div>
-              <div class="radio-card"><input type="radio" id="g3" name="gender" value="Other" /><label for="g3">Other /
-                  Prefer not to say</label></div>
+              <div class="radio-card"><input type="radio" id="gen1" name="gender" value="Female" required /><label
+                  for="gen1">Female</label></div>
+              <div class="radio-card"><input type="radio" id="gen2" name="gender" value="Male" /><label
+                  for="gen2">Male</label></div>
+              <div class="radio-card"><input type="radio" id="gen3" name="gender" value="Other" /><label
+                  for="gen3">Other / Prefer not to say</label></div>
             </div>
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q5.</span> Are you an international student?</label>
+            <label class="q-label"><span class="qnum">Q5.</span> Which best describes your background?</label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="intl1" name="is_international" value="Yes"
-                  required /><label for="intl1">Yes</label></div>
-              <div class="radio-card"><input type="radio" id="intl2" name="is_international" value="No" /><label
-                  for="intl2">No</label></div>
-            </div>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q6.</span> Which best describes your background?</label>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="r1" name="race" value="Asian" required /><label
-                  for="r1">Asian</label></div>
-              <div class="radio-card"><input type="radio" id="r2" name="race" value="Black" /><label
-                  for="r2">Black</label></div>
-              <div class="radio-card"><input type="radio" id="r3" name="race" value="White" /><label
-                  for="r3">White</label></div>
-              <div class="radio-card"><input type="radio" id="r4" name="race" value="Other" /><label for="r4">Other /
+              <div class="radio-card"><input type="radio" id="rc1" name="race" value="Asian" required /><label
+                  for="rc1">Asian</label></div>
+              <div class="radio-card"><input type="radio" id="rc2" name="race" value="Black" /><label
+                  for="rc2">Black</label></div>
+              <div class="radio-card"><input type="radio" id="rc3" name="race" value="White" /><label
+                  for="rc3">White</label></div>
+              <div class="radio-card"><input type="radio" id="rc4" name="race" value="Other" /><label for="rc4">Other /
                   Mixed</label></div>
-              <div class="radio-card"><input type="radio" id="r5" name="race" value="Prefer not to say" /><label
-                  for="r5">Prefer not to say</label></div>
+              <div class="radio-card"><input type="radio" id="rc5" name="race" value="Prefer not to say" /><label
+                  for="rc5">Prefer not to say</label></div>
             </div>
-          </div>
-
-          <div class="row-2">
-            <div class="question">
-              <label class="q-label"><span class="qnum">Q7.</span> What year are you in?</label>
-              <select name="education_level" required id="yearSelect" onchange="toggleYearOtherField()">
-                <option value="">select:</option>
-                <option>Bachelor's Year 1</option>
-                <option>Bachelor's Year 2</option>
-                <option>Bachelor's Year 3</option>
-                <option>Bachelor's Year 4</option>
-                <option>Bachelor's Year 5 (e.g. MBBS, Arch)</option>
-                <option>Associate's Degree</option>
-                <option>Master's</option>
-                <option>PhD / Doctoral</option>
-                <option value="Other">Other</option>
-              </select>
-              <input type="text" id="yearOtherInput" name="education_level_other"
-                placeholder="Please specify your year / programme…" maxlength="100" style="display:none; margin-top:8px;" />
-            </div>
-            <div class="question">
-              <label class="q-label"><span class="qnum">Q8.</span> Field of study</label>
-              <select name="field_of_study" required id="fieldSelect" onchange="toggleOtherField()">
-                <option value="">select:</option>
-                <option>Engineering / Computing</option>
-                <option>Medicine / Health Sciences</option>
-                <option>Business / Economics</option>
-                <option>Arts / Humanities</option>
-                <option>Natural Sciences</option>
-                <option>Social Sciences</option>
-                <option>Law</option>
-                <option value="Other">Other</option>
-              </select>
-              <input type="text" id="fieldOtherInput" name="field_of_study_other"
-                placeholder="Please specify your field…" maxlength="100" style="display:none; margin-top:8px;" />
-            </div>
-          </div>
-
-          <div class="button-row">
-            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
-            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== STEP 2: ACADEMIC ===================== -->
-      <section class="step" data-step="2">
-        <div class="card">
-          <span class="step-badge">Section 2 of 10 · Academics</span>
-          <h2>Your studies</h2>
-          <p class="lead">How's the academic pressure been lately?</p>
-
-          <div class="question" id="gpaQuestion">
-             <label class="q-label"><span class="qnum">Q9.</span> What is your current CGPA or Percentage?</label>
-
-             <!-- Skip checkbox for 1st-semester / no result yet -->
-             <label id="gpaSkipLabel" style="display:inline-flex;align-items:center;gap:7px;cursor:pointer;
-               font-size:0.85em;font-weight:600;color:var(--muted);
-               background:var(--bg-grad-1);border:1.5px dashed var(--border);
-               border-radius:20px;padding:5px 14px;margin-bottom:10px;transition:all 0.2s;">
-               <input type="checkbox" id="gpaUnknown" onchange="toggleGpaSkip()"
-                 style="accent-color:var(--primary);width:15px;height:15px;">
-               Not available yet &nbsp;<span style="font-weight:400;">(e.g. 1st semester / results pending)</span>
-             </label>
-
-             <div id="gpaScaleRow" style="display:flex; gap:8px; margin-bottom:8px;">
-               <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;" id="gpaScaleCGPA">
-                 <input type="radio" name="gpa_scale" value="cgpa" checked onchange="updateGpaScale()" style="accent-color:var(--primary);"> CGPA (0 – 4.0)
-               </label>
-               <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;" id="gpaScalePct">
-                 <input type="radio" name="gpa_scale" value="pct" onchange="updateGpaScale()" style="accent-color:var(--primary);"> Percentage (0 – 100)
-               </label>
-             </div>
-             <input type="number" name="gpa" id="gpaInput" step="0.01" min="0" max="4.0"
-               placeholder="e.g., 3.45" required
-               oninput="clampGpa(this); validateGpaLive(this)"
-               onblur="validateGpaLive(this)" />
-             <div id="gpaHint" style="font-size:0.80em;color:var(--muted);margin-top:4px;">
-               CGPA scale: enter a value between <strong>0</strong> and <strong>4.0</strong>
-             </div>
-             <div id="gpaWarn" style="display:none;color:#DC2626;font-size:0.82em;margin-top:4px;font-weight:600;"></div>
           </div>
 
           <div class="question">
-            <label class="q-label"><span class="qnum">Q10.</span> How heavy has your study workload felt lately? <span
-                class="hint">(past 4 weeks)</span></label>
-            <div class="likert">
-              <div class="likert-item"><input type="radio" id="ap1" name="academic_pressure" value="1" required /><label
-                  for="ap1">1</label></div>
-              <div class="likert-item"><input type="radio" id="ap2" name="academic_pressure" value="2" /><label
-                  for="ap2">2</label></div>
-              <div class="likert-item"><input type="radio" id="ap3" name="academic_pressure" value="3" /><label
-                  for="ap3">3</label></div>
-              <div class="likert-item"><input type="radio" id="ap4" name="academic_pressure" value="4" /><label
-                  for="ap4">4</label></div>
-              <div class="likert-item"><input type="radio" id="ap5" name="academic_pressure" value="5" /><label
-                  for="ap5">5</label></div>
-              <div class="likert-item"><input type="radio" id="ap6" name="academic_pressure" value="6" /><label
-                  for="ap6">6</label></div>
-              <div class="likert-item"><input type="radio" id="ap7" name="academic_pressure" value="7" /><label
-                  for="ap7">7</label></div>
-            </div>
-            <div class="likert-anchors"><span>Not at all overwhelming</span><span>Extremely overwhelming</span></div>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q11.</span> In a typical week, how many hours do you spend
-              studying
-              on your own? <span class="hint">(assignments, self-study, exam prep: excluding scheduled
-                lectures)</span></label>
+            <label class="q-label"><span class="qnum">Q6.</span> What is your primary role at the institution?</label>
             <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="sh1" name="study_hours" value="0-5" required /><label
-                  for="sh1">0–5</label></div>
-              <div class="radio-card"><input type="radio" id="sh2" name="study_hours" value="6-10" /><label
-                  for="sh2">6–10</label></div>
-              <div class="radio-card"><input type="radio" id="sh3" name="study_hours" value="11-20" /><label
-                  for="sh3">11–20</label></div>
-              <div class="radio-card"><input type="radio" id="sh4" name="study_hours" value="21-30" /><label
-                  for="sh4">21–30</label></div>
-              <div class="radio-card"><input type="radio" id="sh5" name="study_hours" value="31+" /><label
-                  for="sh5">31+</label></div>
+              <div class="radio-card"><input type="radio" id="role1" name="role" value="Faculty" required /><label
+                  for="role1">Faculty (Teaching/Research)</label></div>
+              <div class="radio-card"><input type="radio" id="role2" name="role" value="Staff" /><label
+                  for="role2">Staff (Administrative/Support)</label></div>
             </div>
           </div>
 
-          <div class="button-row">
-            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
-            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== STEP 3: SLEEP & BODY ===================== -->
-      <section class="step" data-step="3">
-        <div class="card">
-          <span class="step-badge">Section 3 of 10 · Sleep &amp; body</span>
-          <h2>Sleep &amp; activity</h2>
-          <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest: your data is anonymous.</p>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q12.</span> How many hours do you usually sleep per night?</label>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="sl1" name="sleep_hours" value="4" required /><label
-                  for="sl1">Less than 5 hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl2" name="sleep_hours" value="5.5" /><label for="sl2">5–6
-                  hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl3" name="sleep_hours" value="6.5" /><label for="sl3">6–7
-                  hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl4" name="sleep_hours" value="7.5" /><label for="sl4">7–8
-                  hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl5" name="sleep_hours" value="8.5" /><label for="sl5">8–9
-                  hrs</label></div>
-              <div class="radio-card"><input type="radio" id="sl6" name="sleep_hours" value="10" /><label for="sl6">9+
-                  hrs</label></div>
-            </div>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q13.</span> In the <span
-                style="color:#DC2626; font-weight:bold;">past week</span>, how many days did you exercise or
-              walk for at least 30 minutes?</label>
-            <div class="likert" id="paGroup"></div>
-          </div>
-
-          <div class="question" id="heightQuestion">
-            <label class="q-label"><span class="qnum">Q14.</span> Your height
-              <span class="unit-toggle">
-                <button type="button" class="unit-btn active" data-unit="cm" data-target="height">cm</button>
-                <button type="button" class="unit-btn" data-unit="ft" data-target="height">ft / in</button>
-              </span>
-            </label>
-            <div id="height-cm-input">
-              <input type="number" name="height_cm" id="heightCmInput" min="100" max="230" placeholder="e.g., 170"
-                oninput="clearHeightSkip()" />
-            </div>
-            <div id="height-ft-input" style="display:none;">
-              <div class="row-2">
-                <input type="number" name="height_ft" min="3" max="7" placeholder="ft (e.g., 5)"
-                  oninput="clearHeightSkip()" />
-                <input type="number" name="height_in" min="0" max="11" placeholder="in (e.g., 7)"
-                  oninput="clearHeightSkip()" />
+          <div class="question" id="tenureQuestionBox" style="display:none;">
+            <label class="q-label"><span class="qnum">Q7.</span> What is your academic tenure status?</label>
+            <div class="radio-group" style="margin-top:8px;">
+              <div class="radio-card">
+                <input type="radio" id="tenure1" name="tenure_status" value="1" />
+                <label for="tenure1">
+                  <strong>Tenured</strong>
+                  <span style="font-size:0.8em; opacity:0.85; display:block; margin-top:2px;">Permanent appointment
+                    (secured position)</span>
+                </label>
+              </div>
+              <div class="radio-card">
+                <input type="radio" id="tenure2" name="tenure_status" value="2" />
+                <label for="tenure2">
+                  <strong>Tenure Track</strong>
+                  <span style="font-size:0.8em; opacity:0.85; display:block; margin-top:2px;">Working toward permanent
+                    tenure</span>
+                </label>
+              </div>
+              <div class="radio-card">
+                <input type="radio" id="tenure3" name="tenure_status" value="3" />
+                <label for="tenure3">
+                  <strong>Non-Tenure Track</strong>
+                  <span style="font-size:0.8em; opacity:0.85; display:block; margin-top:2px;">Contract, adjunct, or
+                    temporary role</span>
+                </label>
+              </div>
+              <div class="radio-card">
+                <input type="radio" id="tenure4" name="tenure_status" value="4" />
+                <label for="tenure4">
+                  <strong>Not Applicable</strong>
+                  <span style="font-size:0.8em; opacity:0.85; display:block; margin-top:2px;">Not in a tenure
+                    system</span>
+                </label>
               </div>
             </div>
-            <label
-              style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
-              <input type="checkbox" id="heightUnknown" name="height_unknown" value="1" onchange="toggleHeightSkip()"
-                style="width:16px; height:16px; cursor:pointer;" />
-              I don't know my height / prefer not to say
-            </label>
           </div>
 
-          <div class="question" id="weightQuestion">
-            <label class="q-label"><span class="qnum">Q15.</span> Your weight
-              <span class="unit-toggle">
-                <button type="button" class="unit-btn active" data-unit="kg" data-target="weight">kg</button>
-                <button type="button" class="unit-btn" data-unit="lb" data-target="weight">lbs</button>
-              </span>
-            </label>
-            <div id="weight-kg-input">
-              <input type="number" name="weight_kg" id="weightKgInput" min="30" max="200" placeholder="e.g., 65"
-                oninput="clearWeightSkip()" />
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q8.</span> How many dependent children do you have?</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="ch0" name="dependent_children" value="0" required /><label
+                  for="ch0">None</label></div>
+              <div class="radio-card"><input type="radio" id="ch1" name="dependent_children" value="1" /><label
+                  for="ch1">1</label></div>
+              <div class="radio-card"><input type="radio" id="ch2" name="dependent_children" value="2" /><label
+                  for="ch2">2</label></div>
+              <div class="radio-card"><input type="radio" id="ch3" name="dependent_children" value="3" /><label
+                  for="ch3">3</label></div>
+              <div class="radio-card"><input type="radio" id="ch4" name="dependent_children" value="4" /><label
+                  for="ch4">4+</label></div>
             </div>
-            <div id="weight-lb-input" style="display:none;">
-              <input type="number" name="weight_lb" id="weightLbInput" min="65" max="450" placeholder="e.g., 145"
-                oninput="clearWeightSkip()" />
-            </div>
-            <label
-              style="display:flex; align-items:center; gap:8px; margin-top:10px; font-size:0.88em; color:var(--muted); cursor:pointer;">
-              <input type="checkbox" id="weightUnknown" name="weight_unknown" value="1" onchange="toggleWeightSkip()"
-                style="width:16px; height:16px; cursor:pointer;" />
-              I don't know my weight / prefer not to say
-            </label>
-          </div>
-
-          <div id="bmiLive" class="bmi-live" style="display:none;">
-            <span class="bmi-label">Your BMI</span>
-            <span class="bmi-value" id="bmiValue">—</span>
-            <span class="bmi-cat" id="bmiCat"></span>
           </div>
 
           <div class="button-row">
@@ -1514,17 +1154,315 @@
         </div>
       </section>
 
-      <!-- ===================== STEP 4: SUBSTANCE USE ===================== -->
+      <!-- ===================== STEP 2: PERSONAL CONTEXT ===================== -->
+      <section class="step" data-step="2">
+        <div class="card">
+          <span class="step-badge">Section 2 of 9 · Personal context</span>
+          <h2>A little about your personal life</h2>
+          <p class="lead">Questions to help understand how family and lifestyle factors interact with work stress.</p>
+
+          <div class="callout" style="margin-bottom:6px;">
+            <strong>Why we ask:</strong> Caring responsibilities, family status, and local support structures play a
+            massive role in balancing heavy institutional workloads.
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q9.</span> Which best describes your relationship status?</label>
+
+            <div class="radio-group" style="margin-top:8px;">
+              <div class="radio-card"><input type="radio" id="rs1" name="relationship_status" value="1"
+                  required /><label for="rs1">Single</label></div>
+              <div class="radio-card"><input type="radio" id="rs2" name="relationship_status" value="2" /><label
+                  for="rs2">In a relationship</label></div>
+              <div class="radio-card"><input type="radio" id="rs3" name="relationship_status" value="3" /><label
+                  for="rs3">Married / Partnered</label></div>
+              <div class="radio-card"><input type="radio" id="rs4" name="relationship_status" value="4" /><label
+                  for="rs4">Divorced / Separated / Widowed</label></div>
+              <div class="radio-card"><input type="radio" id="rs5" name="relationship_status" value="5" /><label
+                  for="rs5">Other / Prefer not to say</label></div>
+            </div>
+          </div>
+
+          <hr class="section-divider" />
+
+          <!-- Q: Therapy / Counseling History -->
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q10.</span> Have you ever taken therapy or counseling services, or
+              are you currently receiving them?</label>
+            <div class="radio-group long-options" style="margin-top:8px;">
+              <div class="radio-card"><input type="radio" id="th1" name="therapy_history"
+                  value="Yes, currently receiving support" required /><label for="th1">Yes, currently receiving
+                  support</label></div>
+              <div class="radio-card"><input type="radio" id="th2" name="therapy_history"
+                  value="Yes, received support in the past" /><label for="th2">Yes, received support in the past</label>
+              </div>
+              <div class="radio-card"><input type="radio" id="th3" name="therapy_history"
+                  value="No, but I have considered it" /><label for="th3">No, but I have considered it</label></div>
+              <div class="radio-card"><input type="radio" id="th4" name="therapy_history"
+                  value="No, and I have never felt the need" /><label for="th4">No, and I have never felt the
+                  need</label></div>
+              <div class="radio-card"><input type="radio" id="th5" name="therapy_history"
+                  value="Prefer not to say" /><label for="th5">Prefer not to say</label></div>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== STEP 3: WORK BURNOUT ===================== -->
+      <section class="step" data-step="3">
+        <div class="card">
+          <span class="step-badge">Section 3 of 9 · Occupational Burnout</span>
+          <h2>How has work felt lately?</h2>
+          <p class="lead">These questions cover emotional energy and productivity impacts at work.</p>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q11.</span> How often do you feel exhausted by your work?</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="we1" name="work_exhaustion" value="1" required /><label
+                  for="we1">Never</label></div>
+              <div class="radio-card"><input type="radio" id="we2" name="work_exhaustion" value="2" /><label
+                  for="we2">Rarely</label></div>
+              <div class="radio-card"><input type="radio" id="we3" name="work_exhaustion" value="3" /><label
+                  for="we3">Sometimes</label></div>
+              <div class="radio-card"><input type="radio" id="we4" name="work_exhaustion" value="4" /><label
+                  for="we4">Often</label></div>
+              <div class="radio-card"><input type="radio" id="we5" name="work_exhaustion" value="5" /><label
+                  for="we5">Always</label></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q12.</span> How often do you feel emotionally drained by your
+              work?</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="et1" name="emotional_toll" value="1" required /><label
+                  for="et1">Never</label></div>
+              <div class="radio-card"><input type="radio" id="et2" name="emotional_toll" value="2" /><label
+                  for="et2">Rarely</label></div>
+              <div class="radio-card"><input type="radio" id="et3" name="emotional_toll" value="3" /><label
+                  for="et3">Sometimes</label></div>
+              <div class="radio-card"><input type="radio" id="et4" name="emotional_toll" value="4" /><label
+                  for="et4">Often</label></div>
+              <div class="radio-card"><input type="radio" id="et5" name="emotional_toll" value="5" /><label
+                  for="et5">Always</label></div>
+              <div class="radio-card"><input type="radio" id="et6" name="emotional_toll" value="6" /><label
+                  for="et6">Not Applicable</label></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q13.</span> How often has stress or burnout reduced your work
+              productivity?</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="pl0" name="productivity_loss" value="0" required /><label
+                  for="pl0">Not at all / Not applicable</label></div>
+              <div class="radio-card"><input type="radio" id="pl1" name="productivity_loss" value="1" /><label
+                  for="pl1">Never</label></div>
+              <div class="radio-card"><input type="radio" id="pl2" name="productivity_loss" value="2" /><label
+                  for="pl2">Rarely</label></div>
+              <div class="radio-card"><input type="radio" id="pl3" name="productivity_loss" value="3" /><label
+                  for="pl3">Sometimes</label></div>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== STEP 4: STRESS DRIVERS ===================== -->
       <section class="step" data-step="4">
         <div class="card">
-          <span class="step-badge">Section 4 of 10 · Lifestyle</span>
-          <h2>Your habits</h2>
-          <p class="lead"><span style="color:#DC2626; font-weight:bold;">Past 30 days</span>. Everything here is
-            anonymous: we only look at group patterns, not individuals.
-          </p>
+          <span class="step-badge">Section 4 of 9 · Burnout drivers</span>
+          <h2>What is driving your stress?</h2>
+          <p class="lead">To what extent are the following factors in your stress or burnout?</p>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q14.</span> Discrimination or unfair treatment</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="bd1" name="burnout_discrimination" value="1"
+                  required /><label for="bd1">Not a factor</label></div>
+              <div class="radio-card"><input type="radio" id="bd2" name="burnout_discrimination" value="2" /><label
+                  for="bd2">Minor factor</label></div>
+              <div class="radio-card"><input type="radio" id="bd3" name="burnout_discrimination" value="3" /><label
+                  for="bd3">Major factor</label></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q15.</span> Anxiety or persistent worry</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="ba1" name="burnout_anxiety" value="1" required /><label
+                  for="ba1">Not a factor</label></div>
+              <div class="radio-card"><input type="radio" id="ba2" name="burnout_anxiety" value="2" /><label
+                  for="ba2">Minor factor</label></div>
+              <div class="radio-card"><input type="radio" id="ba3" name="burnout_anxiety" value="3" /><label
+                  for="ba3">Major factor</label></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q16.</span> Grief or loss</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="bg1" name="burnout_grief" value="1" required /><label
+                  for="bg1">Not a factor</label></div>
+              <div class="radio-card"><input type="radio" id="bg2" name="burnout_grief" value="2" /><label
+                  for="bg2">Minor factor</label></div>
+              <div class="radio-card"><input type="radio" id="bg3" name="burnout_grief" value="3" /><label
+                  for="bg3">Major factor</label></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q17.</span> Financial stress or concerns</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="bf1" name="burnout_financial_stress" value="1"
+                  required /><label for="bf1">Not a factor</label></div>
+              <div class="radio-card"><input type="radio" id="bf2" name="burnout_financial_stress" value="2" /><label
+                  for="bf2">Minor factor</label></div>
+              <div class="radio-card"><input type="radio" id="bf3" name="burnout_financial_stress" value="3" /><label
+                  for="bf3">Major factor</label></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q18.</span> Sleep deprivation or lack of sleep</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="bs1" name="burnout_sleep_deprivation" value="1"
+                  required /><label for="bs1">Not a factor</label></div>
+              <div class="radio-card"><input type="radio" id="bs2" name="burnout_sleep_deprivation" value="2" /><label
+                  for="bs2">Minor factor</label></div>
+              <div class="radio-card"><input type="radio" id="bs3" name="burnout_sleep_deprivation" value="3" /><label
+                  for="bs3">Major factor</label></div>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== STEP 5: INSTITUTIONAL CLIMATE ===================== -->
+      <section class="step" data-step="5">
+        <div class="card">
+          <span class="step-badge">Section 5 of 9 · Institutional Climate</span>
+          <h2>Your work environment</h2>
+          <p class="lead">Please rate how much you agree or disagree with the following statements regarding your
+            institution. (1 = Strongly Disagree, 6 = Strongly Agree)</p>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q19.</span> My institution cares about my mental health and
+              well-being.</label>
+            <div class="likert" id="icGroup"></div>
+            <div class="likert-anchors"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q20.</span> I feel a sense of belonging at my institution.</label>
+            <div class="likert" id="cbGroup"></div>
+            <div class="likert-anchors"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q21.</span> I work in a hostile or negative environment at the
+              institutional level.</label>
+            <div class="hint">This refers to the overall university/institution climate, policies, or systemic culture.
+            </div>
+            <div class="likert" id="hweGroup"></div>
+            <div class="likert-anchors"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q22.</span> I work in a hostile or negative environment within my
+              specific department or immediate working unit.</label>
+            <div class="hint">This refers to the climate, interactions, or treatment from colleagues, chairs, or
+              supervisors in your immediate department (even if the institution as a whole is supportive).</div>
+            <div class="likert" id="dhwGroup"></div>
+            <div class="likert-anchors"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q23.</span> My institution provides adequate mental health
+              services.</label>
+            <div class="likert" id="amsGroup"></div>
+            <div class="likert-anchors"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q24.</span> The climate at my institution supports
+              anti-racism.</label>
+            <div class="hint">Anti-racism means treating people of all races fairly and standing up against unfair
+              treatment based on race.</div>
+            <div class="likert" id="arcGroup"></div>
+            <div class="likert-anchors"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q25.</span> I feel free to express my academic/professional
+              opinions.</label>
+            <div class="likert" id="afGroup"></div>
+            <div class="likert-anchors"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
+            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== STEP 6: LIFESTYLE & HEALTH ===================== -->
+      <section class="step" data-step="6">
+        <div class="card">
+          <span class="step-badge">Section 6 of 9 · Lifestyle &amp; Health</span>
+          <h2>Your health &amp; lifestyle habits</h2>
+          <p class="lead">Quick questions about exercise, chronic conditions, and substance habits.</p>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q26.</span> In the <span
+                style="color:#DC2626; font-weight:bold;">past week</span>, how many days did you exercise or walk for at
+              least 30 minutes?</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="ex1" name="exercise_raw" value="1" required /><label
+                  for="ex1">0 days</label></div>
+              <div class="radio-card"><input type="radio" id="ex2" name="exercise_raw" value="2" /><label for="ex2">1–2
+                  days</label></div>
+              <div class="radio-card"><input type="radio" id="ex3" name="exercise_raw" value="3" /><label for="ex3">3–4
+                  days</label></div>
+              <div class="radio-card"><input type="radio" id="ex4" name="exercise_raw" value="4" /><label for="ex4">5–6
+                  days</label></div>
+              <div class="radio-card"><input type="radio" id="ex5" name="exercise_raw" value="5" /><label for="ex5">7
+                  days</label></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <label class="q-label"><span class="qnum">Q27.</span> Do you have any diagnosed chronic health
+              conditions?</label>
+            <div class="radio-group">
+              <div class="radio-card"><input type="radio" id="chr0" name="chronic_illness" value="0" required /><label
+                  for="chr0">None</label></div>
+              <div class="radio-card"><input type="radio" id="chr1" name="chronic_illness" value="1" /><label
+                  for="chr1">Mild <span class="hint">(e.g., asthma, high cholesterol)</span></label></div>
+              <div class="radio-card"><input type="radio" id="chr2" name="chronic_illness" value="2" /><label
+                  for="chr2">Moderate <span class="hint">(e.g., thyroid, high BP, gastro, arthritis)</span></label>
+              </div>
+              <div class="radio-card"><input type="radio" id="chr3" name="chronic_illness" value="3" /><label
+                  for="chr3">Severe <span class="hint">(e.g., diabetes, epilepsy, cancer)</span></label></div>
+            </div>
+          </div>
 
           <div class="question" id="substanceUseQuestion">
-            <label class="q-label"><span class="qnum">Q16.</span> In the <span
+            <label class="q-label"><span class="qnum">Q28.</span> In the <span
                 style="color:#DC2626; font-weight:bold;">past month</span>, did you use any of the following? <span
                 class="hint">(tick all that apply)</span></label>
             <button type="button" class="skip-btn" onclick="skipSubstanceUse()">Skip this question</button>
@@ -1563,204 +1501,10 @@
         </div>
       </section>
 
-      <!-- ===================== STEP 5: BELONGING & SES ===================== -->
-      <section class="step" data-step="5">
-        <div class="card">
-          <span class="step-badge">Section 5 of 10 · Belonging &amp; finances</span>
-          <h2>Your situation</h2>
-          <p class="lead">Two quick questions about how you're feeling at uni and about money.</p>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q17.</span> Do you feel like you belong / fit in at your
-              university?</label>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="bel1" name="belonging_score" value="1" required /><label
-                  for="bel1">Not at all</label></div>
-              <div class="radio-card"><input type="radio" id="bel2" name="belonging_score" value="2" /><label
-                  for="bel2">Not really</label></div>
-              <div class="radio-card"><input type="radio" id="bel3" name="belonging_score" value="3" /><label
-                  for="bel3">Somewhat</label></div>
-              <div class="radio-card"><input type="radio" id="bel4" name="belonging_score" value="4" /><label
-                  for="bel4">Mostly yes</label></div>
-              <div class="radio-card"><input type="radio" id="bel5" name="belonging_score" value="5" /><label
-                  for="bel5">Definitely</label></div>
-              <div class="radio-card"><input type="radio" id="bel6" name="belonging_score" value="6" /><label
-                  for="bel6">Strongly yes</label></div>
-              <div class="radio-card"><input type="radio" id="bel7" name="belonging_score" value="7" /><label
-                  for="bel7">Completely</label></div>
-            </div>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q18.</span> What is the highest level of education your parent or
-              guardian completed?</label>
-            <select name="parent_education" required>
-              <option value="">select:</option>
-              <option>No formal education</option>
-              <option>Primary (up to Grade 5)</option>
-              <option>Secondary (Matric / O-Levels / Grade 10)</option>
-              <option>Higher Secondary (Intermediate / A-Levels / Grade 12)</option>
-              <option>Bachelor's degree</option>
-              <option>Master's degree</option>
-              <option>PhD</option>
-            </select>
-          </div>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q19.</span> How often do you worry about money or
-              finances?</label>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="fin1" name="financial_strain" value="1" required /><label
-                  for="fin1">Never</label></div>
-              <div class="radio-card"><input type="radio" id="fin2" name="financial_strain" value="2" /><label
-                  for="fin2">Rarely</label></div>
-              <div class="radio-card"><input type="radio" id="fin3" name="financial_strain" value="3" /><label
-                  for="fin3">Sometimes</label></div>
-              <div class="radio-card"><input type="radio" id="fin4" name="financial_strain" value="4" /><label
-                  for="fin4">Often</label></div>
-              <div class="radio-card"><input type="radio" id="fin5" name="financial_strain" value="5" /><label
-                  for="fin5">Frequently</label></div>
-              <div class="radio-card"><input type="radio" id="fin6" name="financial_strain" value="6" /><label
-                  for="fin6">Most days</label></div>
-              <div class="radio-card"><input type="radio" id="fin7" name="financial_strain" value="7" /><label
-                  for="fin7">Constantly</label></div>
-            </div>
-          </div>
-
-          <div class="button-row">
-            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
-            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== STEP 6: CHRONIC ILLNESS ===================== -->
-      <section class="step" data-step="6">
-        <div class="card">
-          <span class="step-badge">Section 6 of 10 · Health</span>
-          <h2>Any health conditions?</h2>
-          <p class="lead">One quick question: your answer helps the AI understand your full picture.</p>
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q20.</span> Do you have any diagnosed chronic health
-              condition?</label>
-            <div class="radio-group">
-              <div class="radio-card"><input type="radio" id="chr0" name="chronic_illness_tier" value="0"
-                  required /><label for="chr0">None</label></div>
-              <div class="radio-card"><input type="radio" id="chr1" name="chronic_illness_tier" value="1" /><label
-                  for="chr1">Mild <span class="hint">(e.g. asthma, high cholesterol)</span></label></div>
-              <div class="radio-card"><input type="radio" id="chr2" name="chronic_illness_tier" value="2" /><label
-                  for="chr2">Moderate <span class="hint">(e.g. thyroid, hypertension, gastro)</span></label></div>
-              <div class="radio-card"><input type="radio" id="chr3" name="chronic_illness_tier" value="3" /><label
-                  for="chr3">Severe <span class="hint">(e.g. diabetes, epilepsy, cancer)</span></label></div>
-            </div>
-          </div>
-
-          <div class="button-row">
-            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
-            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== STEP 7: PERSONAL CONTEXT ===================== -->
+      <!-- ===================== STEP 7: PHQ-9 ===================== -->
       <section class="step" data-step="7">
         <div class="card">
-          <span class="step-badge">Section 7 of 10 · Personal context</span>
-          <h2>A little about your personal life</h2>
-          <p class="lead">These questions help us understand how social and personal factors relate to wellbeing.</p>
-
-          <div class="callout" style="margin-bottom:6px;">
-            <strong>Why we ask:</strong> Research shows that relationship support and personal values can significantly
-            influence stress levels. Your answers are anonymous and help us build a more accurate, inclusive model.
-          </div>
-
-          <!-- Q: Relationship Status -->
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q21.</span> Which best describes your current relationship
-              status?</label>
-
-            <div class="radio-group" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rs1" name="relationship_status" value="1"
-                  required /><label for="rs1">Single</label></div>
-              <div class="radio-card"><input type="radio" id="rs2" name="relationship_status" value="2" /><label
-                  for="rs2">In a relationship</label></div>
-              <div class="radio-card"><input type="radio" id="rs3" name="relationship_status" value="3" /><label
-                  for="rs3">Married / Partnered</label></div>
-              <div class="radio-card"><input type="radio" id="rs4" name="relationship_status" value="4" /><label
-                  for="rs4">Divorced / Separated / Widowed</label></div>
-              <div class="radio-card"><input type="radio" id="rs5" name="relationship_status" value="5" /><label
-                  for="rs5">Other / Prefer not to say</label></div>
-            </div>
-          </div>
-
-          <hr class="section-divider" />
-
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q22.</span> What is your religion or belief?</label>
-
-            <div class="radio-group" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rl1" name="religion" value="1" required /><label
-                  for="rl1">Atheist</label></div>
-              <div class="radio-card"><input type="radio" id="rl2" name="religion" value="2" /><label
-                  for="rl2">Christian</label></div>
-              <div class="radio-card"><input type="radio" id="rl3" name="religion" value="3" /><label
-                  for="rl3">Muslim</label></div>
-              <div class="radio-card"><input type="radio" id="rl4" name="religion" value="4" /><label
-                  for="rl4">Jewish</label></div>
-              <div class="radio-card"><input type="radio" id="rl5" name="religion" value="5" /><label
-                  for="rl5">Hindu</label></div>
-              <div class="radio-card"><input type="radio" id="rl6" name="religion" value="6" /><label
-                  for="rl6">Buddhist</label></div>
-              <div class="radio-card"><input type="radio" id="rl7" name="religion" value="7" /><label for="rl7">Other /
-                  Prefer not to say</label></div>
-            </div>
-          </div>
-
-          <!-- Q: Religiosity -->
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q23.</span> Regardless of affiliation: how important is religion
-              or spirituality in your daily life?</label>
-
-            <div class="radio-group long-options" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="rg1" name="religiosity" value="1" required /><label
-                  for="rg1">Not important at all</label></div>
-              <div class="radio-card"><input type="radio" id="rg2" name="religiosity" value="2" /><label
-                  for="rg2">Slightly important</label></div>
-              <div class="radio-card"><input type="radio" id="rg3" name="religiosity" value="3" /><label
-                  for="rg3">Moderately important</label></div>
-              <div class="radio-card"><input type="radio" id="rg4" name="religiosity" value="4" /><label for="rg4">Very
-                  important</label></div>
-              <div class="radio-card"><input type="radio" id="rg5" name="religiosity" value="5" /><label
-                  for="rg5">Central to my life</label></div>
-            </div>
-          </div>
-
-          <hr class="section-divider" />
-
-          <!-- Q: Therapy / Counseling History -->
-          <div class="question">
-            <label class="q-label"><span class="qnum">Q24.</span> Have you ever taken therapy or counseling services, or are you currently receiving them?</label>
-            <div class="radio-group long-options" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="th1" name="therapy_history" value="Yes, currently receiving support" required /><label for="th1">Yes, currently receiving support</label></div>
-              <div class="radio-card"><input type="radio" id="th2" name="therapy_history" value="Yes, received support in the past" /><label for="th2">Yes, received support in the past</label></div>
-              <div class="radio-card"><input type="radio" id="th3" name="therapy_history" value="No, but I have considered it" /><label for="th3">No, but I have considered it</label></div>
-              <div class="radio-card"><input type="radio" id="th4" name="therapy_history" value="No, and I have never felt the need" /><label for="th4">No, and I have never felt the need</label></div>
-              <div class="radio-card"><input type="radio" id="th5" name="therapy_history" value="Prefer not to say" /><label for="th5">Prefer not to say</label></div>
-            </div>
-          </div>
-
-          <div class="button-row">
-            <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
-            <button type="button" class="btn-primary" onclick="nextStep()">Next →</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================== STEP 8: PHQ-9 ===================== -->
-      <section class="step" data-step="8">
-        <div class="card">
-          <span class="step-badge">Section 8 of 10 · Wellbeing check</span>
+          <span class="step-badge">Section 7 of 9 · Wellbeing check</span>
           <h2>How have you been feeling?</h2>
           <p class="lead">These are standard wellbeing questions used in research worldwide. There are no right or wrong
             answers: just be honest about the <span style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
@@ -1775,7 +1519,7 @@
 
           <div class="crisis-warn" id="crisisWarn">
             <strong>If you're having thoughts of self-harm</strong>, please reach out: you matter. Talk to someone you
-            trust (a family member, close friend, or a teacher you respect), or call a confidential mental-health
+            trust (a family member, close friend, or colleague you respect), or call a confidential mental-health
             helpline in your country. You don't have to go through this alone.
           </div>
 
@@ -1786,11 +1530,11 @@
         </div>
       </section>
 
-      <!-- ===================== STEP 9: GAD-7 ===================== -->
-      <section class="step" data-step="9">
+      <!-- ===================== STEP 8: GAD-7 ===================== -->
+      <section class="step" data-step="8">
         <div class="card">
-          <span class="step-badge">Section 9 of 10 · Worry &amp; anxiety</span>
-          <h2>One more set: almost done!</h2>
+          <span class="step-badge">Section 8 of 9 · Worry &amp; anxiety</span>
+          <h2>Almost done!</h2>
           <p class="lead">7 more questions, same scale as before. These cover worry and anxious feelings in the <span
               style="color:#DC2626; font-weight:bold;">past 2 weeks</span>.</p>
 
@@ -1808,20 +1552,19 @@
         </div>
       </section>
 
-      <!-- ===================== STEP 10: FEEDBACK ===================== -->
-      <section class="step" data-step="10">
+      <!-- ===================== STEP 9: FEEDBACK ===================== -->
+      <section class="step" data-step="9">
         <div class="card">
-          <span class="step-badge">Section 10 of 10 · Last question!</span>
+          <span class="step-badge">Section 9 of 9 · Last question!</span>
           <h2>Almost there: just 2 quick ones</h2>
           <p class="lead">Your thoughts on StressEQ itself.</p>
 
           <div class="question"
-            style="background:linear-gradient(135deg,#EFF6FF,#F0FDF4); border:1px solid #BFDBFE; border-radius:16px; padding:20px;">
+            style="background:linear-gradient(135deg,#EEF2FF,#FDF2F8); border:1px solid #C7D2FE; border-radius:16px; padding:20px;">
             <label class="q-label"
               style="font-size:1.1em; font-weight:800; color:var(--text); margin-bottom:12px; display:block; line-height:1.4;">
-              <span class="qnum">Q42.</span> Be honest: if StressEQ could <span style="color:#0369A1;">detect your
-                stress levels rising</span> and tell you exactly what to do before it gets out of hand, would you use
-              it?
+              <span class="qnum">Q46.</span> Be honest: if StressEQ could <span style="color:var(--primary);">detect
+                your stress levels rising</span> and suggest evidence-based coaching actions, would you use it?
             </label>
             <div class="radio-group" style="margin-top:4px;">
               <div class="radio-card"><input type="radio" id="use1" name="would_use"
@@ -1833,51 +1576,45 @@
             </div>
           </div>
 
-
-
-
           <div class="question">
-            <label class="q-label"><span class="qnum">Q43.</span> Of these, which matter MOST to YOUR stress? <span
+            <label class="q-label"><span class="qnum">Q47.</span> Of these, which matter MOST to YOUR stress? <span
                 class="hint">(select all that apply)</span></label>
             <div class="picker-counter" id="topPickCounter">0 selected</div>
             <div class="check-grid" id="topPicks">
-              <div class="check-item"><input type="checkbox" id="top1" name="top" value="academic_pressure" /><label
-                  for="top1">Academic pressure</label></div>
-              <div class="check-item"><input type="checkbox" id="top2" name="top" value="study_hours" /><label
-                  for="top2">Study hours</label></div>
-              <div class="check-item"><input type="checkbox" id="top3" name="top" value="sleep_hours" /><label
-                  for="top3">Sleep</label></div>
+              <div class="check-item"><input type="checkbox" id="top1" name="top" value="work_exhaustion" /><label
+                  for="top1">Work exhaustion</label></div>
+              <div class="check-item"><input type="checkbox" id="top2" name="top"
+                  value="burnout_financial_stress" /><label for="top2">Financial stress</label></div>
+              <div class="check-item"><input type="checkbox" id="top3" name="top"
+                  value="burnout_sleep_deprivation" /><label for="top3">Sleep deprivation</label></div>
               <div class="check-item"><input type="checkbox" id="top4" name="top" value="physical_activity" /><label
                   for="top4">Physical activity</label></div>
-              <div class="check-item"><input type="checkbox" id="top5" name="top" value="financial_strain" /><label
-                  for="top5">Financial strain</label></div>
-              <div class="check-item"><input type="checkbox" id="top6" name="top" value="belonging_score" /><label
-                  for="top6">Belonging</label></div>
-              <div class="check-item"><input type="checkbox" id="top7" name="top" value="substance_use" /><label
-                  for="top7">Substance use</label></div>
-              <div class="check-item"><input type="checkbox" id="top8" name="top" value="chronic_illness" /><label
-                  for="top8">Chronic illness</label></div>
-              <div class="check-item"><input type="checkbox" id="top9" name="top" value="parent_education" /><label
-                  for="top9">Parental education</label></div>
-              <div class="check-item"><input type="checkbox" id="top10" name="top" value="bmi" /><label
-                  for="top10">BMI</label></div>
-              <div class="check-item"><input type="checkbox" id="top11" name="top" value="interpersonal_conflict" /><label
-                  for="top11">Interpersonal conflict</label></div>
-              <div class="check-item"><input type="checkbox" id="top12" name="top" value="grief" /><label
-                  for="top12">Grief or loss</label></div>
+              <div class="check-item"><input type="checkbox" id="top5" name="top" value="institutional_care" /><label
+                  for="top5">Institutional care</label></div>
+              <div class="check-item"><input type="checkbox" id="top6" name="top"
+                  value="burnout_discrimination" /><label for="top6">Discrimination</label></div>
+              <div class="check-item"><input type="checkbox" id="top7" name="top" value="burnout_anxiety" /><label
+                  for="top7">Anxiety or worry</label></div>
+              <div class="check-item"><input type="checkbox" id="top8" name="top" value="burnout_grief" /><label
+                  for="top8">Grief or loss</label></div>
+              <div class="check-item"><input type="checkbox" id="top9" name="top" value="chronic_illness" /><label
+                  for="top9">Chronic illness</label></div>
+              <div class="check-item"><input type="checkbox" id="top10" name="top" value="campus_belonging" /><label
+                  for="top10">Campus belonging</label></div>
+              <div class="check-item"><input type="checkbox" id="top11" name="top"
+                  value="interpersonal_conflict" /><label for="top11">Interpersonal conflict</label></div>
             </div>
           </div>
-
 
           <hr class="section-divider" />
 
           <div
-            style="background: linear-gradient(135deg, var(--soft) 0%, #EFF6FF 100%); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-top: 4px;">
+            style="background: linear-gradient(135deg, var(--soft) 0%, #EEF2FF 100%); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-top: 4px;">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
               <span style="font-size:1.6em;">📬</span>
               <div>
                 <div style="font-weight:700; font-size:0.95em; color:var(--text);">Stay in the loop <span
-                    style="background:#DBEAFE; color:#1D4ED8; font-size:0.72em; font-weight:600; padding:2px 8px; border-radius:20px; margin-left:4px; vertical-align:middle;">Optional</span>
+                    style="background:#EEF2FF; color:#4F46E5; font-size:0.72em; font-weight:600; padding:2px 8px; border-radius:20px; margin-left:4px; vertical-align:middle;">Optional</span>
                 </div>
                 <div style="font-size:0.8em; color:var(--muted); margin-top:2px;">Drop your email if you'd like us to
                   share our findings when StressEQ launches.</div>
@@ -1893,7 +1630,6 @@
             </div>
           </div>
 
-
           <div class="button-row">
             <button type="button" class="btn-secondary" onclick="prevStep()">← Back</button>
             <button type="button" class="btn-primary" id="submitBtn" onclick="submitForm()">Submit ✓</button>
@@ -1901,78 +1637,56 @@
         </div>
       </section>
 
-      <section class="step" data-step="11">
-        <div class="card" style="text-align:center; padding: 48px 24px; border-top:4px solid var(--primary);">
-          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;">
-            <div style="width:64px; height:64px; border:5px solid rgba(2, 132, 199, 0.15); border-left-color:var(--primary); border-radius:50%; animation:spin 1s linear infinite;"></div>
-            <div id="loaderText" style="font-size:1.25em; font-weight:700; color:var(--primary); transition: opacity 0.3s; min-height: 36px;">Verifying your data...</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="step" data-step="12">
-        <div class="card" style="border-top:4px solid var(--primary);">
-          <div style="text-align:center; font-size:3em; margin-bottom:8px;">🎉</div>
-          <h1 style="text-align:center; color:var(--primary); font-size:1.60em; margin-bottom: 8px;">Thank You!</h1>
-          <p class="lead" style="text-align:center; color:var(--text); margin-top:8px; font-size:1em;">
-            Your response has been verified and recorded successfully.
+      <!-- ===================== STEP 10: SUCCESS ===================== -->
+      <section class="step" data-step="10">
+        <div class="card" style="text-align:center; border-top:4px solid #10B981;">
+          <div style="font-size:3em; margin-bottom:8px;">🎉</div>
+          <h1 style="color:var(--ok); font-size:1.6em;">You're amazing: thank you!</h1>
+          <p class="lead" style="color:var(--text); margin-top:8px; font-size:1em;">
+            Your response has been recorded and will directly improve StressEQ's accuracy for faculty and staff.
           </p>
 
-          <!-- Certificate Generator Area -->
-          <div style="margin: 24px 0; border: 1.5px solid var(--border); border-radius: 16px; padding: 24px; background: var(--soft); text-align: left;">
-            <h2 style="font-size: 1.15em; color: var(--text); margin-bottom: 8px;">🎓 Get Your Certificate</h2>
-            <p style="font-size: 0.88em; color: var(--muted); margin-bottom: 16px;">
-              Please write your name below for your certificate of participation.
-            </p>
-            
-            <div style="display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap;">
-              <div style="flex: 1 1 300px; max-width: 400px;">
-                <label for="certNameInput" style="display: block; font-weight: 600; font-size: 0.9em; margin-bottom: 8px; color: var(--text);">Participant Name</label>
-                <input type="text" id="certNameInput" placeholder="Your Name" style="width: 100%; box-sizing: border-box;" required />
-              </div>
-              <button type="button" class="btn-primary" onclick="goToCertificate()">Get Certificate →</button>
-            </div>
-          </div>
+          <!-- Profile card display removed for consistency with student survey -->
 
           <div
-            style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6; text-align: left;">
-            🔒 Your answers are stored anonymously under a random ID: never linked to your name.<br>
+            style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6;">
+            🔒 Your answers are stored anonymously under a random ID: never linked to your name or university
+            account.<br>
             📊 Results will be used to validate the StressEQ AI and shared only as group statistics in our FYP.
           </div>
 
           <div
-            style="background:var(--soft); border-radius:12px; padding:12px 16px; margin:12px 0; font-size:0.83em; color:var(--muted); text-align:center;">
+            style="background:var(--soft); border-radius:12px; padding:12px 16px; margin:12px 0; font-size:0.83em; color:var(--muted);">
             Anonymous ID: <strong id="thankYouResponseId" style="color:var(--text); word-break:break-all;"></strong>
           </div>
 
-          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:8px;">
-            <button class="share-btn" onclick="shareLink()" style="margin-top:0;">Share survey with a friend 🚀</button>
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:12px;">
+            <button type="button" class="share-btn" onclick="shareLink()" style="margin-top:0;">Share survey link
+              🚀</button>
           </div>
-
-          <p style="text-align:center; color:var(--muted); font-size:0.88em; margin-top:20px;" id="submitStatus"></p>
-
-          <p style="text-align:center; color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response counts.</p>
+          <p style="color:var(--muted); font-size:0.88em; margin-top:20px;" id="submitStatus"></p>
         </div>
       </section>
 
     </form>
   </div>
 
+  <canvas id="confetti-canvas"></canvas>
+  <div id="toast"></div>
+
   <script>
     // ============================================================
-    // CONFIG — paste your Google Apps Script web-app URL here
-    // (See setup instructions in the FYP team's setup doc.)
-    // If left empty, responses fall back to CSV download only.
+    // CONFIG — Faculty Apps Script Endpoint placeholder
     // ============================================================
-    const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbx8Y01577FFX7Iz7yZ3Q79rxydspnrKE-GISZHujj_X2gcivSRRBMzuI0SVYMjXxjPtkA/exec"; // e.g., "https://script.google.com/macros/s/AKfyc.../exec"
+    const SUBMIT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxGVqE-YFawuXUAdgVsy6f3ClEoeC3a4kifwZCuNfeL7IIm1_GP55X0O3Za5ACHnxADBg/exec";
 
     // ============================================================
     // State + step navigation
     // ============================================================
     let currentStep = 0;
-    const totalSteps = 13;
+    const totalSteps = 11;
     const data = {};
-    const STORAGE_KEY = 'stresseq_student_v1';
+    const STORAGE_KEY = 'stresseq_faculty_v1';
 
     // PHQ-9 + GAD-7 items
     const PHQ_ITEMS = [
@@ -2001,65 +1715,50 @@
     const FREQ4_LABELS = ["Not at all", "A few days", "More than half the days", "Almost every day"];
 
     // ============================================================
-    // Build dynamic Likert / scale groups
+    // Build dynamic Likert scales
     // ============================================================
-    function buildLikert(containerId, name, range = [1, 2, 3, 4, 5, 6, 7]) {
+    function buildLikert(containerId, name, range = [1, 2, 3, 4, 5, 6]) {
       const c = document.getElementById(containerId);
       if (!c) return;
       c.innerHTML = range.map(n => `
-    <div class="likert-item">
-      <input type="radio" id="${name}_${n}" name="${name}" value="${n}" />
-      <label for="${name}_${n}">${n}</label>
-    </div>
-  `).join('');
+        <div class="likert-item">
+          <input type="radio" id="${name}_${n}" name="${name}" value="${n}" required />
+          <label for="${name}_${n}">${n}</label>
+        </div>
+      `).join('');
     }
 
     function buildFreq4(containerId, name, qnum, labelText) {
       return `
-    <div class="question">
-      <label class="q-label"><span class="qnum">Q${qnum}.</span> ${labelText}</label>
-      <div class="freq4">
-        ${[1, 2, 3, 4].map(i => `
-          <div class="freq4-item">
-            <input type="radio" id="${name}_${i}" name="${name}" value="${i}" required />
-            <label for="${name}_${i}"><strong>${i}</strong><br/>${FREQ4_LABELS[i - 1]}</label>
+        <div class="question">
+          <label class="q-label"><span class="qnum">Q${qnum}.</span> ${labelText}</label>
+          <div class="freq4">
+            ${[1, 2, 3, 4].map(i => `
+              <div class="freq4-item">
+                <input type="radio" id="${name}_${i}" name="${name}" value="${i}" required />
+                <label for="${name}_${i}"><strong>${i}</strong><br/>${FREQ4_LABELS[i - 1]}</label>
+              </div>
+            `).join('')}
           </div>
-        `).join('')}
-      </div>
-    </div>
-  `;
+        </div>
+      `;
     }
 
     // Initialize dynamic content
     window.addEventListener('DOMContentLoaded', () => {
-      // Restful sleep nights 0-7
-      // Physical activity 0-7
-      buildLikert('paGroup', 'physical_activity', [0, 1, 2, 3, 4, 5, 6, 7]);
+      // 1-6 Likert scales
+      buildLikert('icGroup', 'institutional_care');
+      buildLikert('hweGroup', 'hostile_work_environment');
+      buildLikert('dhwGroup', 'departmental_hostile_environment');
+      buildLikert('amsGroup', 'adequate_mh_services');
+      buildLikert('arcGroup', 'antiracism_climate');
+      buildLikert('afGroup', 'academic_freedom');
+      buildLikert('cbGroup', 'campus_belonging');
 
-      // Substance use mutual exclusion logic
-      const subCbs = document.querySelectorAll('input[name="substance_use"]');
-      const subNone = document.getElementById('sub_none');
-      subCbs.forEach(cb => {
-        cb.addEventListener('change', () => {
-          if (cb === subNone && subNone.checked) {
-            subCbs.forEach(other => {
-              if (other !== subNone) {
-                other.checked = false;
-              }
-            });
-          } else if (cb !== subNone && cb.checked) {
-            subNone.checked = false;
-          }
-        });
-      });
-
-      // Belonging + financial 1-7
-      // belonging_score and financial_strain are now hardcoded radio cards — no buildLikert needed
-
-      // Build PHQ items (Q25..Q34)
+      // Build PHQ-9 (Q29..Q38)
       let phqHTML = '';
       PHQ_ITEMS.forEach((item, i) => {
-        phqHTML += buildFreq4(`phq${i + 1}`, `phq${i + 1}`, 25 + i, item);
+        phqHTML += buildFreq4(`phq${i + 1}`, `phq${i + 1}`, 29 + i, item);
       });
       document.getElementById('phqContainer').innerHTML = phqHTML;
 
@@ -2075,14 +1774,14 @@
         el.addEventListener('change', checkCrisis);
       });
 
-      // Build GAD-7 items (Q35..Q41)
+      // Build GAD-7 (Q39..Q45)
       let gadHTML = '';
       GAD_ITEMS.forEach((item, i) => {
-        gadHTML += buildFreq4(`gad${i + 1}`, `gad${i + 1}`, 35 + i, item);
+        gadHTML += buildFreq4(`gad${i + 1}`, `gad${i + 1}`, 39 + i, item);
       });
       document.getElementById('gadContainer').innerHTML = gadHTML;
 
-      // Top picker logic
+      // Top picker
       document.querySelectorAll('#topPicks input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('change', () => {
           const checked = document.querySelectorAll('#topPicks input:checked').length;
@@ -2090,238 +1789,50 @@
         });
       });
 
-      // Unit toggle for height/weight
-      document.querySelectorAll('.unit-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = btn.dataset.target;
-          const unit = btn.dataset.unit;
-          document.querySelectorAll(`.unit-btn[data-target="${target}"]`).forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          if (target === 'height') {
-            document.getElementById('height-cm-input').style.display = unit === 'cm' ? 'block' : 'none';
-            document.getElementById('height-ft-input').style.display = unit === 'ft' ? 'block' : 'none';
-          } else {
-            document.getElementById('weight-kg-input').style.display = unit === 'kg' ? 'block' : 'none';
-            document.getElementById('weight-lb-input').style.display = unit === 'lb' ? 'block' : 'none';
-          }
-          updateLiveBMI();
-        });
+      // Role conditional tenure status
+      document.querySelectorAll('input[name="role"]').forEach(el => {
+        el.addEventListener('change', updateTenureVisibility);
       });
 
-      // Live BMI computation — fires on every height/weight, age, or gender change
-      ['height_cm', 'height_ft', 'height_in', 'weight_kg', 'weight_lb', 'age', 'gender'].forEach(name => {
-        document.querySelectorAll(`[name="${name}"]`).forEach(el => {
-          el.addEventListener('input', updateLiveBMI);
-          el.addEventListener('change', updateLiveBMI);
+      // Substance use checkbox exclusion logic
+      const subCbs = document.querySelectorAll('input[name="substance_use"]');
+      const subNone = document.getElementById('sub_none');
+      subCbs.forEach(cb => {
+        cb.addEventListener('change', () => {
+          if (cb === subNone && subNone.checked) {
+            subCbs.forEach(other => {
+              if (other !== subNone) other.checked = false;
+            });
+          } else if (cb !== subNone && cb.checked) {
+            subNone.checked = false;
+          }
         });
       });
 
       // Set up custom select dropdowns
       setupCustomSelects();
 
-      // Restore saved progress
       loadProgress();
       updateProgressBar();
+      updateTenureVisibility();
     });
 
-    // ── Height / Weight "Don't know" toggle helpers ──────────────
-    function toggleHeightSkip() {
-      const skip = document.getElementById('heightUnknown').checked;
-      const cmIn = document.getElementById('heightCmInput');
-      const ftIn = document.querySelector('[name="height_ft"]');
-      const inIn = document.querySelector('[name="height_in"]');
-      [cmIn, ftIn, inIn].forEach(el => { if (el) { el.disabled = skip; el.style.opacity = skip ? '0.35' : '1'; if (skip) el.value = ''; } });
-      // Clear any error on skip
-      const hq = document.getElementById('heightQuestion');
-      if (hq) { hq.querySelector('.field-error')?.remove(); hq.style.outline = ''; hq.style.padding = ''; }
-      updateLiveBMI();
-    }
-
-    // ── GPA / CGPA scale selector ────────────────────────────────
-    function toggleGpaSkip() {
-      const skip     = document.getElementById('gpaUnknown')?.checked;
-      const inp      = document.getElementById('gpaInput');
-      const scaleRow = document.getElementById('gpaScaleRow');
-      const hint     = document.getElementById('gpaHint');
-      const warn     = document.getElementById('gpaWarn');
-      const radios   = document.querySelectorAll('[name="gpa_scale"]');
-
-      if (skip) {
-        // Disable and grey out the input + scale radios
-        if (inp) { inp.disabled = true; inp.value = ''; inp.removeAttribute('required'); inp.style.opacity = '0.35'; }
-        if (scaleRow) scaleRow.style.opacity = '0.35';
-        radios.forEach(r => r.disabled = true);
-        if (hint) hint.style.display = 'none';
-        if (warn) warn.style.display = 'none';
-        // Record N/A in data object
-        data.gpa = '';
-        data.gpa_scale = 'N/A';
-      } else {
-        // Re-enable
-        if (inp) { inp.disabled = false; inp.setAttribute('required', ''); inp.style.opacity = '1'; }
-        if (scaleRow) scaleRow.style.opacity = '1';
-        radios.forEach(r => r.disabled = false);
-        if (hint) hint.style.display = '';
-        data.gpa_scale = document.querySelector('[name="gpa_scale"]:checked')?.value || 'cgpa';
+    function updateTenureVisibility() {
+      const roleVal = document.querySelector('input[name="role"]:checked')?.value;
+      const tenureBox = document.getElementById('tenureQuestionBox');
+      const tenureRadios = document.querySelectorAll('input[name="tenure_status"]');
+      if (tenureBox) {
+        if (roleVal === 'Faculty') {
+          tenureBox.style.display = 'block';
+          tenureRadios.forEach(r => r.required = true);
+        } else {
+          tenureBox.style.display = 'none';
+          tenureRadios.forEach(r => {
+            r.required = false;
+            r.checked = false;
+          });
+        }
       }
-    }
-
-    function updateGpaScale() {
-      if (document.getElementById('gpaUnknown')?.checked) return; // skip active, ignore
-      const isCgpa = document.querySelector('[name="gpa_scale"]:checked')?.value === 'cgpa';
-      const inp    = document.getElementById('gpaInput');
-      const hint   = document.getElementById('gpaHint');
-      if (!inp) return;
-      if (isCgpa) {
-        inp.max = 4.0; inp.step = 0.01; inp.placeholder = 'e.g., 3.45';
-        if (hint) hint.innerHTML = 'CGPA scale: enter a value between <strong>0</strong> and <strong>4.0</strong>';
-        if (inp.value && parseFloat(inp.value) > 4.0) inp.value = '';
-      } else {
-        inp.max = 100; inp.step = 0.1; inp.placeholder = 'e.g., 82.5';
-        if (hint) hint.innerHTML = 'Percentage scale: enter a value between <strong>0</strong> and <strong>100</strong>';
-      }
-      validateGpaLive(inp);
-    }
-
-    function clampGpa(inp) {
-      const max = parseFloat(inp.max) || 4.0;
-      const v = parseFloat(inp.value);
-      if (!isNaN(v)) {
-        if (v < 0) inp.value = '0';
-        if (v > max) inp.value = max.toFixed(2);
-      }
-    }
-
-    function validateGpaLive(inp) {
-      const warn = document.getElementById('gpaWarn');
-      if (!warn || !inp.value) { if (warn) warn.style.display = 'none'; return; }
-      const isCgpa = document.querySelector('[name="gpa_scale"]:checked')?.value === 'cgpa';
-      const v = parseFloat(inp.value);
-      if (isCgpa && v > 4.0) {
-        warn.textContent = '⚠ CGPA cannot exceed 4.0. Did you mean to select Percentage?';
-        warn.style.display = 'block'; inp.style.borderColor = '#DC2626';
-      } else if (!isCgpa && v > 0 && v < 5) {
-        warn.textContent = '⚠ That looks like a CGPA value. Did you mean to select CGPA?';
-        warn.style.display = 'block'; inp.style.borderColor = '#F59E0B';
-      } else if (v < 0) {
-        warn.textContent = '⚠ Value cannot be negative.';
-        warn.style.display = 'block'; inp.style.borderColor = '#DC2626';
-      } else {
-        warn.style.display = 'none'; inp.style.borderColor = '#10B981';
-      }
-    }
-
-    function clearHeightSkip() {
-      const cb = document.getElementById('heightUnknown');
-      if (cb && cb.checked) { cb.checked = false; toggleHeightSkip(); }
-      const hq = document.getElementById('heightQuestion');
-      if (hq) { hq.querySelector('.field-error')?.remove(); hq.style.outline = ''; hq.style.padding = ''; }
-    }
-
-    function toggleWeightSkip() {
-      const skip = document.getElementById('weightUnknown').checked;
-      const kgIn = document.getElementById('weightKgInput');
-      const lbIn = document.getElementById('weightLbInput');
-      [kgIn, lbIn].forEach(el => { if (el) { el.disabled = skip; el.style.opacity = skip ? '0.35' : '1'; if (skip) el.value = ''; } });
-      // Clear any error on skip
-      const wq = document.getElementById('weightQuestion');
-      if (wq) { wq.querySelector('.field-error')?.remove(); wq.style.outline = ''; wq.style.padding = ''; }
-      updateLiveBMI();
-    }
-
-    function clearWeightSkip() {
-      const cb = document.getElementById('weightUnknown');
-      if (cb && cb.checked) { cb.checked = false; toggleWeightSkip(); }
-      const wq = document.getElementById('weightQuestion');
-      if (wq) { wq.querySelector('.field-error')?.remove(); wq.style.outline = ''; wq.style.padding = ''; }
-    }
-
-    // Convert any unit input to canonical cm/kg
-    // Returns height in cm — null if user skipped or left blank
-    function getCanonicalHeightCm() {
-      // If user ticked "don't know", treat as unknown
-      if (document.getElementById('heightUnknown')?.checked) return null;
-      const isCmActive = document.querySelector('.unit-btn[data-target="height"][data-unit="cm"]').classList.contains('active');
-      if (isCmActive) {
-        const cm = parseFloat(document.querySelector('[name="height_cm"]').value);
-        return isNaN(cm) ? null : cm;
-      } else {
-        const ft = parseFloat(document.querySelector('[name="height_ft"]').value);
-        const inch = parseFloat(document.querySelector('[name="height_in"]').value || 0);
-        if (!isNaN(ft)) return Math.round((ft * 30.48) + (inch * 2.54));
-        return null;
-      }
-    }
-
-    // Returns weight in kg — null if user skipped or left blank
-    function getCanonicalWeightKg() {
-      // If user ticked "don't know", treat as unknown
-      if (document.getElementById('weightUnknown')?.checked) return null;
-      const isKgActive = document.querySelector('.unit-btn[data-target="weight"][data-unit="kg"]').classList.contains('active');
-      if (isKgActive) {
-        const kg = parseFloat(document.querySelector('[name="weight_kg"]').value);
-        return isNaN(kg) ? null : kg;
-      } else {
-        const lb = parseFloat(document.querySelector('[name="weight_lb"]').value);
-        if (!isNaN(lb)) return Math.round(lb * 0.453592 * 10) / 10;
-        return null;
-      }
-    }
-
-    // Computes and returns BMI — null when either measurement is unavailable
-    function computeBMI(h, w) {
-      if (!h || !w || h < 120 || h > 230 || w < 30 || w > 250) return null;
-      const bmi = +(w / Math.pow(h / 100, 2)).toFixed(1);
-      return (bmi < 10 || bmi > 60) ? null : bmi;
-    }
-
-    function updateLiveBMI() {
-      const h = getCanonicalHeightCm();
-      const w = getCanonicalWeightKg();
-      const box = document.getElementById('bmiLive');
-      const bmi = computeBMI(h, w);
-      // Hide the live BMI card when either value is missing or out of range
-      if (!bmi) { box.style.display = 'none'; return; }
-      
-      // Fetch current age and gender to support standard clinical logics
-      const ageEl = document.querySelector('[name="age"]');
-      const ageVal = ageEl ? parseInt(ageEl.value) : null;
-      const genderEl = document.querySelector('[name="gender"]:checked');
-      const genderVal = genderEl ? genderEl.value.toLowerCase() : '';
-
-      let cat = '', color = '#48BB78';
-
-      // Check if teen BMI-for-age percentiles apply (under 20, ages 16-19)
-      if (ageVal && ageVal >= 16 && ageVal <= 19 && (genderVal === 'male' || genderVal === 'female')) {
-        const key = `${genderVal}_${ageVal}`;
-        // CDC growth percentile thresholds: [underweight_5th, overweight_85th, obesity_95th]
-        const thresholds = {
-          "male_16": [17.5, 24.2, 27.6],
-          "male_17": [18.1, 24.9, 28.2],
-          "male_18": [18.6, 25.6, 29.0],
-          "male_19": [19.0, 26.2, 29.7],
-          "female_16": [17.2, 24.7, 28.9],
-          "female_17": [17.5, 25.2, 29.3],
-          "female_18": [17.8, 25.6, 29.8],
-          "female_19": [18.0, 26.0, 30.0]
-        }[key];
-
-        if (bmi < thresholds[0]) { cat = 'Underweight'; color = '#3182CE'; }
-        else if (bmi < thresholds[1]) { cat = 'Healthy'; color = '#48BB78'; }
-        else if (bmi < thresholds[2]) { cat = 'Overweight'; color = '#DD6B20'; }
-        else { cat = 'Obese'; color = '#C53030'; }
-      } else {
-        // Standard adult WHO/CDC BMI categories
-        if (bmi < 18.5) { cat = 'Underweight'; color = '#3182CE'; }
-        else if (bmi < 25) { cat = 'Healthy'; color = '#48BB78'; }
-        else if (bmi < 30) { cat = 'Overweight'; color = '#DD6B20'; }
-        else { cat = 'Obese'; color = '#C53030'; }
-      }
-
-      document.getElementById('bmiValue').textContent = bmi;
-      document.getElementById('bmiValue').style.color = color;
-      document.getElementById('bmiCat').textContent = cat;
-      box.style.display = 'flex';
     }
 
     // ============================================================
@@ -2334,9 +1845,7 @@
       animating = true;
 
       const current = document.querySelector('.step.active');
-      if (current) {
-        current.classList.remove('active');
-      }
+      if (current) current.classList.remove('active');
 
       const next = document.querySelector(`.step[data-step="${n}"]`);
       if (next) {
@@ -2350,7 +1859,6 @@
       updateProgressBar();
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Show milestone toast when entering a new section
       if (n > 0 && STEP_TOASTS && STEP_TOASTS[n]) {
         setTimeout(() => showToast(STEP_TOASTS[n]), 400);
       }
@@ -2369,34 +1877,29 @@
       showStep(currentStep - 1);
     }
 
-    // ── Section color themes ─────────────────────────────────────
     const STEP_THEMES = {
-      0: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#E0F2FE' },
-      1: { accent: '#0891B2', grad1: '#ECFEFF', grad2: '#CFFAFE' },
-      2: { accent: '#0369A1', grad1: '#F0F9FF', grad2: '#BAE6FD' },
-      3: { accent: '#059669', grad1: '#ECFDF5', grad2: '#D1FAE5' },
+      0: { accent: '#4F46E5', grad1: '#EEF2FF', grad2: '#E0E7FF' },
+      1: { accent: '#4F46E5', grad1: '#EEF2FF', grad2: '#E0E7FF' },
+      2: { accent: '#7C3AED', grad1: '#F5F3FF', grad2: '#EDE9FE' },
+      3: { accent: '#0D9488', grad1: '#F0FDFA', grad2: '#CCFBF1' },
       4: { accent: '#D97706', grad1: '#FFFBEB', grad2: '#FEF3C7' },
-      5: { accent: '#E11D48', grad1: '#FFF1F2', grad2: '#FFE4E6' },
-      6: { accent: '#0D9488', grad1: '#F0FDFA', grad2: '#CCFBF1' },
-      7: { accent: '#2563EB', grad1: '#EFF6FF', grad2: '#DBEAFE' },
-      8: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#BAE6FD' },
-      9: { accent: '#EA580C', grad1: '#FFF7ED', grad2: '#FFEDD5' },
+      5: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#BAE6FD' },
+      6: { accent: '#E11D48', grad1: '#FFF1F2', grad2: '#FFE4E6' },
+      7: { accent: '#4F46E5', grad1: '#EEF2FF', grad2: '#E0E7FF' },
+      8: { accent: '#7C3AED', grad1: '#F5F3FF', grad2: '#EDE9FE' },
+      9: { accent: '#0D9488', grad1: '#F0FDFA', grad2: '#CCFBF1' },
       10: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
-      11: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#E0F2FE' },
-      12: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
     };
 
-    // ── Toast notifications ──────────────────────────────────────
     const STEP_TOASTS = {
-      2: '✅ Basics done! Now your academics.',
-      3: '📚 Academic section complete!',
-      4: '😴 Sleep & body section complete!',
-      5: '💪 Great job! Almost through.',
-      6: '🌿 Section 5 done!',
-      7: '🩺 Health section done!',
-      8: '💭 Personal context done: 2 more sets!',
-      9: '💭 Wellbeing done: 1 more set!',
-      10: '🎉 Last section! You got this!',
+      2: '✅ Basics done! Now your personal context.',
+      3: '🌿 Personal context done!',
+      4: '💼 Work burnout section complete!',
+      5: '📊 Burnout drivers complete!',
+      6: '🏢 Climate check done: almost there!',
+      7: '💪 Great job! Health & lifestyle done.',
+      8: '💭 Wellbeing done: 1 more set!',
+      9: '🎉 Last section! You got this!',
     };
 
     let toastTimer;
@@ -2410,41 +1913,51 @@
     }
 
     // ── Real-time question answer counter ────────────────────────
-    // Maps question number → field name(s) (any non-empty = answered)
-    const TOTAL_QUESTIONS = 43;
+    const TOTAL_QUESTIONS = 47;
     const QUESTION_FIELDS = {
-      1:  ['university_select', 'university_custom'],
-      2:  ['country_select', 'country_custom'],
-      3:  ['age'],
-      4:  ['gender'],
-      5:  ['is_international'],
-      6:  ['race'],
-      7:  ['education_level'],
-      8:  ['field_of_study'],
-      9:  ['gpa'],
-      10: ['academic_pressure'],
-      11: ['study_hours'],
-      12: ['sleep_hours'],
-      13: ['sl1','sl2','sl3','sl4','sl5','sl6'],   // sleep quality likert
-      14: ['height_cm','height_ft','height_unknown'],
-      15: ['weight_kg','weight_lb','weight_unknown'],
-      16: ['substance_use'],
-      17: ['belonging_score'],
-      18: ['parent_education'],
-      19: ['financial_strain'],
-      20: ['chronic_illness_tier'],
-      21: ['relationship_status'],
-      22: ['religion'],
-      23: ['religiosity'],
-      24: ['therapy_history'],
-      // PHQ-9 (dynamically built Q25–Q34)
-      25: ['phq1'], 26: ['phq2'], 27: ['phq3'], 28: ['phq4'], 29: ['phq5'],
-      30: ['phq6'], 31: ['phq7'], 32: ['phq8'], 33: ['phq9'], 34: ['phq10'],
-      // GAD-7 (dynamically built Q35–Q41)
-      35: ['gad1'], 36: ['gad2'], 37: ['gad3'], 38: ['gad4'],
-      39: ['gad5'], 40: ['gad6'], 41: ['gad7'],
-      42: ['would_use'],
-      43: ['top'],
+      // Step 1 — About you
+      1: ['university_select', 'university_custom'],
+      2: ['country_select', 'country_custom'],
+      3: ['age_group', 'age_custom'],
+      4: ['gender'],
+      5: ['race'],
+      6: ['role'],
+      7: ['tenure_status'],
+      8: ['dependent_children'],
+      // Step 2 — Personal context
+      9: ['relationship_status'],
+      10: ['therapy_history'],
+      // Step 3 — Occupational burnout
+      11: ['work_exhaustion'],
+      12: ['emotional_toll'],
+      13: ['productivity_loss'],
+      // Step 4 — Burnout drivers
+      14: ['burnout_discrimination'],
+      15: ['burnout_anxiety'],
+      16: ['burnout_grief'],
+      17: ['burnout_financial_stress'],
+      18: ['burnout_sleep_deprivation'],
+      // Step 5 — Institutional climate (likert groups built via buildLikert)
+      19: ['institutional_care'],
+      20: ['campus_belonging'],
+      21: ['hostile_work_environment'],
+      22: ['departmental_hostile_environment'],
+      23: ['adequate_mh_services'],
+      24: ['antiracism_climate'],
+      25: ['academic_freedom'],
+      // Step 6 — Lifestyle & health
+      26: ['exercise_raw'],
+      27: ['chronic_illness'],
+      28: ['substance_use'],
+      // PHQ-9 Q29–Q38 (dynamically built)
+      29: ['phq1'], 30: ['phq2'], 31: ['phq3'], 32: ['phq4'], 33: ['phq5'],
+      34: ['phq6'], 35: ['phq7'], 36: ['phq8'], 37: ['phq9'], 38: ['phq10'],
+      // GAD-7 Q39–Q45 (dynamically built)
+      39: ['gad1'], 40: ['gad2'], 41: ['gad3'], 42: ['gad4'],
+      43: ['gad5'], 44: ['gad6'], 45: ['gad7'],
+      // Step 9 — Coping & future
+      46: ['would_use'],
+      47: ['top'],
     };
 
     function isFieldAnswered(fieldNames) {
@@ -2469,24 +1982,22 @@
       return count;
     }
 
-    // Also keep step-range info for section label
     const STEP_Q_RANGE = {
-      1:  { start: 1,  end: 8  },
-      2:  { start: 9,  end: 11 },
-      3:  { start: 12, end: 15 },
-      4:  { start: 16, end: 16 },
-      5:  { start: 17, end: 19 },
-      6:  { start: 20, end: 20 },
-      7:  { start: 21, end: 24 },
-      8:  { start: 25, end: 34 },
-      9:  { start: 35, end: 41 },
-      10: { start: 42, end: 43 },
+      1: { start: 1, end: 8 },
+      2: { start: 9, end: 10 },
+      3: { start: 11, end: 13 },
+      4: { start: 14, end: 18 },
+      5: { start: 19, end: 25 },
+      6: { start: 26, end: 28 },
+      7: { start: 29, end: 38 },
+      8: { start: 39, end: 45 },
+      9: { start: 46, end: 47 },
     };
 
     function updateProgressBar() {
       const pct = Math.round((currentStep / (totalSteps - 1)) * 100);
       document.getElementById('progressBar').style.width = pct + '%';
-      const pctEl    = document.getElementById('progressPct');
+      const pctEl = document.getElementById('progressPct');
       const counterEl = document.getElementById('qCounterText');
 
       const answered = countAnsweredQuestions();
@@ -2509,30 +2020,6 @@
         }
       }
 
-      // Dynamic certificate motivator message
-      const motivatorEl = document.getElementById('certMotivator');
-      if (motivatorEl) {
-        if (currentStep === 0) {
-          motivatorEl.style.display = 'block';
-          motivatorEl.textContent = 'Complete survey to claim your certificate 🎓';
-        } else if (currentStep >= totalSteps - 2) {
-          motivatorEl.style.display = 'none';
-        } else {
-          motivatorEl.style.display = 'block';
-          const left = 100 - pct;
-          if (pct <= 30) {
-            motivatorEl.textContent = `Keep going! You are ${pct}% closer to your certificate 🎓`;
-          } else if (pct <= 60) {
-            motivatorEl.textContent = `Awesome! Only ${left}% left to claim your certificate 🎓`;
-          } else if (pct <= 90) {
-            motivatorEl.textContent = `Almost there! You are ${pct}% of the way to your certificate 🎓`;
-          } else {
-            motivatorEl.textContent = `Just one step left to get your certificate! 🎓`;
-          }
-        }
-      }
-
-      // Apply section color theme
       const theme = STEP_THEMES[currentStep] || STEP_THEMES[0];
       document.documentElement.style.setProperty('--step-accent', theme.accent);
       document.documentElement.style.setProperty('--primary', theme.accent);
@@ -2540,25 +2027,9 @@
       document.documentElement.style.setProperty('--bg-grad-2', theme.grad2);
     }
 
-
-
     // ============================================================
-    // Skip optional question
+    // Helpers & Validation
     // ============================================================
-    function validateEmailField(inp) {
-      if (!inp.value) { inp.style.borderColor = 'var(--border)'; return; }
-      inp.style.borderColor = inp.validity.valid ? '#10B981' : '#DC2626';
-    }
-
-    function toggleYearOtherField() {
-      const sel = document.getElementById('yearSelect');
-      const inp = document.getElementById('yearOtherInput');
-      if (sel && inp) {
-        inp.style.display = sel.value === 'Other' ? 'block' : 'none';
-        inp.required = sel.value === 'Other';
-      }
-    }
-
     // ============================================================
     // Custom Select Component
     // ============================================================
@@ -2568,7 +2039,7 @@
 
         const wrapper = document.createElement('div');
         wrapper.className = 'custom-select-wrapper';
-        
+
         select.parentNode.insertBefore(wrapper, select);
         wrapper.appendChild(select);
         select.classList.add('visual-hidden');
@@ -2576,18 +2047,18 @@
         const trigger = document.createElement('div');
         trigger.className = 'custom-select-trigger';
         trigger.tabIndex = 0;
-        
+
         const triggerText = document.createElement('span');
         triggerText.className = 'custom-select-text';
-        
+
         const selectedOpt = select.options[select.selectedIndex] || select.options[0];
         triggerText.textContent = selectedOpt ? selectedOpt.textContent : '';
         trigger.appendChild(triggerText);
-        
+
         const arrow = document.createElement('span');
         arrow.className = 'custom-select-arrow';
         trigger.appendChild(arrow);
-        
+
         wrapper.appendChild(trigger);
 
         const optionsWrapper = document.createElement('div');
@@ -2601,7 +2072,7 @@
           optionEl.className = 'custom-select-option';
           optionEl.textContent = opt.textContent;
           optionEl.dataset.value = opt.value;
-          
+
           if (idx === select.selectedIndex) {
             optionEl.classList.add('selected');
           }
@@ -2610,12 +2081,12 @@
             e.stopPropagation();
             select.value = opt.value;
             triggerText.textContent = opt.textContent;
-            
+
             optionsContainer.querySelectorAll('.custom-select-option').forEach(el => el.classList.remove('selected'));
             optionEl.classList.add('selected');
-            
+
             wrapper.classList.remove('open');
-            
+
             select.dispatchEvent(new Event('change', { bubbles: true }));
             select.dispatchEvent(new Event('input', { bubbles: true }));
           });
@@ -2645,7 +2116,7 @@
             const thumbHeight = Math.max((ch / sh) * ch, 24); // min 24px thumb
             const maxThumbTop = Math.max(ch - thumbHeight - 12, 0); // account for track offsets (6px top + 6px bottom = 12px)
             const thumbTop = Math.max(scrollPercent * maxThumbTop, 0);
-            
+
             scrollThumb.style.height = `${thumbHeight}px`;
             scrollThumb.style.transform = `translateY(${thumbTop}px)`;
           }
@@ -2712,12 +2183,13 @@
       });
     }
 
-    function toggleOtherField() {
-      const sel = document.getElementById('fieldSelect');
-      const inp = document.getElementById('fieldOtherInput');
-      if (sel && inp) {
-        inp.style.display = sel.value === 'Other' ? 'block' : 'none';
-        inp.required = sel.value === 'Other';
+    function toggleAgeCustomField() {
+      const under25Checked = document.getElementById('ag0')?.checked;
+      const inp = document.getElementById('ageCustomInput');
+      if (inp) {
+        inp.style.display = under25Checked ? 'block' : 'none';
+        inp.required = !!under25Checked;
+        if (!under25Checked) inp.value = '';
       }
     }
 
@@ -2741,6 +2213,11 @@
       }
     }
 
+    function validateEmailField(inp) {
+      if (!inp.value) { inp.style.borderColor = 'var(--border)'; return; }
+      inp.style.borderColor = inp.validity.valid ? '#10B981' : '#DC2626';
+    }
+
     // ── Skip helpers ────────────────────────────────────────────
     function markSkipBtn(btn) {
       if (!btn) return;
@@ -2751,12 +2228,10 @@
     // Disable and grey-out every input option inside the question container
     function disableQuestionOptions(questionEl) {
       if (!questionEl) return;
-      // Disable all interactive inputs
       questionEl.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(inp => {
         inp.disabled = true;
-        inp.checked = false;   // ensure nothing stays selected
+        inp.checked = false;
       });
-      // Grey out every option wrapper (.radio-group, .check-grid, .likert, etc.)
       ['radio-group', 'check-grid', 'likert', 'freq4', 'row-2'].forEach(cls => {
         const el = questionEl.querySelector('.' + cls);
         if (el) el.classList.add('options-disabled');
@@ -2804,33 +2279,6 @@
       saveStep(currentStep);
     }
 
-    function skipReligiosity() {
-      const btn = document.querySelector('.skip-btn[onclick*="skipReligiosity"]');
-      if (!btn) return;
-      const currentQ = btn.closest('.question');
-      if (!currentQ) return;
-
-      const isSkipped = btn.classList.contains('skipped');
-      if (isSkipped) {
-        currentQ.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(inp => {
-          inp.disabled = false;
-        });
-        ['radio-group', 'check-grid', 'likert', 'freq4', 'row-2'].forEach(cls => {
-          const el = currentQ.querySelector('.' + cls);
-          if (el) el.classList.remove('options-disabled');
-        });
-        btn.textContent = 'Skip this question';
-        btn.classList.remove('skipped');
-        data.religiosity = '';
-      } else {
-        disableQuestionOptions(currentQ);
-        markSkipBtn(btn);
-        scrollToNextQuestion(currentQ);
-        data.religiosity = '';
-      }
-      saveStep(currentStep);
-    }
-
     function skipSubstanceUse() {
       const btn = document.querySelector('.skip-btn[onclick*="skipSubstanceUse"]');
       if (!btn) return;
@@ -2863,124 +2311,20 @@
       saveStep(currentStep);
     }
 
-    // ============================================================
-    // Confetti engine (pure JS, no library)
-    // ============================================================
-    function launchConfetti() {
-      const canvas = document.getElementById('confetti-canvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      // Bright, non-purple palette
-      const colors = ['#0EA5E9', '#10B981', '#F59E0B', '#EF4444', '#F97316', '#06B6D4', '#34D399', '#FBBF24'];
-      const pieces = Array.from({ length: 160 }, () => ({
-        x: Math.random() * canvas.width,
-        y: -20 - Math.random() * 120,
-        w: 8 + Math.random() * 10,   // rectangle width
-        h: 4 + Math.random() * 5,    // rectangle height
-        vx: (Math.random() - 0.5) * 1.5,  // horizontal drift
-        vy: 2.5 + Math.random() * 3,       // fall speed
-        angle: Math.random() * Math.PI * 2,
-        spin: (Math.random() - 0.5) * 0.18,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      }));
-
-      let frame;
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        pieces.forEach(p => {
-          p.angle += p.spin;
-          p.x += p.vx;
-          p.y += p.vy;
-          ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate(p.angle);
-          ctx.fillStyle = p.color;
-          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-          ctx.restore();
-        });
-        if (pieces.some(p => p.y < canvas.height + 20)) {
-          frame = requestAnimationFrame(draw);
-        } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-      }
-      frame = requestAnimationFrame(draw);
-      setTimeout(() => { cancelAnimationFrame(frame); ctx.clearRect(0, 0, canvas.width, canvas.height); }, 5000);
-    }
-
-    // ============================================================
-    // Profile card reveal on thank-you screen
-    // ============================================================
-    function revealProfileCard(band, topFeatures) {
-      const badge = document.getElementById('profileBadge');
-      const label = document.getElementById('profileLabel');
-      const fill = document.getElementById('meterFill');
-      const subtext = document.getElementById('meterSubtext');
-      const tip = document.getElementById('profileTip');
-      if (!badge) return;
-
-      const config = {
-        High: {
-          cls: 'high', pct: '78%', label: 'High Stress', sub: 'Your scores suggest significant stress load.',
-          tip: 'The biggest driver of your stress appears to be your wellbeing scores. Try one small habit this week: 7 hrs sleep, a 20-min walk, or talking to someone you trust.'
-        },
-        Medium: {
-          cls: 'medium', pct: '48%', label: 'Moderate Stress', sub: 'Some stress signals detected: manageable with small changes.',
-          tip: 'You\'re in a manageable range! Small tweaks to sleep or exercise can make a big difference. StressEQ\'s AI Coach will suggest personalised actions when it launches.'
-        },
-        Low: {
-          cls: 'low', pct: '22%', label: 'Low Stress', sub: 'You\'re doing well: your scores look healthy!',
-          tip: 'Keep it up! Low stress is linked to better performance and wellbeing. Share StressEQ with friends who might need a check-in.'
-        },
-      };
-
-      const c = config[band] || config['Medium'];
-      badge.textContent = c.label;
-      badge.className = `level-badge ${c.cls}`;
-      label.textContent = c.label;
-      subtext.textContent = c.sub;
-      tip.textContent = c.tip;
-      fill.className = `stress-meter-fill meter-${c.cls}`;
-
-      // Animate meter after brief delay
-      setTimeout(() => { fill.style.width = c.pct; }, 300);
-    }
-
-    // ============================================================
-    // Share survey link
-    // ============================================================
-    function shareLink() {
-      const url = window.location.href.split('?')[0];
-      if (navigator.share) {
-        navigator.share({ title: 'StressEQ Student Survey', url });
-      } else {
-        navigator.clipboard.writeText(url).then(() => showToast('Link copied to clipboard!'));
-      }
-    }
-
-    // ============================================================
-    // Validation
-    // ============================================================
-
     function validateStep(step) {
       const stepEl = document.querySelector(`.step[data-step="${step}"]`);
       if (!stepEl) return true;
 
-      // Clear any previous error highlights in this step
       stepEl.querySelectorAll('.field-error').forEach(e => e.remove());
       stepEl.querySelectorAll('.input-error').forEach(e => e.classList.remove('input-error'));
 
-      const required = stepEl.querySelectorAll('input[required], select[required], textarea[required]');
+      const required = stepEl.querySelectorAll('input[required], select[required]');
       let firstError = null;
 
       for (const el of required) {
         if (el.type === 'radio') {
           const group = stepEl.querySelectorAll(`input[name="${el.name}"]`);
           if (![...group].some(r => r.checked)) {
-            // Highlight the whole radio group container
             const container = el.closest('.question') || el.parentElement;
             if (!container.querySelector('.field-error')) {
               const err = document.createElement('div');
@@ -3010,7 +2354,7 @@
           if (!container.querySelector('.field-error')) {
             const err = document.createElement('div');
             err.className = 'field-error';
-            err.textContent = '⚠️ Please fill in this field before continuing.';
+            err.textContent = '⚠️ Please select an option before continuing.';
             err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
             container.appendChild(err);
           }
@@ -3032,54 +2376,8 @@
         }
       }
 
-      // Step 3 — Height & Weight validation
-      if (step === 3) {
-        const heightSkipped = document.getElementById('heightUnknown')?.checked;
-        const weightSkipped = document.getElementById('weightUnknown')?.checked;
-
-        const isCmActive = document.querySelector('.unit-btn[data-target="height"][data-unit="cm"]')?.classList.contains('active');
-        const heightCm = parseFloat(document.getElementById('heightCmInput')?.value);
-        const heightFt = parseFloat(document.querySelector('[name="height_ft"]')?.value);
-        const hasHeightValue = isCmActive ? (heightCm >= 100) : (heightFt >= 3);
-
-        const isKgActive = document.querySelector('.unit-btn[data-target="weight"][data-unit="kg"]')?.classList.contains('active');
-        const weightKg = parseFloat(document.getElementById('weightKgInput')?.value);
-        const weightLb = parseFloat(document.getElementById('weightLbInput')?.value);
-        const hasWeightValue = isKgActive ? (weightKg >= 30) : (weightLb >= 65);
-
-        if (!heightSkipped && !hasHeightValue) {
-          const hq = document.getElementById('heightQuestion');
-          if (hq && !hq.querySelector('.field-error')) {
-            const err = document.createElement('div');
-            err.className = 'field-error';
-            err.textContent = '⚠️ Please enter your height, or tick "I don\'t know my height" to continue.';
-            err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
-            hq.appendChild(err);
-            hq.style.outline = '2px solid #DC2626';
-            hq.style.borderRadius = '10px';
-            hq.style.padding = '8px';
-          }
-          if (!firstError) firstError = document.getElementById('heightQuestion');
-        }
-
-        if (!weightSkipped && !hasWeightValue) {
-          const wq = document.getElementById('weightQuestion');
-          if (wq && !wq.querySelector('.field-error')) {
-            const err = document.createElement('div');
-            err.className = 'field-error';
-            err.textContent = '⚠️ Please enter your weight, or tick "I don\'t know my weight" to continue.';
-            err.style.cssText = 'color:#DC2626; font-size:0.82em; margin-top:6px; font-weight:600;';
-            wq.appendChild(err);
-            wq.style.outline = '2px solid #DC2626';
-            wq.style.borderRadius = '10px';
-            wq.style.padding = '8px';
-          }
-          if (!firstError) firstError = document.getElementById('weightQuestion');
-        }
-      }
-
-      // Step 4 — Substance Use checkbox validation
-      if (step === 4) {
+      // Step 6 Substance validation
+      if (step === 6) {
         const subList = document.querySelectorAll('input[name="substance_use"]:checked');
         if (subList.length === 0) {
           const container = document.getElementById('substanceUseQuestion');
@@ -3106,7 +2404,7 @@
         }
       }
 
-      // Step 10 — top picks - unrestricted selections allowed
+      // Step 9 Feedback top features - unrestricted selections allowed
 
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -3116,17 +2414,16 @@
     }
 
     // ============================================================
-    // Save / load progress (localStorage auto-save)
+    // Save / Load
     // ============================================================
     function saveStep(step) {
       const stepEl = document.querySelector(`.step[data-step="${step}"]`);
       if (!stepEl) return;
-      // Clear checkbox lists for this step to avoid accumulation
+
       stepEl.querySelectorAll('input[type="checkbox"]').forEach(el => {
-        if (el.name && el.name !== 'top') {
-          data[el.name] = [];
-        }
+        if (el.name && el.name !== 'top') data[el.name] = [];
       });
+
       stepEl.querySelectorAll('input, select, textarea').forEach(el => {
         if (el.type === 'radio' || el.type === 'checkbox') {
           if (el.checked) {
@@ -3141,14 +2438,7 @@
           data[el.name] = el.value;
         }
       });
-      // Approximate restful_sleep_nights from sleep_hours
-      if (step === 3) {
-        let sleepHrs = parseFloat(data.sleep_hours);
-        if (!isNaN(sleepHrs)) {
-          data.restful_sleep_nights = Math.max(0, Math.min(7, Math.round((sleepHrs - 4) * 1.75)));
-        }
-      }
-      // Collect "top" picks
+
       const top = [...document.querySelectorAll('#topPicks input:checked')].map(c => c.value);
       data.top_features = top.join(';');
 
@@ -3174,7 +2464,6 @@
       try {
         const saved = JSON.parse(raw);
         Object.assign(data, saved);
-        // Repopulate fields
         Object.entries(saved).forEach(([name, val]) => {
           if (Array.isArray(val)) {
             val.forEach(v => {
@@ -3194,25 +2483,19 @@
         });
         toggleUniversityCustomField();
         toggleCountryCustomField();
-        toggleYearOtherField();
-        toggleOtherField();
+        toggleAgeCustomField();
         syncCustomSelects();
-        // Restore GPA skip state before calling updateGpaScale
-        if (saved.gpa_scale === 'N/A') {
-          const cb = document.getElementById('gpaUnknown');
-          if (cb) { cb.checked = true; toggleGpaSkip(); }
-        } else {
-          updateGpaScale(); // restore correct max/placeholder after GPA scale radio is repopulated
-        }
       } catch (e) { }
     }
 
     let saveTimer;
     function flashSaved() {
       const el = document.getElementById('saveState');
-      el.textContent = 'Saving…';
-      clearTimeout(saveTimer);
-      saveTimer = setTimeout(() => { el.textContent = 'Auto-saved ✓'; }, 400);
+      if (el) {
+        el.textContent = 'Saving…';
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => { el.textContent = 'Auto-saved ✓'; }, 400);
+      }
     }
 
     // Auto-save on any input change + update live question counter
@@ -3220,41 +2503,17 @@
     document.addEventListener('change', () => { saveStep(currentStep); updateProgressBar(); });
 
     // ============================================================
-    // Submit + score computation
+    // Submit & Scoring
     // ============================================================
     async function submitForm() {
-      if (!validateStep(10)) return;
-      saveStep(10);
+      if (!validateStep(9)) return;
+      saveStep(9);
 
       // Prevent double-submission
       const btn = document.getElementById('submitBtn');
       if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
 
-      // Canonicalise height/weight — null when user skipped or left blank
-      data.height_cm = getCanonicalHeightCm() ?? '';
-      data.weight_kg = getCanonicalWeightKg() ?? '';
-
-      // Compute BMI only when both measurements are available
-      // If either is missing (skipped / unknown), BMI is recorded as empty string
-      const bmiVal = computeBMI(
-        data.height_cm === '' ? null : data.height_cm,
-        data.weight_kg === '' ? null : data.weight_kg
-      );
-      data.bmi = bmiVal !== null ? bmiVal : '';
-
-      // Canonicalise GPA to 4.0 scale for the ML model
-      let rawGpa = parseFloat(data.gpa);
-      if (!isNaN(rawGpa)) {
-        if (rawGpa > 10) {
-          data.gpa = ((rawGpa / 100) * 4.0).toFixed(2); // Convert Percentage to 4.0
-        } else if (rawGpa > 4.0) {
-          data.gpa = ((rawGpa / 10) * 4.0).toFixed(2); // Convert 10-point scale to 4.0
-        } else {
-          data.gpa = rawGpa.toFixed(2); // Already 4.0 scale
-        }
-      }
-
-      // Compute PHQ-9 (converting 1-4 scale back to clinical 0-3 for score)
+      // Compute clinical wellbeing metrics
       // Since item 9 was split into phq9 and phq10, we combine them via Math.max
       let phq = 0;
       for (let i = 1; i <= 8; i++) {
@@ -3264,16 +2523,12 @@
       const v9 = parseInt(data['phq9'] || 1);
       const v10 = parseInt(data['phq10'] || 1);
       phq += Math.max(v9 - 1, v10 - 1);
-      // Compute GAD-7 (converting 1-4 scale back to clinical 0-3 for score)
       let gad = 0;
       for (let i = 1; i <= 7; i++) {
         const v = parseInt(data[`gad${i}`] || 1);
         gad += isNaN(v) ? 0 : (v - 1);
       }
-      // Stress band — matches build_v5_dataset.py exactly (Kroenke 2001, Spitzer 2006)
-      // High     : PHQ-9 ≥ 10  OR  GAD-7 ≥ 10   → clinical threshold
-      // Medium   : PHQ-9 ≥  5  OR  GAD-7 ≥  5   → subclinical
-      // Low      : everything else                → minimal symptoms
+
       let band;
       if (phq >= 10 || gad >= 10) band = 'High';
       else if (phq >= 5 || gad >= 5) band = 'Medium';
@@ -3283,76 +2538,42 @@
       data.gad7_score = gad;
       data.stress_level = band;
 
-      // Map substance_use checkboxes back to individual columns for database compatibility
+      // Map substance use checkboxes to database columns
       const subList = data.substance_use || [];
       data.tobacco = subList.includes('Tobacco') ? 'Sometimes' : 'Never';
       data.alcohol = subList.includes('Alcohol') ? 'Sometimes' : 'Never';
       data.drugs = subList.includes('Drugs') ? 'Yes' : 'No';
 
-      // Compute substance_use_score (0-3)
       const tobaccoUsed = data.tobacco === 'Sometimes' ? 1 : 0;
       const alcoholUsed = data.alcohol === 'Sometimes' ? 1 : 0;
       const drugUsed = data.drugs === 'Yes' ? 1 : 0;
-      data.substance_use_score = tobaccoUsed + alcoholUsed + drugUsed;
+      data.substance_use_score = Math.min(2, tobaccoUsed + alcoholUsed + drugUsed); // Cohort limited to 0-2 in spec
 
-      // Compute chronic_illness tier — now a direct radio value 0-3
-      const chrEl = document.querySelector('input[name="chronic_illness_tier"]:checked');
-      data.chronic_illness_tier = chrEl ? parseInt(chrEl.value) : 0;
-
-      // (BMI already computed above via computeBMI — no duplicate needed)
+      // Calculate exercise days mapping (1-6 scale expected by model)
+      const exVal = parseInt(data.exercise_raw || 1);
+      data.physical_activity = exVal === 4 ? 4 : exVal === 5 ? 6 : exVal;
 
       data.submitted_at = new Date().toISOString();
-      data.response_id = 'seq-' + Math.random().toString(36).slice(2, 10).toUpperCase();
+      data.response_id = 'rf-' + Math.random().toString(36).slice(2, 10).toUpperCase();
 
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
-      // Show Verification loading screen (Step 11)
-      showStep(11);
+      showStep(10);
+      const ridEl = document.getElementById('thankYouResponseId');
+      if (ridEl) ridEl.textContent = data.response_id;
 
-      // Status messages sequence to show dynamic progress
-      const loaderText = document.getElementById('loaderText');
-      const messages = [
-        "Verifying your data...",
-        "Analyzing stress responses...",
-        "Calculating GAD-7 & PHQ-9 scores...",
-        "Finalizing your results..."
-      ];
-      messages.forEach((msg, idx) => {
-        setTimeout(() => {
-          if (loaderText) {
-            loaderText.style.opacity = 0;
-            setTimeout(() => {
-              loaderText.textContent = msg;
-              loaderText.style.opacity = 1;
-            }, 150);
-          }
-        }, idx * 800);
-      });
+      launchConfetti();
+      // revealProfileCard not called to match student survey layout
 
-      // Transition to final results and certificate step (Step 12) after 3.2s
-      setTimeout(() => {
-        showStep(12);
-
-        // Populate Anonymous Response ID
-        const ridEl = document.getElementById('thankYouResponseId');
-        if (ridEl) ridEl.textContent = data.response_id;
-
-        // Fire Confetti when entering the name screen to celebrate completion!
-        launchConfetti();
-      }, 3200);
-
-      // POST to Google Apps Script. Using application/x-www-form-urlencoded
-      // lets the script receive the JSON without triggering a CORS preflight
-      // AND lets us still drop mode:'no-cors' so genuine errors surface.
       if (SUBMIT_ENDPOINT) {
         try {
+          const payload = { ...data };
+          if (payload.age_group === 'Under 25' && payload.age_custom) {
+            payload.age_group = `Under 25 (${payload.age_custom})`;
+          }
           const formBody = new URLSearchParams();
-          formBody.append('payload', JSON.stringify(data));
-          await fetch(SUBMIT_ENDPOINT, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formBody
-          });
+          formBody.append('payload', JSON.stringify(payload));
+          await fetch(SUBMIT_ENDPOINT, { method: 'POST', mode: 'no-cors', body: formBody });
           const status = document.getElementById('submitStatus');
           if (status) {
             status.textContent = '✓ Response submitted successfully.';
@@ -3369,56 +2590,341 @@
           // Re-enable button so user can retry
           if (btn) { btn.disabled = false; btn.textContent = 'Submit ✓'; }
         }
+      } else {
+        const status = document.getElementById('submitStatus');
+        if (status) {
+          status.textContent = 'ℹ Responses stored locally.';
+          status.style.color = 'var(--muted)';
+        }
       }
     }
 
-    function goToCertificate() {
-      const nameInput = document.getElementById('certNameInput');
-      const name = nameInput ? nameInput.value.trim() : "";
-      if (!name) {
-        alert("Please enter your name for the certificate.");
-        return;
-      }
-      const response_id = data.response_id || "";
-      window.location.href = `StressEQ_Certificate.html?name=${encodeURIComponent(name)}&response_id=${encodeURIComponent(response_id)}`;
+    // ============================================================
+    // Profile card reveal
+    // ============================================================
+    function revealProfileCard(band, topFeatures) {
+      const badge = document.getElementById('profileBadge');
+      const label = document.getElementById('profileLabel');
+      const fill = document.getElementById('meterFill');
+      const subtext = document.getElementById('meterSubtext');
+      const tip = document.getElementById('profileTip');
+      if (!badge) return;
+
+      const config = {
+        High: {
+          cls: 'high', pct: '82%', label: 'High Stress / Burnout', sub: 'Your scores suggest significant stress load and occupational exhaustion.',
+          tip: 'Academic burnout is highly linked to institutional workload and leadership climate. Consider scheduling a dedicated off-grid block, discussing workload limits with your department head, or accessing your institution\'s EAP (Employee Assistance Program).'
+        },
+        Medium: {
+          cls: 'medium', pct: '52%', label: 'Moderate Stress', sub: 'Burnout signals detected: manageable with small lifestyle or workplace boundaries.',
+          tip: 'You are managing a substantial load. Building micro-boundaries (such as refusing non-essential committee requests and logging off by 6 PM) can help stabilize your energy reserves.'
+        },
+        Low: {
+          cls: 'low', pct: '18%', label: 'Low Stress', sub: 'Your scores indicate healthy work-life integration and low stress levels.',
+          tip: 'Excellent! You maintain a resilient buffer against institutional stress. Consider mentoring colleagues on workload balancing, and share StressEQ with peers who might need a wellness check.'
+        },
+      };
+
+      const c = config[band] || config['Medium'];
+      badge.textContent = c.label;
+      badge.className = `level-badge ${c.cls}`;
+      label.textContent = c.label;
+      subtext.textContent = c.sub;
+      tip.textContent = c.tip;
+      fill.className = `stress-meter-fill meter-${c.cls}`;
+
+      setTimeout(() => { fill.style.width = c.pct; }, 300);
     }
 
     // ============================================================
-    // CSV export
+    // Confetti Engine
     // ============================================================
-    function downloadCSV() {
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#4F46E5', '#10B981', '#EC4899', '#EF4444', '#F59E0B', '#06B6D4', '#34D399', '#FBBF24'];
+      const pieces = Array.from({ length: 160 }, () => ({
+        x: Math.random() * canvas.width,
+        y: -20 - Math.random() * 120,
+        w: 8 + Math.random() * 10,
+        h: 4 + Math.random() * 5,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: 2.5 + Math.random() * 3,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.18,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      }));
+
+      let frame;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.angle += p.spin;
+          p.x += p.vx;
+          p.y += p.vy;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        if (pieces.some(p => p.y < canvas.height + 20)) {
+          frame = requestAnimationFrame(draw);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      frame = requestAnimationFrame(draw);
+      setTimeout(() => { cancelAnimationFrame(frame); ctx.clearRect(0, 0, canvas.width, canvas.height); }, 5000);
+    }
+
+    function shareLink() {
+      const url = window.location.href.split('?')[0];
+      if (navigator.share) {
+        navigator.share({ title: 'StressEQ Faculty & Staff Survey', url });
+      } else {
+        navigator.clipboard.writeText(url).then(() => showToast('Link copied to clipboard!'));
+      }
+    }
+
+    // ============================================================
+    function downloadScaledCSV() {
+      const scaledData = {};
+
+      scaledData.response_id = data.response_id;
+      scaledData.submitted_at = data.submitted_at;
+      scaledData.university = data.university || '';
+      scaledData.country = data.country || '';
+
+      // Calculate target stress level (Low=1, Moderate=2, High=3)
+      scaledData.stress_level = data.stress_level === 'High' ? 3 : data.stress_level === 'Medium' ? 2 : 1;
+
+      // Demographics
+      if (data.age_group === 'Under 25') {
+        scaledData.age_group = 1;
+      } else {
+        scaledData.age_group = parseInt(data.age_group || 2);
+      }
+      scaledData.is_female = data.gender === 'Female' ? 1 : 0;
+      scaledData.is_male = data.gender === 'Male' ? 1 : 0;
+      scaledData.is_other = (data.gender !== 'Female' && data.gender !== 'Male') ? 1 : 0;
+      scaledData.is_faculty = data.role === 'Faculty' ? 1 : 0;
+      scaledData.dependent_children = parseInt(data.dependent_children || 0);
+      scaledData.relationship_status = parseInt(data.relationship_status || 5);
+
+      const therapyMap = {
+        'Yes, currently receiving support': 1,
+        'Yes, received support in the past': 2,
+        'No, but I have considered it': 3,
+        'No, and I have never felt the need': 4,
+        'Prefer not to say': 5
+      };
+      scaledData.therapy_history = therapyMap[data.therapy_history] || 5;
+
+      const raceMap = {
+        'Asian': 3, '3': 3,
+        'Black': 2, '2': 2,
+        'White': 4, '4': 4,
+        'Other': 5, '5': 5,
+        'Prefer not to say': 5,
+        'Hispanic': 1, '1': 1
+      };
+      scaledData.race = raceMap[data.race] || 5;
+
+      // Tenure Status
+      scaledData.tenure_status = scaledData.is_faculty ? parseInt(data.tenure_status || 4) : 0;
+
+      // Occupational
+      scaledData.work_exhaustion = parseInt(data.work_exhaustion || 1);
+      scaledData.emotional_toll = parseInt(data.emotional_toll || 1);
+      scaledData.productivity_loss = parseInt(data.productivity_loss || 0);
+
+      // Burnout Drivers
+      scaledData.burnout_discrimination = parseInt(data.burnout_discrimination || 1);
+      scaledData.burnout_anxiety = parseInt(data.burnout_anxiety || 1);
+      scaledData.burnout_grief = parseInt(data.burnout_grief || 1);
+      scaledData.burnout_financial_stress = parseInt(data.burnout_financial_stress || 1);
+      scaledData.burnout_sleep_deprivation = parseInt(data.burnout_sleep_deprivation || 1);
+
+      // Climate
+      scaledData.institutional_care = parseInt(data.institutional_care || 3);
+      scaledData.hostile_work_environment = parseInt(data.hostile_work_environment || 3);
+      scaledData.departmental_hostile_environment = parseInt(data.departmental_hostile_environment || 3);
+      scaledData.adequate_mh_services = parseInt(data.adequate_mh_services || 3);
+      scaledData.antiracism_climate = parseInt(data.antiracism_climate || 3);
+      scaledData.academic_freedom = parseInt(data.academic_freedom || 3);
+      scaledData.campus_belonging = parseInt(data.campus_belonging || 3);
+
+      // Health & Lifestyle
+      const exVal = parseInt(data.exercise_raw || 1);
+      scaledData.physical_activity = exVal === 4 ? 4 : exVal === 5 ? 6 : exVal;
+
+      // Substance use score 0-2 (tobacco used + alcohol used + drug used, capped at 2)
+      const subList = data.substance_use || [];
+      const tobaccoUsed = subList.includes('Tobacco') ? 1 : 0;
+      const alcoholUsed = subList.includes('Alcohol') ? 1 : 0;
+      const drugUsed = subList.includes('Drugs') ? 1 : 0;
+      scaledData.substance_use_score = Math.min(2, tobaccoUsed + alcoholUsed + drugUsed);
+
+      scaledData.chronic_illness = parseInt(data.chronic_illness || 0);
+
+      // PHQ-9 & GAD-7 Items
+      for (let i = 1; i <= 10; i++) {
+        scaledData[`phq${i}`] = parseInt(data[`phq${i}`] || 1);
+      }
+      scaledData.phq9_score = parseInt(data.phq9_score || 0);
+      for (let i = 1; i <= 7; i++) {
+        scaledData[`gad${i}`] = parseInt(data[`gad${i}`] || 1);
+      }
+      scaledData.gad7_score = parseInt(data.gad7_score || 0);
+
+      // Feedback & email
+      scaledData.would_use = data.would_use || '';
+      scaledData.top_features = data.top_features || '';
+      scaledData.email = data.email || '';
+
       const cols = [
-        'response_id', 'submitted_at',
-        // provenance
-        'university', 'country',
-        // demographics
-        'age', 'gender', 'is_international', 'race', 'education_level', 'field_of_study',
-        // academic
-        'gpa', 'gpa_scale', 'academic_pressure', 'study_hours',
-        // sleep / body
-        'sleep_hours', 'restful_sleep_nights', 'physical_activity', 'height_cm', 'weight_kg', 'bmi',
-        // substance
-        'tobacco', 'alcohol', 'drugs', 'substance_use_score',
-        // belonging / SES
-        'belonging_score', 'parent_education', 'financial_strain',
-        // chronic
-        'chronic_illness_tier',
-        // relationship & religion
-        'relationship_status', 'therapy_history', 'religion', 'religiosity',
-        // PHQ
+        'stress_level', 'age_group', 'is_female', 'is_male', 'is_other', 'is_faculty',
+        'dependent_children', 'relationship_status', 'therapy_history', 'race', 'tenure_status',
+        'work_exhaustion', 'emotional_toll', 'productivity_loss',
+        'burnout_discrimination', 'burnout_anxiety', 'burnout_grief', 'burnout_financial_stress', 'burnout_sleep_deprivation',
+        'institutional_care', 'physical_activity', 'campus_belonging',
+        'substance_use_score', 'chronic_illness', 'hostile_work_environment', 'departmental_hostile_environment', 'adequate_mh_services',
+        'antiracism_climate', 'academic_freedom',
         'phq1', 'phq2', 'phq3', 'phq4', 'phq5', 'phq6', 'phq7', 'phq8', 'phq9', 'phq10', 'phq9_score',
-        // GAD
         'gad1', 'gad2', 'gad3', 'gad4', 'gad5', 'gad6', 'gad7', 'gad7_score',
-        // target
-        'stress_level',
-        // feedback
-        'would_use', 'top_features', 'missing',
-        // optional contact
-        'email'
+        'university', 'country', 'response_id', 'submitted_at', 'would_use', 'top_features', 'email'
       ];
+
+      triggerCSVDownload(scaledData, cols, `stresseq_faculty_scaled_${Date.now()}.csv`);
+    }
+
+    function downloadUnscaledCSV() {
+      const unscaledData = {};
+
+      unscaledData.response_id = data.response_id;
+      unscaledData.submitted_at = data.submitted_at;
+      unscaledData.university = data.university || '';
+      unscaledData.country = data.country || '';
+
+      // Target
+      unscaledData.stress_level = data.stress_level === 'High' ? 'High' : data.stress_level === 'Medium' ? 'Medium' : 'Low';
+
+      // Demographics & Role
+      const ageLabels = { 1: 'Under 25', 2: '25-34', 3: '35-44', 4: '45-54', 5: '55-64', 6: '65+' };
+      if (data.age_group === 'Under 25') {
+        unscaledData.age_group = data.age_custom ? `Under 25 (${data.age_custom})` : 'Under 25';
+      } else {
+        unscaledData.age_group = ageLabels[data.age_group] || '25-34';
+      }
+      unscaledData.gender = data.gender || 'Other';
+      unscaledData.role = data.role || 'Staff';
+      unscaledData.dependent_children = data.dependent_children ? `${data.dependent_children} children` : '0 children';
+
+      const relshipLabels = { 1: 'Single', 2: 'In a Relationship', 3: 'Married', 4: 'Divorced / Widowed', 5: 'Other' };
+      unscaledData.relationship_status = relshipLabels[data.relationship_status] || 'Single';
+      unscaledData.therapy_history = data.therapy_history || 'Prefer not to say';
+
+      const raceUnscaledMap = {
+        'Asian': 'Asian', '3': 'Asian',
+        'Black': 'Black', '2': 'Black',
+        'White': 'White', '4': 'White',
+        'Other': 'Other', '5': 'Other',
+        'Prefer not to say': 'Other',
+        'Hispanic': 'Hispanic', '1': 'Hispanic'
+      };
+      unscaledData.race = raceUnscaledMap[data.race] || 'Other';
+
+      // Tenure Status
+      const isFaculty = data.role === 'Faculty';
+      const tenureLabels = { 1: 'Tenured', 2: 'Tenure Track', 3: 'Non-Tenure Track', 4: 'Not Applicable' };
+      unscaledData.tenure_status = isFaculty ? (tenureLabels[data.tenure_status] || 'Not Applicable') : 'Staff (Not Applicable)';
+
+      // Burnout
+      const freqLabels = { 1: 'Never', 2: 'Rarely', 3: 'Sometimes', 4: 'Often', 5: 'Always' };
+      unscaledData.work_exhaustion = freqLabels[data.work_exhaustion] || 'Never';
+      unscaledData.emotional_toll = freqLabels[data.emotional_toll] || 'Never';
+
+      const prodLabels = { 0: 'Not Applicable', 1: 'Never', 2: 'Rarely', 3: 'Sometimes' };
+      unscaledData.productivity_loss = prodLabels[data.productivity_loss] || 'Not Applicable';
+
+      const boLabels = { 1: 'Not a factor', 2: 'Minor factor', 3: 'Major factor' };
+      unscaledData.burnout_discrimination = boLabels[data.burnout_discrimination] || 'Not a factor';
+      unscaledData.burnout_financial_stress = boLabels[data.burnout_financial_stress] || 'Not a factor';
+      unscaledData.burnout_sleep_deprivation = boLabels[data.burnout_sleep_deprivation] || 'Not a factor';
+      unscaledData.burnout_anxiety = boLabels[data.burnout_anxiety] || 'Not a factor';
+      unscaledData.burnout_grief = boLabels[data.burnout_grief] || 'Not a factor';
+
+      // Climate
+      const likertLabels5 = { 1: 'Strongly Disagree', 2: 'Disagree', 3: 'Neutral', 4: 'Agree', 5: 'Strongly Agree', 6: 'Strongly Agree' };
+      unscaledData.institutional_care = likertLabels5[data.institutional_care] || 'Neutral';
+      unscaledData.campus_belonging = likertLabels5[data.campus_belonging] || 'Neutral';
+
+      const likertLabels6 = { 1: 'Strongly Disagree', 2: 'Disagree', 3: 'Somewhat Disagree', 4: 'Somewhat Agree', 5: 'Agree', 6: 'Strongly Agree' };
+      unscaledData.hostile_work_environment = likertLabels6[data.hostile_work_environment] || 'Somewhat Disagree';
+      unscaledData.departmental_hostile_environment = likertLabels6[data.departmental_hostile_environment] || 'Somewhat Disagree';
+      unscaledData.adequate_mh_services = likertLabels6[data.adequate_mh_services] || 'Somewhat Agree';
+      unscaledData.antiracism_climate = likertLabels6[data.antiracism_climate] || 'Somewhat Disagree';
+      unscaledData.academic_freedom = likertLabels6[data.academic_freedom] || 'Somewhat Disagree';
+
+      // Health & Lifestyle
+      unscaledData.exercise_raw = parseInt(data.exercise_raw || 1);
+      const exLabels = { 1: '0 days', 2: '1-2 days', 3: '3-4 days', 4: '5-6 days', 5: '7 days' };
+      unscaledData.physical_activity = exLabels[data.exercise_raw] || '0 days';
+
+      const subList = data.substance_use || [];
+      unscaledData.tobacco = subList.includes('Tobacco') ? 'Sometimes' : 'Never';
+      unscaledData.alcohol = subList.includes('Alcohol') ? 'Sometimes' : 'Never';
+      unscaledData.drugs = subList.includes('Drugs') ? 'Yes' : 'No';
+      const susScore = (unscaledData.tobacco === 'Sometimes' ? 1 : 0) + (unscaledData.alcohol === 'Sometimes' ? 1 : 0) + (unscaledData.drugs === 'Yes' ? 1 : 0);
+      const susLabels = { 0: '0 (None)', 1: '1 (Mild)', 2: '2 (Moderate)', 3: '3 (Severe)' };
+      unscaledData.substance_use_score = susLabels[susScore] || '0 (None)';
+
+      const chrLabels = { 0: 'None', 1: 'Yes' };
+      unscaledData.chronic_illness = chrLabels[data.chronic_illness] || 'None';
+
+      // PHQ-9 & GAD-7 Items
+      const freq4Labels = { 1: 'Not at all', 2: 'A few days', 3: 'More than half the days', 4: 'Almost every day' };
+      for (let i = 1; i <= 10; i++) {
+        const val = parseInt(data[`phq${i}`] || 1);
+        unscaledData[`phq${i}`] = freq4Labels[val] || 'Not at all';
+      }
+      unscaledData.phq9_score = parseInt(data.phq9_score || 0);
+      for (let i = 1; i <= 7; i++) {
+        const val = parseInt(data[`gad${i}`] || 1);
+        unscaledData[`gad${i}`] = freq4Labels[val] || 'Not at all';
+      }
+      unscaledData.gad7_score = parseInt(data.gad7_score || 0);
+
+      // Feedback & email
+      unscaledData.would_use = data.would_use || '';
+      unscaledData.top_features = data.top_features || '';
+      unscaledData.email = data.email || '';
+
+      const cols = [
+        'response_id', 'submitted_at', 'university', 'country',
+        'age_group', 'gender', 'role', 'tenure_status', 'dependent_children', 'race', 'relationship_status', 'therapy_history',
+        'work_exhaustion', 'emotional_toll', 'productivity_loss',
+        'burnout_discrimination', 'burnout_anxiety', 'burnout_grief', 'burnout_financial_stress', 'burnout_sleep_deprivation',
+        'institutional_care', 'campus_belonging', 'hostile_work_environment', 'departmental_hostile_environment', 'adequate_mh_services', 'antiracism_climate', 'academic_freedom',
+        'exercise_raw', 'physical_activity', 'chronic_illness', 'tobacco', 'alcohol', 'drugs', 'substance_use_score',
+        'phq1', 'phq2', 'phq3', 'phq4', 'phq5', 'phq6', 'phq7', 'phq8', 'phq9', 'phq10', 'phq9_score',
+        'gad1', 'gad2', 'gad3', 'gad4', 'gad5', 'gad6', 'gad7', 'gad7_score',
+        'stress_level', 'would_use', 'top_features', 'email'
+      ];
+
+      triggerCSVDownload(unscaledData, cols, `stresseq_faculty_unscaled_${Date.now()}.csv`);
+    }
+
+    function triggerCSVDownload(record, cols, filename) {
       const header = cols.join(',');
       const row = cols.map(c => {
-        let v = data[c];
+        let v = record[c];
         if (v === undefined || v === null) v = '';
         v = String(v).replace(/"/g, '""');
         return /[",\n]/.test(v) ? `"${v}"` : v;
@@ -3429,7 +2935,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `stresseq_response_${Date.now()}.csv`;
+      a.download = filename;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
