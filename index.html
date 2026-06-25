@@ -858,6 +858,11 @@
       }
     }
 
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     /* Radio card pop on select */
     .radio-card input:checked+label {
       transform: scale(1.04);
@@ -1896,30 +1901,56 @@
       </section>
 
       <section class="step" data-step="11">
-        <div class="card" style="text-align:center; border-top:4px solid #10B981;">
-          <div style="font-size:3em; margin-bottom:8px;">🎉</div>
-          <h1 style="color:var(--ok); font-size:1.6em;">You're amazing: thank you!</h1>
-          <p class="lead" style="color:var(--text); margin-top:8px; font-size:1em;">
-            Your response has been recorded and will directly improve StressEQ's accuracy.
+        <div class="card" style="text-align:center; padding: 48px 24px; border-top:4px solid var(--primary);">
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;">
+            <div style="width:64px; height:64px; border:5px solid rgba(2, 132, 199, 0.15); border-left-color:var(--primary); border-radius:50%; animation:spin 1s linear infinite;"></div>
+            <div id="loaderText" style="font-size:1.25em; font-weight:700; color:var(--primary); transition: opacity 0.3s; min-height: 36px;">Verifying your data...</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="step" data-step="12">
+        <div class="card" style="border-top:4px solid var(--primary);">
+          <div style="text-align:center; font-size:3em; margin-bottom:8px;">🎉</div>
+          <h1 style="text-align:center; color:var(--primary); font-size:1.60em; margin-bottom: 8px;">Thank You!</h1>
+          <p class="lead" style="text-align:center; color:var(--text); margin-top:8px; font-size:1em;">
+            Your response has been verified and recorded successfully.
           </p>
 
+          <!-- Certificate Generator Area -->
+          <div style="margin: 24px 0; border: 1.5px solid var(--border); border-radius: 16px; padding: 24px; background: var(--soft); text-align: left;">
+            <h2 style="font-size: 1.15em; color: var(--text); margin-bottom: 8px;">🎓 Get Your Certificate</h2>
+            <p style="font-size: 0.88em; color: var(--muted); margin-bottom: 16px;">
+              Please write your name below for your certificate of participation.
+            </p>
+            
+            <div style="display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap;">
+              <div style="flex: 1 1 300px; max-width: 400px;">
+                <label for="certNameInput" style="display: block; font-weight: 600; font-size: 0.9em; margin-bottom: 8px; color: var(--text);">Participant Name</label>
+                <input type="text" id="certNameInput" placeholder="Your Name" style="width: 100%; box-sizing: border-box;" required />
+              </div>
+              <button type="button" class="btn-primary" onclick="goToCertificate()">Get Certificate →</button>
+            </div>
+          </div>
+
           <div
-            style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6;">
+            style="background:var(--soft); border-radius:12px; padding:16px; margin:20px 0; font-size:0.88em; color:var(--muted); line-height:1.6; text-align: left;">
             🔒 Your answers are stored anonymously under a random ID: never linked to your name.<br>
             📊 Results will be used to validate the StressEQ AI and shared only as group statistics in our FYP.
           </div>
 
           <div
-            style="background:var(--soft); border-radius:12px; padding:12px 16px; margin:12px 0; font-size:0.83em; color:var(--muted);">
+            style="background:var(--soft); border-radius:12px; padding:12px 16px; margin:12px 0; font-size:0.83em; color:var(--muted); text-align:center;">
             Anonymous ID: <strong id="thankYouResponseId" style="color:var(--text); word-break:break-all;"></strong>
           </div>
 
-          <button class="share-btn" onclick="shareLink()" style="margin-top:8px;">Share survey with a friend 🚀</button>
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:8px;">
+            <button class="share-btn" onclick="shareLink()" style="margin-top:0;">Share survey with a friend 🚀</button>
+          </div>
 
-          <p style="color:var(--muted); font-size:0.88em; margin-top:20px;" id="submitStatus"></p>
+          <p style="text-align:center; color:var(--muted); font-size:0.88em; margin-top:20px;" id="submitStatus"></p>
 
-          <p style="color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response
-            counts.</p>
+          <p style="text-align:center; color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response counts.</p>
         </div>
       </section>
 
@@ -1938,7 +1969,7 @@
     // State + step navigation
     // ============================================================
     let currentStep = 0;
-    const totalSteps = 12;
+    const totalSteps = 13;
     const data = {};
     const STORAGE_KEY = 'stresseq_student_v1';
 
@@ -2350,7 +2381,8 @@
       8: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#BAE6FD' },
       9: { accent: '#EA580C', grad1: '#FFF7ED', grad2: '#FFEDD5' },
       10: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
-      11: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
+      11: { accent: '#0284C7', grad1: '#F0F9FF', grad2: '#E0F2FE' },
+      12: { accent: '#16A34A', grad1: '#F0FDF4', grad2: '#DCFCE7' },
     };
 
     // ── Toast notifications ──────────────────────────────────────
@@ -3246,18 +3278,44 @@
       // (BMI already computed above via computeBMI — no duplicate needed)
 
       data.submitted_at = new Date().toISOString();
-      data.response_id = 'r_' + Math.random().toString(36).slice(2, 10) + '_' + Date.now();
+      data.response_id = 'seq-' + Math.random().toString(36).slice(2, 10).toUpperCase();
 
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
-      // Move to thank-you screen immediately (don't make user wait on network)
+      // Show Verification loading screen (Step 11)
       showStep(11);
-      const ridEl = document.getElementById('thankYouResponseId');
-      if (ridEl) ridEl.textContent = data.response_id;
 
-      // 🎉 Gamification reward
-      launchConfetti();
-      setTimeout(() => revealProfileCard(data.stress_level, data.top_features), 500);
+      // Status messages sequence to show dynamic progress
+      const loaderText = document.getElementById('loaderText');
+      const messages = [
+        "Verifying your data...",
+        "Analyzing stress responses...",
+        "Calculating GAD-7 & PHQ-9 scores...",
+        "Finalizing your results..."
+      ];
+      messages.forEach((msg, idx) => {
+        setTimeout(() => {
+          if (loaderText) {
+            loaderText.style.opacity = 0;
+            setTimeout(() => {
+              loaderText.textContent = msg;
+              loaderText.style.opacity = 1;
+            }, 150);
+          }
+        }, idx * 800);
+      });
+
+      // Transition to final results and certificate step (Step 12) after 3.2s
+      setTimeout(() => {
+        showStep(12);
+
+        // Populate Anonymous Response ID
+        const ridEl = document.getElementById('thankYouResponseId');
+        if (ridEl) ridEl.textContent = data.response_id;
+
+        // Fire Confetti when entering the name screen to celebrate completion!
+        launchConfetti();
+      }, 3200);
 
       // POST to Google Apps Script. Using application/x-www-form-urlencoded
       // lets the script receive the JSON without triggering a CORS preflight
@@ -3288,6 +3346,17 @@
           if (btn) { btn.disabled = false; btn.textContent = 'Submit ✓'; }
         }
       }
+    }
+
+    function goToCertificate() {
+      const nameInput = document.getElementById('certNameInput');
+      const name = nameInput ? nameInput.value.trim() : "";
+      if (!name) {
+        alert("Please enter your name for the certificate.");
+        return;
+      }
+      const response_id = data.response_id || "";
+      window.location.href = `StressEQ_Certificate.html?name=${encodeURIComponent(name)}&response_id=${encodeURIComponent(response_id)}`;
     }
 
     // ============================================================
