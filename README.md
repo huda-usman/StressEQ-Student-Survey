@@ -3,14 +3,14 @@
   <p align="center">
     <img src="https://img.icons8.com/fluency/120/brain.png" width="90" alt="StressEQ Brain Logo"/>
   </p>
-  <h1 align="center" style="color: #6D28D9;">🧠 StressEQ: Student Survey</h1>
+  <h1 align="center">🧠 StressEQ: Student Survey</h1>
   <p align="center"><b>AI-Powered Student Stress Detection & Burnout Forecaster</b></p>
   <p align="center"><i>An intelligent, anonymous platform designed for university students to report stress factors, forecast burnout risk, and access personalized mental health support.</i></p>
   
   <p align="center">
-    <a href="#"><img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=github&logoColor=white&color=8B5CF6" alt="Status"/></a>
-    <a href="#"><img src="https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS-blue?style=for-the-badge&logo=javascript&logoColor=white&color=7C3AED" alt="Stack"/></a>
-    <a href="#"><img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge&color=A78BFA" alt="License"/></a>
+    <a href="#"><img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=github&logoColor=white&color=059669" alt="Status"/></a>
+    <a href="#"><img src="https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS-blue?style=for-the-badge&logo=javascript&logoColor=white&color=0284C7" alt="Stack"/></a>
+    <a href="#"><img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge&color=4B5563" alt="License"/></a>
   </p>
   <br />
 </div>
@@ -75,8 +75,8 @@ Built by **[huda-usman](https://github.com/huda-usman)** and **[Khansa972](https
 ---
 
 <div align="center">
-  <h3 style="color: #7C3AED;">✨ Empowering Academic Wellbeing ✨</h3>
+  <h3>✨ Empowering Academic Wellbeing ✨</h3>
   <p><i>Validating AI models to detect rising stress levels and recommend personalized interventions before burnout.</i></p>
   <br/>
-  <sub style="color: #8B5CF6;">Made with care for student mental health 💙</sub>
+  <sub>Made with care for student mental health 💙</sub>
 </div>
