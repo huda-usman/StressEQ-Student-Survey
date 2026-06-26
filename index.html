@@ -2350,6 +2350,11 @@
       updateProgressBar();
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
+      // Save step to localStorage if it's a valid filling step (0 to 10)
+      if (n < 11) {
+        localStorage.setItem(STORAGE_KEY + '_step', n);
+      }
+
       // Show milestone toast when entering a new section
       if (n > 0 && STEP_TOASTS && STEP_TOASTS[n]) {
         setTimeout(() => showToast(STEP_TOASTS[n]), 400);
@@ -3119,6 +3124,8 @@
     // Save / load progress (localStorage auto-save)
     // ============================================================
     function saveStep(step) {
+      // Don't save progress on the loading/final screens (steps 11 and 12)
+      if (step >= 11) return;
       const stepEl = document.querySelector(`.step[data-step="${step}"]`);
       if (!stepEl) return;
       // Clear checkbox lists for this step to avoid accumulation
@@ -3203,6 +3210,15 @@
           if (cb) { cb.checked = true; toggleGpaSkip(); }
         } else {
           updateGpaScale(); // restore correct max/placeholder after GPA scale radio is repopulated
+        }
+
+        // Restore last active step
+        const savedStep = localStorage.getItem(STORAGE_KEY + '_step');
+        if (savedStep !== null) {
+          const stepNum = parseInt(savedStep, 10);
+          if (!isNaN(stepNum) && stepNum >= 0 && stepNum < 11) {
+            showStep(stepNum);
+          }
         }
       } catch (e) { }
     }
@@ -3299,12 +3315,8 @@
       const chrEl = document.querySelector('input[name="chronic_illness_tier"]:checked');
       data.chronic_illness_tier = chrEl ? parseInt(chrEl.value) : 0;
 
-      // (BMI already computed above via computeBMI — no duplicate needed)
-
       data.submitted_at = new Date().toISOString();
       data.response_id = 'seq-' + Math.random().toString(36).slice(2, 10).toUpperCase();
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 
       // Show Verification loading screen (Step 11)
       showStep(11);
@@ -3329,16 +3341,14 @@
         }, idx * 800);
       });
 
+      let animationDone = false;
+      let submissionDone = false;
+      let submissionError = null;
+
       // Transition to final results and certificate step (Step 12) after 3.2s
       setTimeout(() => {
-        showStep(12);
-
-        // Populate Anonymous Response ID
-        const ridEl = document.getElementById('thankYouResponseId');
-        if (ridEl) ridEl.textContent = data.response_id;
-
-        // Fire Confetti when entering the name screen to celebrate completion!
-        launchConfetti();
+        animationDone = true;
+        checkAndTransition();
       }, 3200);
 
       // POST to Google Apps Script. Using application/x-www-form-urlencoded
@@ -3353,21 +3363,41 @@
             mode: 'no-cors',
             body: formBody
           });
+          submissionDone = true;
+          checkAndTransition();
+        } catch (e) {
+          submissionError = e;
+          // Return to Step 10 on error so user can retry
+          showStep(10);
+          showToast('⚠️ Network issue: please check your connection and retry.');
+          // Re-enable button so user can retry
+          if (btn) { btn.disabled = false; btn.textContent = 'Submit ✓'; }
+        }
+      } else {
+        submissionDone = true;
+        checkAndTransition();
+      }
+
+      function checkAndTransition() {
+        if (animationDone && submissionDone) {
+          showStep(12);
+
+          // Populate Anonymous Response ID
+          const ridEl = document.getElementById('thankYouResponseId');
+          if (ridEl) ridEl.textContent = data.response_id;
+
+          // Fire Confetti when entering the name screen to celebrate completion!
+          launchConfetti();
+
+          // Clear saved progress only after successful submission
+          localStorage.removeItem(STORAGE_KEY);
+          localStorage.removeItem(STORAGE_KEY + '_step');
+
           const status = document.getElementById('submitStatus');
           if (status) {
             status.textContent = '✓ Response submitted successfully.';
             status.style.color = '#38A169';
           }
-          // Clear saved progress so a refresh starts a fresh form
-          localStorage.removeItem(STORAGE_KEY);
-        } catch (e) {
-          const status = document.getElementById('submitStatus');
-          if (status) {
-            status.textContent = '⚠ Network issue: please refresh and re-submit if possible.';
-            status.style.color = '#DD6B20';
-          }
-          // Re-enable button so user can retry
-          if (btn) { btn.disabled = false; btn.textContent = 'Submit ✓'; }
         }
       }
     }
