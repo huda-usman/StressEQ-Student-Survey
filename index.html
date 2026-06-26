@@ -844,6 +844,7 @@
     .step.active {
       display: block;
       animation: slideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+      will-change: transform, opacity;
     }
 
     @keyframes slideIn {
@@ -1904,7 +1905,7 @@
       <section class="step" data-step="11">
         <div class="card" style="text-align:center; padding: 48px 24px; border-top:4px solid var(--primary);">
           <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;">
-            <div style="width:64px; height:64px; border:5px solid rgba(2, 132, 199, 0.15); border-left-color:var(--primary); border-radius:50%; animation:spin 1s linear infinite;"></div>
+            <div style="width:64px; height:64px; border:5px solid rgba(2, 132, 199, 0.15); border-left-color:var(--primary); border-radius:50%; animation:spin 1s linear infinite; will-change: transform;"></div>
             <div id="loaderText" style="font-size:1.25em; font-weight:700; color:var(--primary); transition: opacity 0.3s; min-height: 36px;">Verifying your data...</div>
           </div>
         </div>
@@ -2499,10 +2500,17 @@
       if (currentStep === 0) {
         if (pctEl) pctEl.textContent = '';
         if (counterEl) counterEl.textContent = 'Start the survey';
-      } else if (currentStep >= totalSteps - 1) {
-        if (pctEl) pctEl.textContent = '100% complete';
-        if (counterEl) counterEl.textContent = `All ${TOTAL_QUESTIONS} of ${TOTAL_QUESTIONS} answered ✓`;
+      } else if (currentStep >= totalSteps - 2) {
+        const progHeader = document.querySelector('.progress-header');
+        const progWrap = document.querySelector('.progress-wrap');
+        if (progHeader) progHeader.style.display = 'none';
+        if (progWrap) progWrap.style.display = 'none';
       } else {
+        const progHeader = document.querySelector('.progress-header');
+        const progWrap = document.querySelector('.progress-wrap');
+        if (progHeader) progHeader.style.display = 'flex';
+        if (progWrap) progWrap.style.display = 'block';
+
         const range = STEP_Q_RANGE[currentStep];
         if (pctEl) pctEl.textContent = `${pct}% complete`;
         if (counterEl) {
