@@ -1,4 +1,4 @@
-# 🧠 StressEQ — Student Survey
+# 🧠 StressEQ: Student Survey
 
 > An AI-powered initiative to detect stress patterns, forecast burnout risk, and help students take control of their mental wellbeing.
 
