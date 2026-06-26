@@ -26,3 +26,26 @@ The survey integrates **clinically validated screeners (PHQ-9, GAD-7)** alongsid
 - 🏆 **Certificate of Participation:** auto-generated, downloadable PNG certificate for each respondent
 - 📱 **Fully Responsive:** optimized for both desktop and mobile devices
 - 🔒 **Anonymous by Design:** no names linked to data; optional email opt-in only
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer       | Technology              |
+|-------------|--------------------------|
+| Markup      | HTML5                    |
+| Styling     | CSS3 (custom, no framework) |
+| Logic       | Vanilla JavaScript        |
+| Storage     | Browser `localStorage`    |
+| Export      | `html2canvas` (certificate PNG generation) |
+
+---
+
+## 🔐 Privacy & Ethics
+
+- All responses are stored under a randomized anonymous ID
+- No personally identifiable data is required to complete the survey
+- Sensitive questions (e.g. substance use, mental health) include skip options
+- Crisis-related responses trigger supportive resource messaging, not penalization
+
+---
