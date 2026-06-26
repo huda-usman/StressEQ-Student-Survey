@@ -10,7 +10,7 @@
 
 ## 📋 Overview
 
-**StressEQ** is a multi-step web survey designed for university students to anonymously report academic, lifestyle, and wellbeing factors that contribute to stress. The collected data validates an AI model that detects rising stress levels and recommends personalized interventions — before burnout sets in.
+**StressEQ** is a multi-step web survey designed for university students to anonymously report academic, lifestyle, and wellbeing factors that contribute to stress. The collected data validates an AI model that detects rising stress levels and recommends personalized interventions before burnout sets in.
 
 The survey integrates **clinically validated screeners (PHQ-9, GAD-7)** alongside lifestyle and demographic questions, wrapped in a clean, gamified, mobile-friendly UI.
 
@@ -49,3 +49,11 @@ The survey integrates **clinically validated screeners (PHQ-9, GAD-7)** alongsid
 - Crisis-related responses trigger supportive resource messaging, not penalization
 
 ---
+
+## 🤝 Contributing
+
+This is a Final Year Project (FYP) built to support AI research into student stress detection. 
+
+---
+
+<p align="center">Made with care for student mental health 💙</p>
