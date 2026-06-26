@@ -84,9 +84,40 @@
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--primary), var(--accent));
-      width: 0%;
+      width: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
       border-radius: 100px;
-      transition: width 0.5s cubic-bezier(.4, 0, .2, 1);
+      transition: transform 0.5s cubic-bezier(.4, 0, .2, 1);
+      will-change: transform;
+    }
+
+    #certMotivator {
+      font-size: 0.95em;
+      color: var(--primary);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.4;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      background: var(--soft);
+      border-radius: 12px;
+      border: 1.5px dashed var(--border);
+      opacity: 0;
+      max-height: 0;
+      padding: 0 16px;
+      margin-top: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease, margin 0.3s ease, border-color 0.3s ease;
+      will-change: opacity, max-height;
+    }
+
+    #certMotivator.show {
+      opacity: 1;
+      max-height: 100px;
+      padding: 12px 16px;
+      margin-top: 10px;
+      margin-bottom: 22px;
     }
 
     /* Card */
@@ -1120,7 +1151,7 @@
     <div class="progress-wrap">
       <div class="progress-bar" id="progressBar"></div>
     </div>
-    <div id="certMotivator" style="font-size: 0.95em; color: var(--primary); font-weight: 700; text-align: center; margin-top: 10px; margin-bottom: 22px; padding: 12px 16px; background: var(--soft); border-radius: 12px; border: 1.5px dashed var(--border); transition: all 0.3s; display: none; line-height: 1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.02);"></div>
+    <div id="certMotivator"></div>
 
     <form id="surveyForm">
 
@@ -2491,7 +2522,7 @@
 
     function updateProgressBar() {
       const pct = Math.round((currentStep / (totalSteps - 1)) * 100);
-      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressBar').style.transform = `scaleX(${pct / 100})`;
       const pctEl    = document.getElementById('progressPct');
       const counterEl = document.getElementById('qCounterText');
 
@@ -2526,12 +2557,12 @@
       const motivatorEl = document.getElementById('certMotivator');
       if (motivatorEl) {
         if (currentStep === 0) {
-          motivatorEl.style.display = 'block';
+          motivatorEl.classList.add('show');
           motivatorEl.textContent = 'Complete survey to claim your certificate 🎓';
         } else if (currentStep >= totalSteps - 2) {
-          motivatorEl.style.display = 'none';
+          motivatorEl.classList.remove('show');
         } else {
-          motivatorEl.style.display = 'block';
+          motivatorEl.classList.add('show');
           const left = 100 - pct;
           if (pct <= 30) {
             motivatorEl.textContent = `Keep going! You are ${pct}% closer to your certificate 🎓`;
