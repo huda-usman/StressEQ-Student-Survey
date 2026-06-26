@@ -56,4 +56,10 @@ This is a Final Year Project (FYP) built to support AI research into student str
 
 ---
 
+## 📬 Contact
+
+Built by **[huda-usman](https://github.com/huda-usman)** and **[Khansa972](https://github.com/Khansa972)** as part of the StressEQ research initiative.
+
+---
+
 <p align="center">Made with care for student mental health 💙</p>
