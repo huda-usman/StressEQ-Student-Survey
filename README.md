@@ -18,7 +18,7 @@ The survey integrates **clinically validated screeners (PHQ-9, GAD-7)** alongsid
 
 ## ✨ Features
 
-- 🎯 **10-Section Adaptive Survey** — covers demographics, academics, sleep, lifestyle, finances, health, personal context, and wellbeing
+- 🎯 **10-Section Adaptive Survey:** covers demographics, academics, sleep, lifestyle, finances, health, personal context, and wellbeing
 - 💾 **Auto-Save Progress** — responses persist via `localStorage`, so users can resume without losing data
 - 📊 **Live BMI Calculator** — real-time feedback with WHO/CDC and teen-specific percentile logic
 - 🚨 **Built-in Crisis Support** — automatic detection of self-harm risk indicators with compassionate resource prompts
