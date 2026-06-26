@@ -98,7 +98,7 @@
       font-weight: 700;
       text-align: center;
       line-height: 1.4;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
       background: var(--soft);
       border-radius: 12px;
       border: 1.5px dashed var(--border);
@@ -891,8 +891,13 @@
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     /* Radio card pop on select */
@@ -924,7 +929,9 @@
       white-space: nowrap;
     }
 
-    .q-counter .q-icon { font-size: 0.9em; }
+    .q-counter .q-icon {
+      font-size: 0.9em;
+    }
 
     /* Progress % label */
     .progress-pct {
@@ -1066,12 +1073,15 @@
       max-height: 235px;
       overflow-y: auto;
       /* Hide native scrollbar but keep scroll functionality */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE 10+ */
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE 10+ */
     }
 
     .custom-select-options::-webkit-scrollbar {
-      display: none !important; /* Safari and Chrome */
+      display: none !important;
+      /* Safari and Chrome */
       width: 0 !important;
       height: 0 !important;
     }
@@ -1145,7 +1155,8 @@
     </div>
 
     <div class="progress-header">
-      <span class="q-counter" id="qCounter"><span class="q-icon">📋</span> <span id="qCounterText">Start the survey</span></span>
+      <span class="q-counter" id="qCounter"><span class="q-icon">📋</span> <span id="qCounterText">Start the
+          survey</span></span>
       <span class="progress-pct" id="progressPct"></span>
     </div>
     <div class="progress-wrap">
@@ -1229,21 +1240,26 @@
               <label class="q-label"><span class="qnum">Q1.</span> University / Institution name</label>
               <select name="university_select" id="universitySelect" onchange="toggleUniversityCustomField()" required>
                 <option value="">select university:</option>
-                <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of Sciences &amp; Technology)</option>
+                <option value="NUST (National University of Sciences &amp; Technology)">NUST (National University of
+                  Sciences &amp; Technology)</option>
                 <option value="FAST-NUCES">FAST-NUCES</option>
                 <option value="COMSATS University">COMSATS University</option>
                 <option value="Shifa Tameer-e-Millat University">Shifa Tameer-e-Millat University</option>
-                <option value="Capital University of Science &amp; Technology (CUST)">Capital University of Science &amp; Technology (CUST)</option>
+                <option value="Capital University of Science &amp; Technology (CUST)">Capital University of Science
+                  &amp; Technology (CUST)</option>
                 <option value="Air University">Air University</option>
                 <option value="Bahria University">Bahria University</option>
                 <option value="Quaid-i-Azam University">Quaid-i-Azam University</option>
                 <option value="International Islamic University">International Islamic University</option>
-                <option value="National University of Modern Languages (NUML)">National University of Modern Languages (NUML)</option>
+                <option value="National University of Modern Languages (NUML)">National University of Modern Languages
+                  (NUML)</option>
                 <option value="Riphah International University">Riphah International University</option>
                 <option value="HBS Medical and Dental College">HBS Medical and Dental College</option>
                 <option value="Allama Iqbal Open University">Allama Iqbal Open University</option>
-                <option value="Lahore University of Management Sciences (LUMS)">Lahore University of Management Sciences (LUMS)</option>
-                <option value="University of Engineering &amp; Technology (UET) Lahore">University of Engineering &amp; Technology (UET) Lahore</option>
+                <option value="Lahore University of Management Sciences (LUMS)">Lahore University of Management Sciences
+                  (LUMS)</option>
+                <option value="University of Engineering &amp; Technology (UET) Lahore">University of Engineering &amp;
+                  Technology (UET) Lahore</option>
                 <option value="University of the Punjab">University of the Punjab</option>
                 <option value="University of Karachi">University of Karachi</option>
                 <option value="University of Peshawar">University of Peshawar</option>
@@ -1279,9 +1295,9 @@
 
           <div class="question">
             <label class="q-label"><span class="qnum">Q3.</span> What is your age?</label>
-             <input type="number" name="age" min="16" max="60" step="1"
-               onblur="let v=parseInt(this.value); if(!isNaN(v)){if(v<16)this.value=16; if(v>60)this.value=60;} "
-               placeholder="e.g., 21" required />
+            <input type="number" name="age" min="16" max="60" step="1"
+              onblur="let v=parseInt(this.value); if(!isNaN(v)){if(v<16)this.value=16; if(v>60)this.value=60;} "
+              placeholder="e.g., 21" required />
           </div>
 
           <div class="question">
@@ -1338,7 +1354,8 @@
                 <option value="Other">Other</option>
               </select>
               <input type="text" id="yearOtherInput" name="education_level_other"
-                placeholder="Please specify your year / programme…" maxlength="100" style="display:none; margin-top:8px;" />
+                placeholder="Please specify your year / programme…" maxlength="100"
+                style="display:none; margin-top:8px;" />
             </div>
             <div class="question">
               <label class="q-label"><span class="qnum">Q8.</span> Field of study</label>
@@ -1373,34 +1390,38 @@
           <p class="lead">How's the academic pressure been lately?</p>
 
           <div class="question" id="gpaQuestion">
-             <label class="q-label"><span class="qnum">Q9.</span> What is your current CGPA or Percentage?</label>
+            <label class="q-label"><span class="qnum">Q9.</span> What is your current CGPA or Percentage?</label>
 
-             <!-- Skip checkbox for 1st-semester / no result yet -->
-             <label id="gpaSkipLabel" style="display:inline-flex;align-items:center;gap:7px;cursor:pointer;
+            <!-- Skip checkbox for 1st-semester / no result yet -->
+            <label id="gpaSkipLabel" style="display:inline-flex;align-items:center;gap:7px;cursor:pointer;
                font-size:0.85em;font-weight:600;color:var(--muted);
                background:var(--bg-grad-1);border:1.5px dashed var(--border);
                border-radius:20px;padding:5px 14px;margin-bottom:10px;transition:all 0.2s;">
-               <input type="checkbox" id="gpaUnknown" onchange="toggleGpaSkip()"
-                 style="accent-color:var(--primary);width:15px;height:15px;">
-               Not available yet &nbsp;<span style="font-weight:400;">(e.g. 1st semester / results pending)</span>
-             </label>
+              <input type="checkbox" id="gpaUnknown" onchange="toggleGpaSkip()"
+                style="accent-color:var(--primary);width:15px;height:15px;">
+              Not available yet &nbsp;<span style="font-weight:400;">(e.g. 1st semester / results pending)</span>
+            </label>
 
-             <div id="gpaScaleRow" style="display:flex; gap:8px; margin-bottom:8px;">
-               <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;" id="gpaScaleCGPA">
-                 <input type="radio" name="gpa_scale" value="cgpa" checked onchange="updateGpaScale()" style="accent-color:var(--primary);"> CGPA (0 – 4.0)
-               </label>
-               <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;" id="gpaScalePct">
-                 <input type="radio" name="gpa_scale" value="pct" onchange="updateGpaScale()" style="accent-color:var(--primary);"> Percentage (0 – 100)
-               </label>
-             </div>
-             <input type="number" name="gpa" id="gpaInput" step="0.01" min="0" max="4.0"
-               placeholder="e.g., 3.45" required
-               oninput="clampGpa(this); validateGpaLive(this)"
-               onblur="validateGpaLive(this)" />
-             <div id="gpaHint" style="font-size:0.80em;color:var(--muted);margin-top:4px;">
-               CGPA scale: enter a value between <strong>0</strong> and <strong>4.0</strong>
-             </div>
-             <div id="gpaWarn" style="display:none;color:#DC2626;font-size:0.82em;margin-top:4px;font-weight:600;"></div>
+            <div id="gpaScaleRow" style="display:flex; gap:8px; margin-bottom:8px;">
+              <label
+                style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;"
+                id="gpaScaleCGPA">
+                <input type="radio" name="gpa_scale" value="cgpa" checked onchange="updateGpaScale()"
+                  style="accent-color:var(--primary);"> CGPA (0 – 4.0)
+              </label>
+              <label
+                style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:0.88em;font-weight:600;padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;transition:all 0.2s;"
+                id="gpaScalePct">
+                <input type="radio" name="gpa_scale" value="pct" onchange="updateGpaScale()"
+                  style="accent-color:var(--primary);"> Percentage (0 – 100)
+              </label>
+            </div>
+            <input type="number" name="gpa" id="gpaInput" step="0.01" min="0" max="4.0" placeholder="e.g., 3.45"
+              required oninput="clampGpa(this); validateGpaLive(this)" onblur="validateGpaLive(this)" />
+            <div id="gpaHint" style="font-size:0.80em;color:var(--muted);margin-top:4px;">
+              CGPA scale: enter a value between <strong>0</strong> and <strong>4.0</strong>
+            </div>
+            <div id="gpaWarn" style="display:none;color:#DC2626;font-size:0.82em;margin-top:4px;font-weight:600;"></div>
           </div>
 
           <div class="question">
@@ -1456,7 +1477,8 @@
         <div class="card">
           <span class="step-badge">Section 3 of 10 · Sleep &amp; body</span>
           <h2>Sleep &amp; activity</h2>
-          <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest: your data is anonymous.</p>
+          <p class="lead">Sleep and exercise are the biggest predictors of stress. Be honest: your data is anonymous.
+          </p>
 
           <div class="question">
             <label class="q-label"><span class="qnum">Q12.</span> How many hours do you usually sleep per night?</label>
@@ -1772,13 +1794,22 @@
 
           <!-- Q: Therapy / Counseling History -->
           <div class="question">
-            <label class="q-label"><span class="qnum">Q24.</span> Have you ever taken therapy or counseling services, or are you currently receiving them?</label>
+            <label class="q-label"><span class="qnum">Q24.</span> Have you ever taken therapy or counseling services, or
+              are you currently receiving them?</label>
             <div class="radio-group long-options" style="margin-top:8px;">
-              <div class="radio-card"><input type="radio" id="th1" name="therapy_history" value="Yes, currently receiving support" required /><label for="th1">Yes, currently receiving support</label></div>
-              <div class="radio-card"><input type="radio" id="th2" name="therapy_history" value="Yes, received support in the past" /><label for="th2">Yes, received support in the past</label></div>
-              <div class="radio-card"><input type="radio" id="th3" name="therapy_history" value="No, but I have considered it" /><label for="th3">No, but I have considered it</label></div>
-              <div class="radio-card"><input type="radio" id="th4" name="therapy_history" value="No, and I have never felt the need" /><label for="th4">No, and I have never felt the need</label></div>
-              <div class="radio-card"><input type="radio" id="th5" name="therapy_history" value="Prefer not to say" /><label for="th5">Prefer not to say</label></div>
+              <div class="radio-card"><input type="radio" id="th1" name="therapy_history"
+                  value="Yes, currently receiving support" required /><label for="th1">Yes, currently receiving
+                  support</label></div>
+              <div class="radio-card"><input type="radio" id="th2" name="therapy_history"
+                  value="Yes, received support in the past" /><label for="th2">Yes, received support in the past</label>
+              </div>
+              <div class="radio-card"><input type="radio" id="th3" name="therapy_history"
+                  value="No, but I have considered it" /><label for="th3">No, but I have considered it</label></div>
+              <div class="radio-card"><input type="radio" id="th4" name="therapy_history"
+                  value="No, and I have never felt the need" /><label for="th4">No, and I have never felt the
+                  need</label></div>
+              <div class="radio-card"><input type="radio" id="th5" name="therapy_history"
+                  value="Prefer not to say" /><label for="th5">Prefer not to say</label></div>
             </div>
           </div>
 
@@ -1893,8 +1924,8 @@
                   for="top9">Parental education</label></div>
               <div class="check-item"><input type="checkbox" id="top10" name="top" value="bmi" /><label
                   for="top10">BMI</label></div>
-              <div class="check-item"><input type="checkbox" id="top11" name="top" value="interpersonal_conflict" /><label
-                  for="top11">Interpersonal conflict</label></div>
+              <div class="check-item"><input type="checkbox" id="top11" name="top"
+                  value="interpersonal_conflict" /><label for="top11">Interpersonal conflict</label></div>
               <div class="check-item"><input type="checkbox" id="top12" name="top" value="grief" /><label
                   for="top12">Grief or loss</label></div>
             </div>
@@ -1936,8 +1967,12 @@
       <section class="step" data-step="11">
         <div class="card" style="text-align:center; padding: 48px 24px; border-top:4px solid var(--primary);">
           <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;">
-            <div style="width:64px; height:64px; border:5px solid rgba(2, 132, 199, 0.15); border-left-color:var(--primary); border-radius:50%; animation:spin 1s linear infinite; will-change: transform;"></div>
-            <div id="loaderText" style="font-size:1.25em; font-weight:700; color:var(--primary); transition: opacity 0.3s; min-height: 36px;">Verifying your data...</div>
+            <div
+              style="width:64px; height:64px; border:5px solid rgba(2, 132, 199, 0.15); border-left-color:var(--primary); border-radius:50%; animation:spin 1s linear infinite; will-change: transform;">
+            </div>
+            <div id="loaderText"
+              style="font-size:1.25em; font-weight:700; color:var(--primary); transition: opacity 0.3s; min-height: 36px;">
+              Verifying your data...</div>
           </div>
         </div>
       </section>
@@ -1951,16 +1986,20 @@
           </p>
 
           <!-- Certificate Generator Area -->
-          <div style="margin: 24px 0; border: 1.5px solid var(--border); border-radius: 16px; padding: 24px; background: var(--soft); text-align: left;">
+          <div
+            style="margin: 24px 0; border: 1.5px solid var(--border); border-radius: 16px; padding: 24px; background: var(--soft); text-align: left;">
             <h2 style="font-size: 1.15em; color: var(--text); margin-bottom: 8px;">🎓 Get Your Certificate</h2>
             <p style="font-size: 0.88em; color: var(--muted); margin-bottom: 16px;">
               Please write your name below for your certificate of participation.
             </p>
-            
+
             <div style="display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap;">
               <div style="flex: 1 1 300px; max-width: 400px;">
-                <label for="certNameInput" style="display: block; font-weight: 600; font-size: 0.9em; margin-bottom: 8px; color: var(--text);">Participant Name</label>
-                <input type="text" id="certNameInput" placeholder="Your Name" style="width: 100%; box-sizing: border-box;" required />
+                <label for="certNameInput"
+                  style="display: block; font-weight: 600; font-size: 0.9em; margin-bottom: 8px; color: var(--text);">Participant
+                  Name</label>
+                <input type="text" id="certNameInput" placeholder="Your Name"
+                  style="width: 100%; box-sizing: border-box;" required />
               </div>
               <button type="button" class="btn-primary" onclick="goToCertificate()">Get Certificate →</button>
             </div>
@@ -1983,7 +2022,8 @@
 
           <p style="text-align:center; color:var(--muted); font-size:0.88em; margin-top:20px;" id="submitStatus"></p>
 
-          <p style="text-align:center; color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab now. Every response counts.</p>
+          <p style="text-align:center; color:var(--muted); font-size:0.88em; margin-top:16px;">You may close this tab
+            now. Every response counts.</p>
         </div>
       </section>
 
@@ -2005,6 +2045,7 @@
     const totalSteps = 13;
     const data = {};
     const STORAGE_KEY = 'stresseq_student_v1';
+    let submitTimers = [];
 
     // PHQ-9 + GAD-7 items
     const PHQ_ITEMS = [
@@ -2171,12 +2212,12 @@
 
     // ── GPA / CGPA scale selector ────────────────────────────────
     function toggleGpaSkip() {
-      const skip     = document.getElementById('gpaUnknown')?.checked;
-      const inp      = document.getElementById('gpaInput');
+      const skip = document.getElementById('gpaUnknown')?.checked;
+      const inp = document.getElementById('gpaInput');
       const scaleRow = document.getElementById('gpaScaleRow');
-      const hint     = document.getElementById('gpaHint');
-      const warn     = document.getElementById('gpaWarn');
-      const radios   = document.querySelectorAll('[name="gpa_scale"]');
+      const hint = document.getElementById('gpaHint');
+      const warn = document.getElementById('gpaWarn');
+      const radios = document.querySelectorAll('[name="gpa_scale"]');
 
       if (skip) {
         // Disable and grey out the input + scale radios
@@ -2201,8 +2242,8 @@
     function updateGpaScale() {
       if (document.getElementById('gpaUnknown')?.checked) return; // skip active, ignore
       const isCgpa = document.querySelector('[name="gpa_scale"]:checked')?.value === 'cgpa';
-      const inp    = document.getElementById('gpaInput');
-      const hint   = document.getElementById('gpaHint');
+      const inp = document.getElementById('gpaInput');
+      const hint = document.getElementById('gpaHint');
       if (!inp) return;
       if (isCgpa) {
         inp.max = 4.0; inp.step = 0.01; inp.placeholder = 'e.g., 3.45';
@@ -2314,7 +2355,7 @@
       const bmi = computeBMI(h, w);
       // Hide the live BMI card when either value is missing or out of range
       if (!bmi) { box.style.display = 'none'; return; }
-      
+
       // Fetch current age and gender to support standard clinical logics
       const ageEl = document.querySelector('[name="age"]');
       const ageVal = ageEl ? parseInt(ageEl.value) : null;
@@ -2450,21 +2491,21 @@
     // Maps question number → field name(s) (any non-empty = answered)
     const TOTAL_QUESTIONS = 43;
     const QUESTION_FIELDS = {
-      1:  ['university_select', 'university_custom'],
-      2:  ['country_select', 'country_custom'],
-      3:  ['age'],
-      4:  ['gender'],
-      5:  ['is_international'],
-      6:  ['race'],
-      7:  ['education_level'],
-      8:  ['field_of_study'],
-      9:  ['gpa'],
+      1: ['university_select', 'university_custom'],
+      2: ['country_select', 'country_custom'],
+      3: ['age'],
+      4: ['gender'],
+      5: ['is_international'],
+      6: ['race'],
+      7: ['education_level'],
+      8: ['field_of_study'],
+      9: ['gpa'],
       10: ['academic_pressure'],
       11: ['study_hours'],
       12: ['sleep_hours'],
-      13: ['sl1','sl2','sl3','sl4','sl5','sl6'],   // sleep quality likert
-      14: ['height_cm','height_ft','height_unknown'],
-      15: ['weight_kg','weight_lb','weight_unknown'],
+      13: ['sl1', 'sl2', 'sl3', 'sl4', 'sl5', 'sl6'],   // sleep quality likert
+      14: ['height_cm', 'height_ft', 'height_unknown'],
+      15: ['weight_kg', 'weight_lb', 'weight_unknown'],
       16: ['substance_use'],
       17: ['belonging_score'],
       18: ['parent_education'],
@@ -2508,22 +2549,22 @@
 
     // Also keep step-range info for section label
     const STEP_Q_RANGE = {
-      1:  { start: 1,  end: 8  },
-      2:  { start: 9,  end: 11 },
-      3:  { start: 12, end: 15 },
-      4:  { start: 16, end: 16 },
-      5:  { start: 17, end: 19 },
-      6:  { start: 20, end: 20 },
-      7:  { start: 21, end: 24 },
-      8:  { start: 25, end: 34 },
-      9:  { start: 35, end: 41 },
+      1: { start: 1, end: 8 },
+      2: { start: 9, end: 11 },
+      3: { start: 12, end: 15 },
+      4: { start: 16, end: 16 },
+      5: { start: 17, end: 19 },
+      6: { start: 20, end: 20 },
+      7: { start: 21, end: 24 },
+      8: { start: 25, end: 34 },
+      9: { start: 35, end: 41 },
       10: { start: 42, end: 43 },
     };
 
     function updateProgressBar() {
       const pct = Math.round((currentStep / (totalSteps - 1)) * 100);
       document.getElementById('progressBar').style.transform = `scaleX(${pct / 100})`;
-      const pctEl    = document.getElementById('progressPct');
+      const pctEl = document.getElementById('progressPct');
       const counterEl = document.getElementById('qCounterText');
 
       const answered = countAnsweredQuestions();
@@ -2612,7 +2653,7 @@
 
         const wrapper = document.createElement('div');
         wrapper.className = 'custom-select-wrapper';
-        
+
         select.parentNode.insertBefore(wrapper, select);
         wrapper.appendChild(select);
         select.classList.add('visual-hidden');
@@ -2620,18 +2661,18 @@
         const trigger = document.createElement('div');
         trigger.className = 'custom-select-trigger';
         trigger.tabIndex = 0;
-        
+
         const triggerText = document.createElement('span');
         triggerText.className = 'custom-select-text';
-        
+
         const selectedOpt = select.options[select.selectedIndex] || select.options[0];
         triggerText.textContent = selectedOpt ? selectedOpt.textContent : '';
         trigger.appendChild(triggerText);
-        
+
         const arrow = document.createElement('span');
         arrow.className = 'custom-select-arrow';
         trigger.appendChild(arrow);
-        
+
         wrapper.appendChild(trigger);
 
         const optionsWrapper = document.createElement('div');
@@ -2645,7 +2686,7 @@
           optionEl.className = 'custom-select-option';
           optionEl.textContent = opt.textContent;
           optionEl.dataset.value = opt.value;
-          
+
           if (idx === select.selectedIndex) {
             optionEl.classList.add('selected');
           }
@@ -2654,12 +2695,12 @@
             e.stopPropagation();
             select.value = opt.value;
             triggerText.textContent = opt.textContent;
-            
+
             optionsContainer.querySelectorAll('.custom-select-option').forEach(el => el.classList.remove('selected'));
             optionEl.classList.add('selected');
-            
+
             wrapper.classList.remove('open');
-            
+
             select.dispatchEvent(new Event('change', { bubbles: true }));
             select.dispatchEvent(new Event('input', { bubbles: true }));
           });
@@ -2689,7 +2730,7 @@
             const thumbHeight = Math.max((ch / sh) * ch, 24); // min 24px thumb
             const maxThumbTop = Math.max(ch - thumbHeight - 12, 0); // account for track offsets (6px top + 6px bottom = 12px)
             const thumbTop = Math.max(scrollPercent * maxThumbTop, 0);
-            
+
             scrollThumb.style.height = `${thumbHeight}px`;
             scrollThumb.style.transform = `translateY(${thumbTop}px)`;
           }
@@ -3360,6 +3401,10 @@
       // Show Verification loading screen (Step 11)
       showStep(11);
 
+      // Clear any active timers from previous submissions
+      submitTimers.forEach(clearTimeout);
+      submitTimers = [];
+
       // Status messages sequence to show dynamic progress
       const loaderText = document.getElementById('loaderText');
       const messages = [
@@ -3369,15 +3414,14 @@
         "Finalizing your results..."
       ];
       messages.forEach((msg, idx) => {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           if (loaderText) {
-            loaderText.style.opacity = 0;
-            setTimeout(() => {
-              loaderText.textContent = msg;
-              loaderText.style.opacity = 1;
-            }, 150);
+            loaderText.style.transition = 'none'; // Disable transition to prevent WebKit texture cache bugs
+            loaderText.textContent = msg;
+            void loaderText.offsetHeight; // Force layout recalculation and repaint to clear GPU textures
           }
         }, idx * 800);
+        submitTimers.push(timer);
       });
 
       let animationDone = false;
@@ -3385,10 +3429,11 @@
       let submissionError = null;
 
       // Transition to final results and certificate step (Step 12) after 3.2s
-      setTimeout(() => {
+      const finalTimer = setTimeout(() => {
         animationDone = true;
         checkAndTransition();
       }, 3200);
+      submitTimers.push(finalTimer);
 
       // POST to Google Apps Script. Using application/x-www-form-urlencoded
       // lets the script receive the JSON without triggering a CORS preflight
@@ -3406,6 +3451,9 @@
           checkAndTransition();
         } catch (e) {
           submissionError = e;
+          // Clear timers on error
+          submitTimers.forEach(clearTimeout);
+          submitTimers = [];
           // Return to Step 10 on error so user can retry
           showStep(10);
           showToast('⚠️ Network issue: please check your connection and retry.');
@@ -3419,6 +3467,9 @@
 
       function checkAndTransition() {
         if (animationDone && submissionDone) {
+          // Clear timers on success
+          submitTimers.forEach(clearTimeout);
+          submitTimers = [];
           showStep(12);
 
           // Populate Anonymous Response ID
