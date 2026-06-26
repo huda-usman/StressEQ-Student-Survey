@@ -1,16 +1,28 @@
 <div align="center">
   <br />
   <p align="center">
-    <img src="https://img.icons8.com/fluency/120/brain.png" width="90" alt="StressEQ Brain Logo"/>
+    <!-- Floating Sparkle Animation -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="90" height="90">
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="0,4; 0,-6; 0,4" dur="4s" repeatCount="indefinite" />
+        <path d="M50 15 C50 35 35 50 15 50 C35 50 50 65 50 85 C50 65 65 50 85 50 C65 50 50 35 50 15 Z" fill="#8B5CF6" />
+        <path d="M50 25 C50 40 40 50 25 50 C40 50 50 60 50 75 C50 60 60 50 75 50 C60 50 50 40 50 25 Z" fill="#A78BFA" />
+        <circle cx="50" cy="50" r="4" fill="#FFFFFF" />
+      </g>
+      <ellipse cx="50" cy="92" rx="14" ry="2" fill="#C084FC" opacity="0.3">
+        <animate attributeName="rx" values="14; 9; 14" dur="4s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.3; 0.15; 0.3" dur="4s" repeatCount="indefinite" />
+      </ellipse>
+    </svg>
   </p>
-  <h1 align="center">🧠 StressEQ: Student Survey</h1>
+  <h1 align="center" style="color: #6D28D9;">🧠 StressEQ: Student Survey</h1>
   <p align="center"><b>AI-Powered Student Stress Detection & Burnout Forecaster</b></p>
   <p align="center"><i>An intelligent, anonymous platform designed for university students to report stress factors, forecast burnout risk, and access personalized mental health support.</i></p>
   
   <p align="center">
-    <a href="#"><img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=github&logoColor=white&color=059669" alt="Status"/></a>
-    <a href="#"><img src="https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS-blue?style=for-the-badge&logo=javascript&logoColor=white&color=0284C7" alt="Stack"/></a>
-    <a href="#"><img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge&color=4B5563" alt="License"/></a>
+    <a href="#"><img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge&logo=github&logoColor=white&color=8B5CF6" alt="Status"/></a>
+    <a href="#"><img src="https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS-blue?style=for-the-badge&logo=javascript&logoColor=white&color=7C3AED" alt="Stack"/></a>
+    <a href="#"><img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge&color=A78BFA" alt="License"/></a>
   </p>
   <br />
 </div>
@@ -75,8 +87,8 @@ Built by **[huda-usman](https://github.com/huda-usman)** and **[Khansa972](https
 ---
 
 <div align="center">
-  <h3>✨ Empowering Academic Wellbeing ✨</h3>
+  <h3 style="color: #7C3AED;">✨ Empowering Academic Wellbeing ✨</h3>
   <p><i>Validating AI models to detect rising stress levels and recommend personalized interventions before burnout.</i></p>
   <br/>
-  <sub>Made with care for student mental health 💙</sub>
+  <sub style="color: #8B5CF6;">Made with care for student mental health 💙</sub>
 </div>
