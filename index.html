@@ -3251,6 +3251,19 @@
         data.country = data.country_select || '';
       }
 
+      // Resolve "Other" custom text for field_of_study — if student chose Other,
+      // replace the raw "Other" value with whatever they typed in the free-text box.
+      if (data.field_of_study === 'Other') {
+        const fld = document.getElementById('fieldOtherInput')?.value?.trim();
+        if (fld) data.field_of_study = fld;
+      }
+
+      // Resolve "Other" custom text for education_level (year/programme)
+      if (data.education_level === 'Other') {
+        const yr = document.getElementById('yearOtherInput')?.value?.trim();
+        if (yr) data.education_level = yr;
+      }
+
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       flashSaved();
     }
@@ -3394,6 +3407,17 @@
       // Compute chronic_illness tier — now a direct radio value 0-3
       const chrEl = document.querySelector('input[name="chronic_illness_tier"]:checked');
       data.chronic_illness_tier = chrEl ? parseInt(chrEl.value) : 0;
+
+      // Final resolution: ensure "Other" custom text is sent to Google Sheets,
+      // not the literal string "Other" (covers the case where saveStep ran before typing).
+      if (data.field_of_study === 'Other') {
+        const fld = document.getElementById('fieldOtherInput')?.value?.trim();
+        if (fld) data.field_of_study = fld;
+      }
+      if (data.education_level === 'Other') {
+        const yr = document.getElementById('yearOtherInput')?.value?.trim();
+        if (yr) data.education_level = yr;
+      }
 
       data.submitted_at = new Date().toISOString();
       data.response_id = 'seq-' + Math.random().toString(36).slice(2, 10).toUpperCase();
